@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  SavingForever
+//  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
-//  Copyright © 2015 Michael Kavouras. All rights reserved.
+//  Created by Henna on 10/4/15.
+//  Copyright (c) 2015 Henna. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
