@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  SavingForever
+//  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
-//  Copyright © 2015 Michael Kavouras. All rights reserved.
+//  Created by Justine Gartner on 10/4/15.
+//  Copyright © 2015 Justine Gartner. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
