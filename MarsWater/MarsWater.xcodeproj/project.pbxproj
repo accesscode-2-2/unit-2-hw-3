@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5DD9BCF61BC1AE7C002C48F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BCF51BC1AE7C002C48F0 /* main.m */; };
+		5DD9BCF91BC1AE7C002C48F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BCF81BC1AE7C002C48F0 /* AppDelegate.m */; };
+		5DD9BCFF1BC1AE7C002C48F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD9BCFD1BC1AE7C002C48F0 /* Main.storyboard */; };
+		5DD9BD021BC1AE7D002C48F0 /* MarsWater.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD001BC1AE7D002C48F0 /* MarsWater.xcdatamodeld */; };
+		5DD9BD041BC1AE7D002C48F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD9BD031BC1AE7D002C48F0 /* Assets.xcassets */; };
+		5DD9BD071BC1AE7D002C48F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD9BD051BC1AE7D002C48F0 /* LaunchScreen.storyboard */; };
+		5DD9BD121BC1AE7D002C48F0 /* MarsWaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD111BC1AE7D002C48F0 /* MarsWaterTests.m */; };
+		5DD9BD1D1BC1AE7D002C48F0 /* MarsWaterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD1C1BC1AE7D002C48F0 /* MarsWaterUITests.m */; };
+		5DD9BD361BC1B326002C48F0 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD2F1BC1B326002C48F0 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD371BC1B326002C48F0 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD311BC1B326002C48F0 /* Task.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD381BC1B326002C48F0 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD331BC1B326002C48F0 /* List+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD391BC1B326002C48F0 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD351BC1B326002C48F0 /* List.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD3C1BC1B90A002C48F0 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD3F1BC1B92A002C48F0 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DD9BD0E1BC1AE7D002C48F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DD9BCE91BC1AE7C002C48F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DD9BCF01BC1AE7C002C48F0;
+			remoteInfo = MarsWater;
+		};
+		5DD9BD191BC1AE7D002C48F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DD9BCE91BC1AE7C002C48F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DD9BCF01BC1AE7C002C48F0;
+			remoteInfo = MarsWater;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5DD9BCF11BC1AE7C002C48F0 /* MarsWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD9BCF51BC1AE7C002C48F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5DD9BCF71BC1AE7C002C48F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5DD9BCF81BC1AE7C002C48F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5DD9BCFE1BC1AE7C002C48F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5DD9BD011BC1AE7D002C48F0 /* MarsWater.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarsWater.xcdatamodel; sourceTree = "<group>"; };
+		5DD9BD031BC1AE7D002C48F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5DD9BD061BC1AE7D002C48F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5DD9BD081BC1AE7D002C48F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD9BD0D1BC1AE7D002C48F0 /* MarsWaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsWaterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD9BD111BC1AE7D002C48F0 /* MarsWaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarsWaterTests.m; sourceTree = "<group>"; };
+		5DD9BD131BC1AE7D002C48F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD9BD181BC1AE7D002C48F0 /* MarsWaterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsWaterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD9BD1C1BC1AE7D002C48F0 /* MarsWaterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarsWaterUITests.m; sourceTree = "<group>"; };
+		5DD9BD1E1BC1AE7D002C48F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD9BD2E1BC1B326002C48F0 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5DD9BD2F1BC1B326002C48F0 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5DD9BD301BC1B326002C48F0 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		5DD9BD311BC1B326002C48F0 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		5DD9BD321BC1B326002C48F0 /* List+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "List+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5DD9BD331BC1B326002C48F0 /* List+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "List+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5DD9BD341BC1B326002C48F0 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		5DD9BD351BC1B326002C48F0 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
+		5DD9BD3A1BC1B90A002C48F0 /* ListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsTableViewController.h; sourceTree = "<group>"; };
+		5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
+		5DD9BD3D1BC1B929002C48F0 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
+		5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DD9BCEE1BC1AE7C002C48F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD0A1BC1AE7D002C48F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD151BC1AE7D002C48F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5DD9BCE81BC1AE7C002C48F0 = {
+			isa = PBXGroup;
+			children = (
+				5DD9BCF31BC1AE7C002C48F0 /* MarsWater */,
+				5DD9BD101BC1AE7D002C48F0 /* MarsWaterTests */,
+				5DD9BD1B1BC1AE7D002C48F0 /* MarsWaterUITests */,
+				5DD9BCF21BC1AE7C002C48F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5DD9BCF21BC1AE7C002C48F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BCF11BC1AE7C002C48F0 /* MarsWater.app */,
+				5DD9BD0D1BC1AE7D002C48F0 /* MarsWaterTests.xctest */,
+				5DD9BD181BC1AE7D002C48F0 /* MarsWaterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DD9BCF31BC1AE7C002C48F0 /* MarsWater */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BD2D1BC1B2A0002C48F0 /* Model */,
+				5DD9BCF71BC1AE7C002C48F0 /* AppDelegate.h */,
+				5DD9BCF81BC1AE7C002C48F0 /* AppDelegate.m */,
+				5DD9BD3A1BC1B90A002C48F0 /* ListsTableViewController.h */,
+				5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */,
+				5DD9BD3D1BC1B929002C48F0 /* ListCreationTableViewController.h */,
+				5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */,
+				5DD9BCFD1BC1AE7C002C48F0 /* Main.storyboard */,
+				5DD9BD031BC1AE7D002C48F0 /* Assets.xcassets */,
+				5DD9BD051BC1AE7D002C48F0 /* LaunchScreen.storyboard */,
+				5DD9BD081BC1AE7D002C48F0 /* Info.plist */,
+				5DD9BD001BC1AE7D002C48F0 /* MarsWater.xcdatamodeld */,
+				5DD9BCF41BC1AE7C002C48F0 /* Supporting Files */,
+			);
+			path = MarsWater;
+			sourceTree = "<group>";
+		};
+		5DD9BCF41BC1AE7C002C48F0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BCF51BC1AE7C002C48F0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DD9BD101BC1AE7D002C48F0 /* MarsWaterTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BD111BC1AE7D002C48F0 /* MarsWaterTests.m */,
+				5DD9BD131BC1AE7D002C48F0 /* Info.plist */,
+			);
+			path = MarsWaterTests;
+			sourceTree = "<group>";
+		};
+		5DD9BD1B1BC1AE7D002C48F0 /* MarsWaterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BD1C1BC1AE7D002C48F0 /* MarsWaterUITests.m */,
+				5DD9BD1E1BC1AE7D002C48F0 /* Info.plist */,
+			);
+			path = MarsWaterUITests;
+			sourceTree = "<group>";
+		};
+		5DD9BD2D1BC1B2A0002C48F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BD2E1BC1B326002C48F0 /* Task+CoreDataProperties.h */,
+				5DD9BD2F1BC1B326002C48F0 /* Task+CoreDataProperties.m */,
+				5DD9BD301BC1B326002C48F0 /* Task.h */,
+				5DD9BD311BC1B326002C48F0 /* Task.m */,
+				5DD9BD321BC1B326002C48F0 /* List+CoreDataProperties.h */,
+				5DD9BD331BC1B326002C48F0 /* List+CoreDataProperties.m */,
+				5DD9BD341BC1B326002C48F0 /* List.h */,
+				5DD9BD351BC1B326002C48F0 /* List.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DD9BCF01BC1AE7C002C48F0 /* MarsWater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD9BD211BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWater" */;
+			buildPhases = (
+				5DD9BCED1BC1AE7C002C48F0 /* Sources */,
+				5DD9BCEE1BC1AE7C002C48F0 /* Frameworks */,
+				5DD9BCEF1BC1AE7C002C48F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarsWater;
+			productName = MarsWater;
+			productReference = 5DD9BCF11BC1AE7C002C48F0 /* MarsWater.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5DD9BD0C1BC1AE7D002C48F0 /* MarsWaterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD9BD241BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterTests" */;
+			buildPhases = (
+				5DD9BD091BC1AE7D002C48F0 /* Sources */,
+				5DD9BD0A1BC1AE7D002C48F0 /* Frameworks */,
+				5DD9BD0B1BC1AE7D002C48F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DD9BD0F1BC1AE7D002C48F0 /* PBXTargetDependency */,
+			);
+			name = MarsWaterTests;
+			productName = MarsWaterTests;
+			productReference = 5DD9BD0D1BC1AE7D002C48F0 /* MarsWaterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5DD9BD171BC1AE7D002C48F0 /* MarsWaterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD9BD271BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterUITests" */;
+			buildPhases = (
+				5DD9BD141BC1AE7D002C48F0 /* Sources */,
+				5DD9BD151BC1AE7D002C48F0 /* Frameworks */,
+				5DD9BD161BC1AE7D002C48F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DD9BD1A1BC1AE7D002C48F0 /* PBXTargetDependency */,
+			);
+			name = MarsWaterUITests;
+			productName = MarsWaterUITests;
+			productReference = 5DD9BD181BC1AE7D002C48F0 /* MarsWaterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DD9BCE91BC1AE7C002C48F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jackie Meggesto";
+				TargetAttributes = {
+					5DD9BCF01BC1AE7C002C48F0 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = K3UHHMLLWG;
+					};
+					5DD9BD0C1BC1AE7D002C48F0 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = K3UHHMLLWG;
+						TestTargetID = 5DD9BCF01BC1AE7C002C48F0;
+					};
+					5DD9BD171BC1AE7D002C48F0 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = K3UHHMLLWG;
+						TestTargetID = 5DD9BCF01BC1AE7C002C48F0;
+					};
+				};
+			};
+			buildConfigurationList = 5DD9BCEC1BC1AE7C002C48F0 /* Build configuration list for PBXProject "MarsWater" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5DD9BCE81BC1AE7C002C48F0;
+			productRefGroup = 5DD9BCF21BC1AE7C002C48F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DD9BCF01BC1AE7C002C48F0 /* MarsWater */,
+				5DD9BD0C1BC1AE7D002C48F0 /* MarsWaterTests */,
+				5DD9BD171BC1AE7D002C48F0 /* MarsWaterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DD9BCEF1BC1AE7C002C48F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD9BD071BC1AE7D002C48F0 /* LaunchScreen.storyboard in Resources */,
+				5DD9BD041BC1AE7D002C48F0 /* Assets.xcassets in Resources */,
+				5DD9BCFF1BC1AE7C002C48F0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD0B1BC1AE7D002C48F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD161BC1AE7D002C48F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DD9BCED1BC1AE7C002C48F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD9BD021BC1AE7D002C48F0 /* MarsWater.xcdatamodeld in Sources */,
+				5DD9BD361BC1B326002C48F0 /* Task+CoreDataProperties.m in Sources */,
+				5DD9BCF91BC1AE7C002C48F0 /* AppDelegate.m in Sources */,
+				5DD9BD3C1BC1B90A002C48F0 /* ListsTableViewController.m in Sources */,
+				5DD9BD371BC1B326002C48F0 /* Task.m in Sources */,
+				5DD9BD391BC1B326002C48F0 /* List.m in Sources */,
+				5DD9BD3F1BC1B92A002C48F0 /* ListCreationTableViewController.m in Sources */,
+				5DD9BCF61BC1AE7C002C48F0 /* main.m in Sources */,
+				5DD9BD381BC1B326002C48F0 /* List+CoreDataProperties.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD091BC1AE7D002C48F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD9BD121BC1AE7D002C48F0 /* MarsWaterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD9BD141BC1AE7D002C48F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD9BD1D1BC1AE7D002C48F0 /* MarsWaterUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DD9BD0F1BC1AE7D002C48F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DD9BCF01BC1AE7C002C48F0 /* MarsWater */;
+			targetProxy = 5DD9BD0E1BC1AE7D002C48F0 /* PBXContainerItemProxy */;
+		};
+		5DD9BD1A1BC1AE7D002C48F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DD9BCF01BC1AE7C002C48F0 /* MarsWater */;
+			targetProxy = 5DD9BD191BC1AE7D002C48F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5DD9BCFD1BC1AE7C002C48F0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DD9BCFE1BC1AE7C002C48F0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5DD9BD051BC1AE7D002C48F0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DD9BD061BC1AE7D002C48F0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DD9BD1F1BC1AE7D002C48F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5DD9BD201BC1AE7D002C48F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DD9BD221BC1AE7D002C48F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MarsWater/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5DD9BD231BC1AE7D002C48F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MarsWater/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWater;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5DD9BD251BC1AE7D002C48F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MarsWaterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarsWater.app/MarsWater";
+			};
+			name = Debug;
+		};
+		5DD9BD261BC1AE7D002C48F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MarsWaterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarsWater.app/MarsWater";
+			};
+			name = Release;
+		};
+		5DD9BD281BC1AE7D002C48F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MarsWaterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWaterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MarsWater;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5DD9BD291BC1AE7D002C48F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MarsWaterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.dryucatan.MarsWaterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MarsWater;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DD9BCEC1BC1AE7C002C48F0 /* Build configuration list for PBXProject "MarsWater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD9BD1F1BC1AE7D002C48F0 /* Debug */,
+				5DD9BD201BC1AE7D002C48F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DD9BD211BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD9BD221BC1AE7D002C48F0 /* Debug */,
+				5DD9BD231BC1AE7D002C48F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DD9BD241BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD9BD251BC1AE7D002C48F0 /* Debug */,
+				5DD9BD261BC1AE7D002C48F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5DD9BD271BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD9BD281BC1AE7D002C48F0 /* Debug */,
+				5DD9BD291BC1AE7D002C48F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5DD9BD001BC1AE7D002C48F0 /* MarsWater.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5DD9BD011BC1AE7D002C48F0 /* MarsWater.xcdatamodel */,
+			);
+			currentVersion = 5DD9BD011BC1AE7D002C48F0 /* MarsWater.xcdatamodel */;
+			path = MarsWater.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5DD9BCE91BC1AE7C002C48F0 /* Project object */;
+}
