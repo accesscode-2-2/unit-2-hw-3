@@ -40,7 +40,6 @@
     
     [self.fetchedResultsController performFetch:nil];
     
-    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

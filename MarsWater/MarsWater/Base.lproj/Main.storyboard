@@ -7,7 +7,7 @@
         <!--Lists-->
         <scene sceneID="DE6-G9-NMH">
             <objects>
-                <tableViewController title="Lists" id="xET-th-aF5" sceneMemberID="viewController">
+                <tableViewController title="Lists" id="xET-th-aF5" customClass="ListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5iz-ro-ji6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,6 @@
         <!--List Creation-->
         <scene sceneID="Iy7-XU-g3a">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HnG-UY-Yjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="List Creation" id="ThY-lk-YAc" customClass="ListCreationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="R4Q-sf-zwX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -178,6 +177,7 @@
                         <outlet property="titleTextField" destination="qPY-Xu-0mb" id="KzJ-7F-kcw"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HnG-UY-Yjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2075" y="-169"/>
         </scene>
