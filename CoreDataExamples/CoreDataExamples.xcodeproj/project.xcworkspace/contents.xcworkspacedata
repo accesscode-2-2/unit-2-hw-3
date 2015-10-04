@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SavingForever.xcodeproj">
+      location = "self:CoreDataExamples.xcodeproj">
    </FileRef>
 </Workspace>

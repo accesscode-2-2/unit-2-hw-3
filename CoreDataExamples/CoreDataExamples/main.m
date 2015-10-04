@@ -1,9 +1,9 @@
 //
 //  main.m
-//  SavingForever
+//  CoreDataExamples
 //
-//  Created by Michael Kavouras on 10/4/15.
-//  Copyright © 2015 Michael Kavouras. All rights reserved.
+//  Created by Jason Wang on 10/4/15.
+//  Copyright © 2015 Jason Wang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
