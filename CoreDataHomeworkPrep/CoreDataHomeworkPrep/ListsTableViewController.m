@@ -23,8 +23,6 @@
 {
     [super viewDidLoad];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
     
@@ -34,8 +32,12 @@
     // 3) set the sortDescriptors on the fetchRequest
     fetchRequest.sortDescriptors = @[sort];
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
     // 4)create a fetchResultsController with a fetchRequest and a managedObjectObjectContext
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    self.fetchedResultsController.delegate = self;
     
     [self.fetchedResultsController performFetch:nil];
     
