@@ -65,8 +65,6 @@
         self.task.updatedAt = [NSDate date];
     }
     
-    //attempting to add the new task to the list
-    //getting the error: "property 'task' not found on object of type 'List *'
     
     NSMutableArray *listTaskTempArray = self.list.task.mutableCopy;
     
