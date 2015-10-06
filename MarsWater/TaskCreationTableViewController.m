@@ -1,55 +1,86 @@
 //
-//  ItemCreationTableViewController.m
-//  CoreDataHomeworkPrep
+//  TaskCreationTableViewController.m
+//  MarsWater
 //
-//  Created by Shena Yoshida on 10/5/15.
-//  Copyright © 2015 Shena Yoshida. All rights reserved.
+//  Created by Shena Yoshida on 10/6/15.
+//  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
-#import "ItemCreationTableViewController.h"
+#import "TaskCreationTableViewController.h"
+#import <CoreData/CoreData.h>
+#import "Task.h"
+#import "AppDelegate.h" // to access the cool built in core data methods
 
-@interface ItemCreationTableViewController ()
+@interface TaskCreationTableViewController ()
+
+@property (nonatomic) Task *task;
+@property (weak, nonatomic) IBOutlet UITextField *taskTextField;
 
 @end
 
-@implementation ItemCreationTableViewController
+@implementation TaskCreationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupNavigationBar];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupNavigationBar
+{
+    // set the title
+    self.navigationItem.title = @"Create To Do Item";
+    
+    // set the left button to cancel
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    
+    // set the right button to save
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    
+    NSLog(@"%@", self.taskTextField.text);
 }
+
+- (void)cancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)save
+{
+    self.task.taskDescription = self.taskTextField.text; // set title
+    self.task.createdAt = [NSDate date];
+   // self.task.priority =
+   // self.task.dueAt =
+   // self.task.completedAt =
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate; // set delegate
+    [delegate.managedObjectContext save:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSLog(@"%@", self.task); // test it! 
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 0;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCreationIdentifier" forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

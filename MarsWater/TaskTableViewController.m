@@ -1,65 +1,52 @@
 //
-//  ItemsTableViewController.m
-//  CoreDataHomeworkPrep
+//  TaskTableViewController.m
+//  MarsWater
 //
-//  Created by Shena Yoshida on 10/5/15.
-//  Copyright © 2015 Shena Yoshida. All rights reserved.
+//  Created by Shena Yoshida on 10/6/15.
+//  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
-
-#import "ItemsTableViewController.h"
-#import "ItemCreationTableViewController.h"
+#import "TaskTableViewController.h"
 #import <CoreData/CoreData.h>
 
-
-
-
-
-@interface ItemsTableViewController () <NSFetchedResultsControllerDelegate>
+@interface TaskTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
-//@property (nonatomic) NSArray *array;
 
 @end
 
-@implementation ItemsTableViewController
+@implementation TaskTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-
-
-   // NSLog(@"%@", self.listName);
-    
-    
-    
     [self setupNavigationBar];
     [self fetchResults];
+  //  [self.tableView reloadData];
+    
+    
+    
 }
 
-- (void)setupNavigationBar
+-(void)setupNavigationBar
 {
-    // set the title
-    // self.navigationItem.title = self.listName;
+    self.navigationItem.title = self.listName;
     
-    // set the left button to cancel
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewItem)];
+    
 }
 
 - (void)cancel
 {
-  [self dismissViewControllerAnimated:YES completion:nil]; // dismiss when cancel button tapped
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)createNewItem
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateItem"];
+    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationItem"];
     [self presentViewController:navigationController animated:YES completion:nil];
-    
 }
 
 - (void)fetchResults
@@ -81,25 +68,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"itemCellIdentifier" forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskCellIdentifier" forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-
 
 @end

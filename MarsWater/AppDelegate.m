@@ -1,12 +1,10 @@
 //
 //  AppDelegate.m
-//  CoreDataHomeworkPrep
+//  MarsWater
 //
-//  Created by Shena Yoshida on 10/4/15.
-//  Copyright © 2015 Shena Yoshida. All rights reserved.
+//  Created by Michael Kavouras on 10/4/15.
+//  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
-
-// These are our excellent Core Data methods that were automatically created when we set up the project!!
 
 #import "AppDelegate.h"
 
@@ -53,7 +51,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "shenayoshida.CoreDataHomeworkPrep" in the application's documents directory.
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.mikekavouras.MarsWater" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
@@ -62,7 +60,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataHomeworkPrep" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"MarsWater" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -76,7 +74,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CoreDataHomeworkPrep.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MarsWater.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
