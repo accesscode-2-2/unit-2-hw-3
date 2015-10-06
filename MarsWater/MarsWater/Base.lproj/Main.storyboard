@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="7xJ-c7-7M5" kind="presentation" id="jbX-L8-0oE"/>
+                                    <segue destination="7xJ-c7-7M5" kind="show" id="jbX-L8-0oE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,7 +83,8 @@
                             <outlet property="delegate" destination="KNs-hQ-Ram" id="s4v-vb-HsT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="3Rn-mE-UAd">
+                    <navigationItem key="navigationItem" id="3Rn-mE-UAd">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hwk-Aw-51c"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1j6-oO-kcx">
                             <connections>
                                 <segue destination="z6v-NX-74A" kind="presentation" id="2o1-pY-gdk"/>
@@ -129,18 +130,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skG-W5-Fx1">
-                                                    <rect key="frame" x="14" y="11" width="76" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skG-W5-Fx1">
+                                                    <rect key="frame" x="12" y="11" width="76" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="neD-ew-LTn">
-                                                    <rect key="frame" x="104" y="7" width="456" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="neD-ew-LTn">
+                                                    <rect key="frame" x="96" y="7" width="492" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="skG-W5-Fx1" firstAttribute="centerY" secondItem="HU6-NZ-4iR" secondAttribute="centerY" id="4CS-aw-Grj"/>
+                                                <constraint firstItem="neD-ew-LTn" firstAttribute="leading" secondItem="skG-W5-Fx1" secondAttribute="trailing" constant="8" id="560-jV-Snb"/>
+                                                <constraint firstAttribute="trailing" secondItem="neD-ew-LTn" secondAttribute="trailing" constant="12" id="Kcd-7R-gyI"/>
+                                                <constraint firstItem="neD-ew-LTn" firstAttribute="centerY" secondItem="HU6-NZ-4iR" secondAttribute="centerY" id="LsI-Ve-RtY"/>
+                                                <constraint firstItem="skG-W5-Fx1" firstAttribute="leading" secondItem="HU6-NZ-4iR" secondAttribute="leading" constant="12" id="x0G-6B-Qxc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="phP-3h-4EX">
