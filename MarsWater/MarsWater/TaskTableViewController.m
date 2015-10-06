@@ -23,23 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-//    
-//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"priority" ascending:NO];
-//    
-//    fetchRequest.sortDescriptors = @[sort];
-//    
-//    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-//    
-//    self.fetchedResultsController.delegate = self;
-//    
-//    [self.fetchedResultsController performFetch:nil];
-//    
-//    self.list.task = self.fetchedResultsController.fetchedObjects;
-    
     [self.tableView reloadData];
+    
+    NSLog(@"list tasks: %@", self.list.task);
     
 }
 
@@ -61,6 +47,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
     
     Task *task = self.list.task[indexPath.row];
+    
+    NSLog(@"self.list.task: %@", self.list.task[indexPath.row]);
+    
     cell.textLabel.text = task.taskDescription;
     cell.backgroundColor = (UIColor *)self.list.color;
 
@@ -70,7 +59,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    TaskCreationTableViewController *taskCreationTVC = segue.destinationViewController;
+    UINavigationController *navController = segue.destinationViewController;
+    
+    TaskCreationTableViewController *taskCreationTVC = (TaskCreationTableViewController *)([navController viewControllers][0]);
     taskCreationTVC.list = self.list;
 }
 

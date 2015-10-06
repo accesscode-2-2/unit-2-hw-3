@@ -16,7 +16,7 @@
 
 @property (nonatomic) Task *task;
 
-@property (nonatomic) NSMutableArray *listTasks;
+@property (nonatomic) NSMutableOrderedSet *listTasks;
 
 @end
 
@@ -26,15 +26,16 @@
     
     [super viewDidLoad];
     
+    
+    
+    self.listTasks = [[NSMutableOrderedSet alloc] init];
+
+    
     [self setupNavigationBar];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-    
-    [self.listTasks addObject:self.task];
-    
-    self.list.task = self.listTasks;
     
 }
 
@@ -64,6 +65,17 @@
         self.task.updatedAt = [NSDate date];
     }
     
+    //attempting to add the new task to the list
+    //getting the error: "property 'task' not found on object of type 'List *'
+    
+    NSMutableArray *listTaskTempArray = self.list.task.mutableCopy;
+    
+    [self.listTasks addObject:self.task];
+    
+    [listTaskTempArray addObjectsFromArray:self.listTasks.array];
+    
+    self.list.task = listTaskTempArray;
+    
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
@@ -75,6 +87,11 @@
 }
 
 - (IBAction)priorityButtonTapped:(UIButton *)sender {
+    
+    //set tag property of each button
+    //use that property here - sender.tag
+    //to add the new task to the top (HIGH priority)
+    //or bottom (LOW priority) of the list
     
     NSLog(@"priority button tapped");
     
