@@ -53,6 +53,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ajR-gw-bDN" kind="show" identifier="ShowLists" id="ENR-ce-Z7M"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,7 +66,7 @@
                     <navigationItem key="navigationItem" title="Lists" id="7yu-0D-Bw6">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ncy-2O-mIq">
                             <connections>
-                                <segue destination="cOo-VT-rtf" kind="presentation" id="pkZ-Es-XAb"/>
+                                <segue destination="cOo-VT-rtf" kind="presentation" identifier="AddList" id="pkZ-Es-XAb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,6 +74,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ij-9P-HVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="537" y="151"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WZX-6i-uj1">
+            <objects>
+                <navigationController id="Ck1-ln-xzd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="82G-fG-SYO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ajR-gw-bDN" kind="relationship" relationship="rootViewController" id="zy8-Pw-eW1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjh-i3-s1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="284" y="1009"/>
         </scene>
         <!--Tasks Table View Controller-->
         <scene sceneID="Iow-D8-TEm">
@@ -82,7 +101,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TasksCellID" id="l5f-LH-yo6">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l5f-LH-yo6" id="BLE-Fx-YdJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -95,10 +114,17 @@
                             <outlet property="delegate" destination="ajR-gw-bDN" id="IkO-zl-8ev"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="JVg-f7-zAj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RXR-2w-20X">
+                            <connections>
+                                <action selector="addTasksButtonTapped:" destination="ajR-gw-bDN" id="8JD-MG-EUf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCc-GZ-tmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="883"/>
+            <point key="canvasLocation" x="969" y="1009"/>
         </scene>
         <!--List Creation Table View Controller-->
         <scene sceneID="TLp-Op-kzD">
@@ -155,7 +181,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2p-js-Ir8">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2p-js-Ir8">
                                                     <rect key="frame" x="16" y="5" width="30" height="30"/>
                                                     <color key="backgroundColor" red="1" green="0.27367268150000001" blue="0.26236381809999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
@@ -200,7 +226,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y8i-HL-miz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="y8i-HL-miz">
                                         <rect key="frame" x="0.0" y="187" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y8i-HL-miz" id="AIs-Iy-TeW">
@@ -269,7 +295,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkw-fe-wi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="151"/>
+            <point key="canvasLocation" x="1202" y="151"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ENR-ce-Z7M"/>
+    </inferredMetricsTieBreakers>
 </document>

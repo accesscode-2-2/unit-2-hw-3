@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "List.h"
 #import "TasksTableViewController.h"
+#import "ListCreationTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -92,25 +93,42 @@
     [self.tableView reloadData];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    TasksTableViewController *tvc = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskTVC"];
-    tvc.tasks = [NSMutableArray new];
-    
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    
-    
-    NSArray<Task *> *tasksArray = [list.tasks array];
-    Task *task = [tasksArray firstObject];
-    NSArray *commaSeparatedTasks = [task.taskDescription componentsSeparatedByString:@","];
-    NSLog(@"%@",commaSeparatedTasks);
-    
-    NSMutableArray *mutableTasksArray = [NSMutableArray arrayWithArray:commaSeparatedTasks];
-    
-    for(NSString *taskString in mutableTasksArray){
-        [tvc.tasks addObject:taskString];
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    TasksTableViewController *tvc = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskTVC"];
+//    tvc.tasks = [NSMutableArray new];
+//    
+//    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+//    
+//    
+//    NSArray<Task *> *tasksArray = [list.tasks array];
+//    
+//    for(Task *task in tasksArray){
+//        [tvc.tasks addObject:task];
+//    }
+//    [self.navigationController pushViewController:tvc animated:YES];
+//}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ShowLists"]){
+        TasksTableViewController *tvc = (TasksTableViewController *)segue.destinationViewController;
+        tvc.tasks = [NSMutableArray new];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+        
+        NSArray<Task *> *tasksArray = [list.tasks array];
+        
+        for(Task *task in tasksArray){
+            [tvc.tasks addObject:task];
+        }
+
     }
-    [self.navigationController pushViewController:tvc animated:YES];
+//    if([segue.identifier isEqualToString:@"AddList"]){
+//        ListCreationTableViewController *lctvc =  segue.destinationViewController;
+//    }
+    
 }
 
 @end

@@ -11,6 +11,6 @@
 
 @interface TasksTableViewController : UITableViewController
 
-@property (nonatomic) NSMutableArray<NSString *> *tasks;
+@property (nonatomic) NSMutableArray<Task *> *tasks;
 
 @end

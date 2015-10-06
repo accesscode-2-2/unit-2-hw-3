@@ -27,14 +27,6 @@
     [super viewDidLoad];
     
     [self setupNavigationBar];
-    
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
-    
-    
-    
-    NSLog(@"%@",self.list);
 }
 
 - (void)setupNavigationBar{
@@ -52,6 +44,8 @@
 - (void)save{
     
     if(self.titleTextField.text){
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
         self.list.title = self.titleTextField.text;
         self.list.createdAt = [NSDate date];
     }
