@@ -81,8 +81,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         self.list = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [self.list.managedObjectContext deleteObject:self.list];
-        //[self.document updateChangeCount:UIDocumentChangeDone];
-       // [self saveNotes];
     }
 }
 

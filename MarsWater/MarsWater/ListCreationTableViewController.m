@@ -26,6 +26,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
     [self setupNavigationBar];
 }
 
@@ -37,6 +39,11 @@
 }
 
 - (void)cancel{
+    
+    if(self.list.tasks.firstObject.taskDescription == nil){
+        [self.list.managedObjectContext deleteObject:self.list];
+    }
+    
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
@@ -44,8 +51,7 @@
 - (void)save{
     
     if(self.titleTextField.text){
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+       
         self.list.title = self.titleTextField.text;
         self.list.createdAt = [NSDate date];
     }
@@ -67,6 +73,7 @@
                 NSLog(@"These are your tasks%@",self.task);
             }
             self.list.tasks = [NSOrderedSet orderedSetWithArray:tasksArray];
+            //self.list.color = self.list.color;
         }else
         {
             self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
