@@ -29,6 +29,11 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table view data source
 
