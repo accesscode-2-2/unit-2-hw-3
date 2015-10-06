@@ -10,10 +10,13 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "ItemsTableViewController.h"
+
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) NSString *listTitleForHeading;
 
 @end
 
@@ -23,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
     
@@ -31,8 +36,6 @@
     
     // 3) set the sortDescriptors on the fetchRequest
     fetchRequest.sortDescriptors = @[sort];
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 4)create a fetchResultsController with a fetchRequest and a managedObjectObjectContext
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -73,4 +76,25 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - prepareForSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showListName"]) { // create reference to segue title
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row]; // grab dictionary of fetched items
+        ItemsTableViewController *detailController = segue.destinationViewController;
+        
+        NSLog(@"hello!!!! %@", list);
+
+      //  self.listTitleForHeading = list.title;
+      //  NSLog(@"%@", self.listTitleForHeading);
+        
+      //  detailController.listName = list.title;
+      //  NSLog(@"%@", list.title);
+      //  detailController.listColor = (UIColor *)list.color;
+        
+    }
+}
 @end
