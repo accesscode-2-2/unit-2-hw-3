@@ -19,6 +19,7 @@
 		DC015ADA1BC1B31E00961A06 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AD61BC1B31E00961A06 /* List.m */; settings = {ASSET_TAGS = (); }; };
 		DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE21BC1B95300961A06 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
 		DC015AE11BC1B95300961A06 /* ListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsTableViewController.h; sourceTree = "<group>"; };
 		DC015AE21BC1B95300961A06 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
+		DC015AE81BC22F4C00961A06 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +80,7 @@
 			children = (
 				DC015AB11BC1AE4800961A06 /* AppDelegate.h */,
 				DC015AB21BC1AE4800961A06 /* AppDelegate.m */,
-				DC015AE11BC1B95300961A06 /* ListsTableViewController.h */,
-				DC015AE21BC1B95300961A06 /* ListsTableViewController.m */,
-				DC015ADE1BC1B91300961A06 /* ListCreationTableViewController.h */,
-				DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */,
+				DC015AE71BC2249A00961A06 /* Controllers */,
 				DC015ACE1BC1B28F00961A06 /* Model */,
 				DC015AB71BC1AE4800961A06 /* Main.storyboard */,
 				DC015ABD1BC1AE4800961A06 /* Assets.xcassets */,
@@ -113,6 +113,19 @@
 				DC015AD61BC1B31E00961A06 /* List.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DC015AE71BC2249A00961A06 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC015AE11BC1B95300961A06 /* ListsTableViewController.h */,
+				DC015AE21BC1B95300961A06 /* ListsTableViewController.m */,
+				DC015AE81BC22F4C00961A06 /* TasksTableViewController.h */,
+				DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */,
+				DC015ADE1BC1B91300961A06 /* ListCreationTableViewController.h */,
+				DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +205,7 @@
 				DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */,
 				DC015AD81BC1B31E00961A06 /* Task.m in Sources */,
 				DC015ADA1BC1B31E00961A06 /* List.m in Sources */,
+				DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */,
 				DC015AB01BC1AE4800961A06 /* main.m in Sources */,
 				DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */,
 				DC015AD91BC1B31E00961A06 /* List+CoreDataProperties.m in Sources */,
@@ -341,6 +355,7 @@
 				DC015AC71BC1AE4800961A06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
