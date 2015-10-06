@@ -10,6 +10,7 @@
 #import "ListTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksTableViewController.h"
 
 @interface ListTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -69,6 +70,18 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     
     [self.tableView reloadData];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"taskSegueIdentifier"]) {
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    TasksTableViewController *viewController = segue.destinationViewController;
+    
+    viewController.listName = list.title;
+    viewController.listColor = (UIColor *)list.color;
+    }
 }
 
 @end

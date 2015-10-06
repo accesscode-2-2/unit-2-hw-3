@@ -19,6 +19,8 @@
 		9A0BA1061BC1B32000AEBB43 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0BA1021BC1B32000AEBB43 /* Task.m */; settings = {ASSET_TAGS = (); }; };
 		9A0BA1091BC1B91200AEBB43 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0BA1081BC1B91200AEBB43 /* ListTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9A0BA10C1BC1B92100AEBB43 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0BA10B1BC1B92100AEBB43 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9AE7507A1BC3444F00C2312C /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE750791BC3444F00C2312C /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9AE7507D1BC4014600C2312C /* TaskCreateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7507C1BC4014600C2312C /* TaskCreateTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		9A0BA1081BC1B91200AEBB43 /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
 		9A0BA10A1BC1B92100AEBB43 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
 		9A0BA10B1BC1B92100AEBB43 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+		9AE750781BC3444F00C2312C /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		9AE750791BC3444F00C2312C /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		9AE7507B1BC4014600C2312C /* TaskCreateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCreateTableViewController.h; sourceTree = "<group>"; };
+		9AE7507C1BC4014600C2312C /* TaskCreateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCreateTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,10 @@
 				9A0BA1081BC1B91200AEBB43 /* ListTableViewController.m */,
 				9A0BA10A1BC1B92100AEBB43 /* ListCreationTableViewController.h */,
 				9A0BA10B1BC1B92100AEBB43 /* ListCreationTableViewController.m */,
+				9AE750781BC3444F00C2312C /* TasksTableViewController.h */,
+				9AE750791BC3444F00C2312C /* TasksTableViewController.m */,
+				9AE7507B1BC4014600C2312C /* TaskCreateTableViewController.h */,
+				9AE7507C1BC4014600C2312C /* TaskCreateTableViewController.m */,
 				9A0BA0E61BC1AE6100AEBB43 /* Main.storyboard */,
 				9A0BA0EC1BC1AE6200AEBB43 /* Assets.xcassets */,
 				9A0BA0EE1BC1AE6200AEBB43 /* LaunchScreen.storyboard */,
@@ -189,9 +199,11 @@
 				9A0BA0EB1BC1AE6100AEBB43 /* MarsWater.xcdatamodeld in Sources */,
 				9A0BA1051BC1B32000AEBB43 /* Task+CoreDataProperties.m in Sources */,
 				9A0BA0E21BC1AE6100AEBB43 /* AppDelegate.m in Sources */,
+				9AE7507D1BC4014600C2312C /* TaskCreateTableViewController.m in Sources */,
 				9A0BA1061BC1B32000AEBB43 /* Task.m in Sources */,
 				9A0BA1041BC1B32000AEBB43 /* List.m in Sources */,
 				9A0BA1031BC1B32000AEBB43 /* List+CoreDataProperties.m in Sources */,
+				9AE7507A1BC3444F00C2312C /* TasksTableViewController.m in Sources */,
 				9A0BA10C1BC1B92100AEBB43 /* ListCreationTableViewController.m in Sources */,
 				9A0BA0DF1BC1AE6100AEBB43 /* main.m in Sources */,
 				9A0BA1091BC1B91200AEBB43 /* ListTableViewController.m in Sources */,
@@ -343,6 +355,7 @@
 				9A0BA0F61BC1AE6200AEBB43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

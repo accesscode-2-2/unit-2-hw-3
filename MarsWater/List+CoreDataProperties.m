@@ -16,6 +16,6 @@
 @dynamic title;
 @dynamic createdAt;
 @dynamic color;
-@dynamic task;
+@dynamic tasks;
 
 @end
