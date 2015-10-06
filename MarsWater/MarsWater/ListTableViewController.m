@@ -76,10 +76,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    UINavigationController *navController = segue.destinationViewController;
-    
-    TaskTableViewController *taskTVC = (TaskTableViewController *)([navController viewControllers][0]);
+
+    TaskTableViewController *taskTVC = segue.destinationViewController;
     
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     

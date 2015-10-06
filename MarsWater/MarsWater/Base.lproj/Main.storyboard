@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="7xJ-c7-7M5" kind="show" id="jbX-L8-0oE"/>
+                                    <segue destination="KNs-hQ-Ram" kind="show" id="DtG-wq-oWG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -94,7 +94,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgo-Md-PgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2075" y="514"/>
+            <point key="canvasLocation" x="1433" y="524"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MEL-I4-hoX">
@@ -110,7 +110,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXV-bJ-Wox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2729" y="514"/>
+            <point key="canvasLocation" x="2097" y="524"/>
         </scene>
         <!--Task Creation Table View Controller-->
         <scene sceneID="9g4-jd-7ze">
@@ -216,23 +216,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ve1-da-MJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3402" y="514"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="BL0-RO-2tx">
-            <objects>
-                <navigationController id="7xJ-c7-7M5" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pne-lj-T5f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="KNs-hQ-Ram" kind="relationship" relationship="rootViewController" id="9Rd-hb-Dwl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nd6-hG-7kW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1433" y="514"/>
+            <point key="canvasLocation" x="2738" y="524"/>
         </scene>
         <!--List Creation-->
         <scene sceneID="Iy7-XU-g3a">
