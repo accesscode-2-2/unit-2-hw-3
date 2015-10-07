@@ -53,6 +53,7 @@
     NSLog(@"%@", self.list);
     
     AppDelegate* delegate = [UIApplication sharedApplication].delegate;
+    
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];

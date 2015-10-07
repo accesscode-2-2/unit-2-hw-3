@@ -49,18 +49,21 @@
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    AppDelegate* delegate = [UIApplication sharedApplication].delegate;
-
-    
     [textField endEditing:YES];
-    Task* task = [[Task alloc]init];
+    
+    AppDelegate* delegate = [UIApplication sharedApplication].delegate;
+     Task* task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+    
+    
     task.taskDescription = textField.text;
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+   
     [self.list.task addObject:task];
-    [self.tableView reloadData];
+    NSLog(@"%@", self.list.task);
+    NSLog(@"%@", self.list);
+    
     
     [delegate.managedObjectContext save:nil];
-    
+    [self.tableView reloadData];
     
     return YES;
 }
