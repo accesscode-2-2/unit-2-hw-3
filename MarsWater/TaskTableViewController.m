@@ -23,8 +23,6 @@
     [self fetchResults];
   //  [self.tableView reloadData];
     
-    
-    
 }
 
 -(void)setupNavigationBar
@@ -34,12 +32,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewItem)];
-    
 }
 
 - (void)cancel
 {
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)createNewItem
@@ -73,16 +70,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskCellIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell...
+    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    cell.textLabel.text = task.taskDescription; 
     
     return cell;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath { // this method reloads table after item is added
+    
+    [self.tableView reloadData];
 }
 
 @end
