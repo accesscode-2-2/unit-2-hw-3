@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Lists-->
+        <!--Lists TVC-->
         <scene sceneID="DE6-G9-NMH">
             <objects>
-                <tableViewController title="Lists" id="xET-th-aF5" customClass="ListTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Lists" id="xET-th-aF5" userLabel="Lists TVC" customClass="ListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5iz-ro-ji6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="cah-v4-1vd" kind="show" id="Rlt-Es-GuV"/>
+                                    <segue destination="x1h-RF-iIq" kind="show" id="cgN-ZQ-6JX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="763" y="351"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Create List Navigation Controller-->
         <scene sceneID="GmA-EV-Cgd">
             <objects>
-                <navigationController id="wh7-PS-Gfd" sceneMemberID="viewController">
+                <navigationController id="wh7-PS-Gfd" userLabel="Create List Navigation Controller" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="caG-MX-rlC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="1433" y="-169"/>
         </scene>
-        <!--List Creation-->
+        <!--Create List TVC-->
         <scene sceneID="Iy7-XU-g3a">
             <objects>
-                <tableViewController title="List Creation" id="ThY-lk-YAc" customClass="ListCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Create List " id="ThY-lk-YAc" userLabel="Create List TVC" customClass="ListCreationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="R4Q-sf-zwX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,6 +200,41 @@
             </objects>
             <point key="canvasLocation" x="-57" y="351"/>
         </scene>
+        <!--Tasks Table View Controller-->
+        <scene sceneID="BdC-Cn-qpR">
+            <objects>
+                <tableViewController title="Tasks" id="x1h-RF-iIq" userLabel="Tasks Table View Controller" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="O2y-1E-K4s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EY9-Oc-rD1">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EY9-Oc-rD1" id="Hj9-jG-srL">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x1h-RF-iIq" id="wWv-B4-OEf"/>
+                            <outlet property="delegate" destination="x1h-RF-iIq" id="xhU-AM-KBB"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="New Task" id="rca-yj-uk8">
+                            <connections>
+                                <segue destination="cah-v4-1vd" kind="show" id="L7y-Fw-Lhs"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LiM-CL-WzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1449" y="613"/>
+        </scene>
         <!--Tasks Navigation Controller-->
         <scene sceneID="6Ta-Sw-6yO">
             <objects>
@@ -214,12 +249,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atK-Ra-m01" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="613"/>
+            <point key="canvasLocation" x="2155" y="613"/>
         </scene>
-        <!--Tasks VC-->
+        <!--Create Task VC-->
         <scene sceneID="g2j-Iw-nrV">
             <objects>
-                <tableViewController title="List Creation" id="Uwm-Ty-TEx" userLabel="Tasks VC" customClass="ListCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Create Task " id="Uwm-Ty-TEx" userLabel="Create Task VC" customClass="ListCreationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oPj-w4-Jm6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,7 +373,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ze8-uc-UBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109" y="613"/>
+            <point key="canvasLocation" x="2845" y="613"/>
         </scene>
     </scenes>
 </document>
