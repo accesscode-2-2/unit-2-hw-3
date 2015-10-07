@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84EE9DFF1BC5A9CB00464904 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE9DFE1BC5A9CB00464904 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8DA86CA91BC1AE57006C50BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA86CA81BC1AE57006C50BC /* main.m */; };
 		8DA86CAC1BC1AE57006C50BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA86CAB1BC1AE57006C50BC /* AppDelegate.m */; };
 		8DA86CB21BC1AE57006C50BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA86CB01BC1AE57006C50BC /* Main.storyboard */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84EE9DFD1BC5A9CB00464904 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		84EE9DFE1BC5A9CB00464904 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
 		8DA86CA41BC1AE57006C50BC /* MarsWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA86CA81BC1AE57006C50BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8DA86CAA1BC1AE57006C50BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 				8DA86CAB1BC1AE57006C50BC /* AppDelegate.m */,
 				8DA86CD21BC1B8E4006C50BC /* ListsTableViewController.h */,
 				8DA86CD31BC1B8E4006C50BC /* ListsTableViewController.m */,
+				84EE9DFD1BC5A9CB00464904 /* TasksTableViewController.h */,
+				84EE9DFE1BC5A9CB00464904 /* TasksTableViewController.m */,
 				8DA86CD51BC1B904006C50BC /* ListCreationTableViewController.h */,
 				8DA86CD61BC1B904006C50BC /* ListCreationTableViewController.m */,
 				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,
@@ -191,6 +196,7 @@
 				8DA86CD41BC1B8E4006C50BC /* ListsTableViewController.m in Sources */,
 				8DB2F6E71BC1E75500E58E65 /* List.m in Sources */,
 				8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */,
+				84EE9DFF1BC5A9CB00464904 /* TasksTableViewController.m in Sources */,
 				8DA86CD71BC1B904006C50BC /* ListCreationTableViewController.m in Sources */,
 				8DA86CA91BC1AE57006C50BC /* main.m in Sources */,
 				8DB2F6E81BC1E75500E58E65 /* List+CoreDataProperties.m in Sources */,

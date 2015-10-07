@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKe-ND-dH3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OKe-ND-dH3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -41,6 +41,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="7rv-bE-LDl" kind="presentation" id="wkQ-yp-SNG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -75,7 +78,52 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Mx-vf-Pe1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="205"/>
+            <point key="canvasLocation" x="1745" y="-65"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="Qcs-FZ-7gX">
+            <objects>
+                <tableViewController id="CSy-r4-9td" customClass="TasksTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dap-RT-fkT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ez6-up-mKn">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ez6-up-mKn" id="qbG-gB-7Px">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CSy-r4-9td" id="ufd-2g-Xo7"/>
+                            <outlet property="delegate" destination="CSy-r4-9td" id="0aR-8x-6WG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="97p-JS-77U"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W88-9Y-o9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="692"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="j1l-lN-qyQ">
+            <objects>
+                <navigationController id="7rv-bE-LDl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pog-O8-lDp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CSy-r4-9td" kind="relationship" relationship="rootViewController" id="ChY-FO-rMX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uUp-4S-Y4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="692"/>
         </scene>
         <!--List Creation Table View Controller-->
         <scene sceneID="Nx5-Rb-hgB">
@@ -138,7 +186,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="evS-kY-xeN"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="colorButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="PJQ-Dy-DXO"/>
+                                                        <action selector="pinkButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="qFl-im-QNz"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBL-1D-AYB">
@@ -150,7 +198,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="Psv-j3-wUZ"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="colorButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="4ov-fL-0h9"/>
+                                                        <action selector="purpleButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="PMJ-wQ-WKc"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YP-DL-kV4">
@@ -162,7 +210,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="eOp-rC-fNA"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="colorButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="BUG-aU-Rab"/>
+                                                        <action selector="blueButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="6xn-g6-hMN"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zu8-bd-c91">
@@ -174,7 +222,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="qPV-ag-As5"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="colorButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="iMc-FO-WI1"/>
+                                                        <action selector="orangeButtonTapped:" destination="1vt-jb-oNz" eventType="touchUpInside" id="RSp-Wy-WMQ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -208,12 +256,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="af7-q9-RAn"/>
                     <connections>
+                        <outlet property="blueButton" destination="5YP-DL-kV4" id="4Bv-hW-fxX"/>
+                        <outlet property="orangeButton" destination="Zu8-bd-c91" id="BMt-xf-Gxv"/>
+                        <outlet property="pinkButton" destination="sGy-ER-6Wl" id="207-DS-ZS2"/>
+                        <outlet property="purpleButton" destination="DBL-1D-AYB" id="Ctf-s8-X6I"/>
                         <outlet property="titleTextField" destination="pGs-E0-Itl" id="O5U-8E-oxc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXj-oa-ep0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405" y="205"/>
+            <point key="canvasLocation" x="2537" y="-65"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5nr-jx-cZX">
