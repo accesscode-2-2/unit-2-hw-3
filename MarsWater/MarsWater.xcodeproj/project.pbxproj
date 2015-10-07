@@ -81,17 +81,11 @@
 		9A0BA0DC1BC1AE6100AEBB43 /* MarsWater */ = {
 			isa = PBXGroup;
 			children = (
-				9A0BA0FA1BC1B27100AEBB43 /* Model */,
 				9A0BA0E01BC1AE6100AEBB43 /* AppDelegate.h */,
 				9A0BA0E11BC1AE6100AEBB43 /* AppDelegate.m */,
-				9A0BA1071BC1B91200AEBB43 /* ListTableViewController.h */,
-				9A0BA1081BC1B91200AEBB43 /* ListTableViewController.m */,
-				9A0BA10A1BC1B92100AEBB43 /* ListCreationTableViewController.h */,
-				9A0BA10B1BC1B92100AEBB43 /* ListCreationTableViewController.m */,
-				9AE750781BC3444F00C2312C /* TasksTableViewController.h */,
-				9AE750791BC3444F00C2312C /* TasksTableViewController.m */,
-				9AE7507B1BC4014600C2312C /* TaskCreateTableViewController.h */,
-				9AE7507C1BC4014600C2312C /* TaskCreateTableViewController.m */,
+				9A0BA0FA1BC1B27100AEBB43 /* Model */,
+				9AE7507E1BC4215E00C2312C /* Lists */,
+				9AE7507F1BC4217A00C2312C /* Tasks */,
 				9A0BA0E61BC1AE6100AEBB43 /* Main.storyboard */,
 				9A0BA0EC1BC1AE6200AEBB43 /* Assets.xcassets */,
 				9A0BA0EE1BC1AE6200AEBB43 /* LaunchScreen.storyboard */,
@@ -123,6 +117,28 @@
 				9A0BA1021BC1B32000AEBB43 /* Task.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9AE7507E1BC4215E00C2312C /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				9A0BA1071BC1B91200AEBB43 /* ListTableViewController.h */,
+				9A0BA1081BC1B91200AEBB43 /* ListTableViewController.m */,
+				9A0BA10A1BC1B92100AEBB43 /* ListCreationTableViewController.h */,
+				9A0BA10B1BC1B92100AEBB43 /* ListCreationTableViewController.m */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
+		9AE7507F1BC4217A00C2312C /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				9AE750781BC3444F00C2312C /* TasksTableViewController.h */,
+				9AE750791BC3444F00C2312C /* TasksTableViewController.m */,
+				9AE7507B1BC4014600C2312C /* TaskCreateTableViewController.h */,
+				9AE7507C1BC4014600C2312C /* TaskCreateTableViewController.m */,
+			);
+			name = Tasks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

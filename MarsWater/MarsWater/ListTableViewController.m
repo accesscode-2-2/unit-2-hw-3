@@ -42,6 +42,7 @@
     [self.fetchedResultsController performFetch:nil];
     
     [self.tableView reloadData];
+    
 }
 
 #pragma mark - Table view data source
@@ -74,13 +75,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"taskSegueIdentifier"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+        UINavigationController *navController = segue.destinationViewController;
+        
+        TasksTableViewController *viewController = navController.viewControllers[0];
+        
+        viewController.listName = list.title;
+        viewController.listColor = (UIColor *)list.color;
+        viewController.list = list;
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    TasksTableViewController *viewController = segue.destinationViewController;
-    
-    viewController.listName = list.title;
-    viewController.listColor = (UIColor *)list.color;
     }
 }
 

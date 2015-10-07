@@ -9,34 +9,34 @@
 #import "TasksTableViewController.h"
 #import "TaskCreateTableViewController.h"
 #import <CoreData/CoreData.h>
+#import "List.h"
 
 #define numberOfStaticCells 1
 
 @interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic) NSArray *array;
 
 @end
 
 @implementation TasksTableViewController
 
 - (void) setupNavBar{
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewTask)];
-    
-    self.navigationItem.title = @"List";
-    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewTask)];
+    self.navigationItem.title = @"Tasks";
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
     [self fetchResults];
+    
 }
 - (void) viewDidAppear:(BOOL)animated{
     [self fetchResults];
     
     [self.tableView reloadData];
+    
+ //   NSLog(@"%@",self.fetchedResultsController.fetchedObjects);
 }
 
 - (void) fetchResults {
@@ -59,19 +59,15 @@
     [self.fetchedResultsController performFetch:nil];
     
 //    [self.tableView reloadData];
-
-//    NSLog(@"%@",self.fetchedResultsController.fetchedObjects);
 }
 
 - (void)createNewTask{
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    TaskCreateTableViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"TaskCreateID"];
-//    [self presentViewController:viewController animated:YES completion:nil];
-    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationID"];
-    [self presentViewController:navigationController animated:YES completion:nil];
-    
-    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+////    TaskCreateTableViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"TaskCreateID"];
+////    [self presentViewController:viewController animated:YES completion:nil];
+//    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationID"];
+//    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -123,15 +119,16 @@
     }
 }
 
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+ 
+    if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
+        TaskCreateTableViewController *viewController = segue.destinationViewController;
+        viewController.list = self.list;
+    }
+    
 }
-*/
+
 
 @end

@@ -16,7 +16,7 @@
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="task" inverseEntity="List" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="List" positionX="196" positionY="27" width="128" height="103"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
