@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = self.list.title;
+    
     [self.tableView reloadData];
     
     NSLog(@"list tasks: %@", self.list.task);

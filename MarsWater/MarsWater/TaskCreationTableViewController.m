@@ -65,14 +65,7 @@
         self.task.updatedAt = [NSDate date];
     }
     
-    
-    NSMutableArray *listTaskTempArray = self.list.task.mutableCopy;
-    
-    [self.listTasks addObject:self.task];
-    
-    [listTaskTempArray addObjectsFromArray:self.listTasks.array];
-    
-    self.list.task = listTaskTempArray;
+    [self updateListOfTasks];
     
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -82,6 +75,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"%@", self.task);
+}
+
+-(void)updateListOfTasks{
+    
+    self.listTasks = self.list.task.mutableCopy;
+    
+    [self.listTasks addObject:self.task];
+    
+    self.list.task = self.listTasks;
+    
 }
 
 - (IBAction)priorityButtonTapped:(UIButton *)sender {
