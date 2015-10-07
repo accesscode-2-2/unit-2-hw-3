@@ -10,10 +10,12 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "List.h"
+#import "TaskViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController* fetchedResultsController;
+
 
 
 
@@ -68,7 +70,7 @@
     
     
     cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = list.createdAt.description;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", list.task.count ];
     cell.backgroundColor = list.color;
     
     
@@ -78,6 +80,16 @@
 {
     [self.tableView reloadData];
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    TaskViewController *tvc = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskViewController"];
+    tvc.list = list;
+    
+    [self.navigationController pushViewController:tvc animated:YES];
+    
+    
+    
+}
 
 @end

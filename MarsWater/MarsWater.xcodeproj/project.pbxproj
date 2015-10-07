@@ -21,6 +21,7 @@
 		5DD9BD391BC1B326002C48F0 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD351BC1B326002C48F0 /* List.m */; settings = {ASSET_TAGS = (); }; };
 		5DD9BD3C1BC1B90A002C48F0 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5DD9BD3F1BC1B92A002C48F0 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5DD9BD451BC5B0FA002C48F0 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9BD441BC5B0FA002C48F0 /* TaskViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
 		5DD9BD3D1BC1B929002C48F0 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
 		5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+		5DD9BD431BC5B0FA002C48F0 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
+		5DD9BD441BC5B0FA002C48F0 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				5DD9BD3B1BC1B90A002C48F0 /* ListsTableViewController.m */,
 				5DD9BD3D1BC1B929002C48F0 /* ListCreationTableViewController.h */,
 				5DD9BD3E1BC1B929002C48F0 /* ListCreationTableViewController.m */,
+				5DD9BD431BC5B0FA002C48F0 /* TaskViewController.h */,
+				5DD9BD441BC5B0FA002C48F0 /* TaskViewController.m */,
 				5DD9BCFD1BC1AE7C002C48F0 /* Main.storyboard */,
 				5DD9BD031BC1AE7D002C48F0 /* Assets.xcassets */,
 				5DD9BD051BC1AE7D002C48F0 /* LaunchScreen.storyboard */,
@@ -309,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD9BD451BC5B0FA002C48F0 /* TaskViewController.m in Sources */,
 				5DD9BD021BC1AE7D002C48F0 /* MarsWater.xcdatamodeld in Sources */,
 				5DD9BD361BC1B326002C48F0 /* Task+CoreDataProperties.m in Sources */,
 				5DD9BCF91BC1AE7C002C48F0 /* AppDelegate.m in Sources */,
@@ -541,6 +547,7 @@
 				5DD9BD231BC1AE7D002C48F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DD9BD241BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +556,7 @@
 				5DD9BD261BC1AE7D002C48F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DD9BD271BC1AE7D002C48F0 /* Build configuration list for PBXNativeTarget "MarsWaterUITests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +565,7 @@
 				5DD9BD291BC1AE7D002C48F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
