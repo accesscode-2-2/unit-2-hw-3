@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -46,6 +47,15 @@
     [self.tableView reloadData];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"TasksSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TasksTableViewController *viewController = [segue destinationViewController];
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        viewController.navigationItem.title = [NSString stringWithFormat:@"%@", list.title];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -57,7 +67,6 @@
 
     return self.fetchedResultsController.fetchedObjects.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];

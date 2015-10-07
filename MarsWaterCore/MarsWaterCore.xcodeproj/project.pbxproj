@@ -19,6 +19,8 @@
 		220182981BC1B34400D53577 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 220182941BC1B34400D53577 /* List.m */; settings = {ASSET_TAGS = (); }; };
 		2201829C1BC1B96200D53577 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2201829B1BC1B96200D53577 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		2201829F1BC1B97A00D53577 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2201829E1BC1B97A00D53577 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		221C354E1BC476C400A1E707 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221C354D1BC476C400A1E707 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		221C35511BC476D800A1E707 /* TaskCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 221C35501BC476D800A1E707 /* TaskCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		2201829B1BC1B96200D53577 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
 		2201829D1BC1B97A00D53577 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
 		2201829E1BC1B97A00D53577 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+		221C354C1BC476C400A1E707 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		221C354D1BC476C400A1E707 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		221C354F1BC476D800A1E707 /* TaskCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCreationTableViewController.h; sourceTree = "<group>"; };
+		221C35501BC476D800A1E707 /* TaskCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCreationTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 				2201829B1BC1B96200D53577 /* ListsTableViewController.m */,
 				2201829D1BC1B97A00D53577 /* ListCreationTableViewController.h */,
 				2201829E1BC1B97A00D53577 /* ListCreationTableViewController.m */,
+				221C354C1BC476C400A1E707 /* TasksTableViewController.h */,
+				221C354D1BC476C400A1E707 /* TasksTableViewController.m */,
+				221C354F1BC476D800A1E707 /* TaskCreationTableViewController.h */,
+				221C35501BC476D800A1E707 /* TaskCreationTableViewController.m */,
 				2201827C1BC1AEC000D53577 /* Main.storyboard */,
 				220182821BC1AEC000D53577 /* Assets.xcassets */,
 				220182841BC1AEC000D53577 /* LaunchScreen.storyboard */,
@@ -189,10 +199,12 @@
 			files = (
 				220182951BC1B34400D53577 /* Task+CoreDataProperties.m in Sources */,
 				220182811BC1AEC000D53577 /* MarsWaterCore.xcdatamodeld in Sources */,
+				221C35511BC476D800A1E707 /* TaskCreationTableViewController.m in Sources */,
 				220182781BC1AEC000D53577 /* AppDelegate.m in Sources */,
 				2201829C1BC1B96200D53577 /* ListsTableViewController.m in Sources */,
 				220182961BC1B34400D53577 /* Task.m in Sources */,
 				220182981BC1B34400D53577 /* List.m in Sources */,
+				221C354E1BC476C400A1E707 /* TasksTableViewController.m in Sources */,
 				2201829F1BC1B97A00D53577 /* ListCreationTableViewController.m in Sources */,
 				220182751BC1AEC000D53577 /* main.m in Sources */,
 				220182971BC1B34400D53577 /* List+CoreDataProperties.m in Sources */,
@@ -342,6 +354,7 @@
 				2201828C1BC1AEC000D53577 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
