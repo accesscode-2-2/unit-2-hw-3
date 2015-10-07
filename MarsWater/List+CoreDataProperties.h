@@ -18,11 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSDate *createdAt;
 @property (nullable, nonatomic, retain) id color;
-<<<<<<< HEAD
 @property (nullable, nonatomic, retain) NSOrderedSet *task; // changed from NSArray
-=======
-@property (nullable, nonatomic, retain) NSOrderedSet *task; // this has been changed from NSArray
->>>>>>> 205ccf25a0e525cf3d4141ebd18291c25b74d5c7
 
 @end
 
