@@ -45,6 +45,7 @@
 }
 
 - (void)save {
+    
     self.list.title = self.titleTextField.text;
     self.list.createdAt = [NSDate date];
     
@@ -55,6 +56,7 @@
 }
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
+    
     self.list.color = sender.backgroundColor;
 }
 

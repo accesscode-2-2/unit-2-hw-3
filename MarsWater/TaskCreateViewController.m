@@ -58,6 +58,8 @@
 
 - (void)save
 {
+    if (self.taskTextField != nil) { // if there is text to save
+        
     self.task.taskDescription = self.taskTextField.text;
     self.task.createdAt = [NSDate date];
     self.task.priority = self.priorityNumber;
@@ -69,6 +71,7 @@
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+         }
     
      NSLog(@"task: %@, created at: %@, priority: %@", self.task.taskDescription, self.task.createdAt, self.task.priority); // test it!
 }
