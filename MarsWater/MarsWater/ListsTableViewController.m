@@ -14,6 +14,8 @@
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) List *list;
+
 
 @end
 
@@ -58,6 +60,21 @@
 }
 
 
+//
+//- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Update the data model
+//    [List removeObjectAtIndex:indexPath.row];
+//    
+//    // Animate the removal of the row
+//    [tableView beginUpdates];
+//    
+//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+//    
+//    [tableView endUpdates];
+//}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
     
@@ -68,10 +85,27 @@
     return cell;
 }
 
+#pragma mark - Swipe to Delete
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.list = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.list.managedObjectContext deleteObject:self.list];
+    }
+}
+
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 
     [self.tableView reloadData];
 }
+
+
 
 @end
