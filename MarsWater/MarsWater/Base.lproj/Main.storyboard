@@ -7,18 +7,34 @@
         <!--Lists TVC-->
         <scene sceneID="DE6-G9-NMH">
             <objects>
-                <tableViewController title="Lists" id="xET-th-aF5" userLabel="Lists TVC" customClass="ListTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Lists" id="xET-th-aF5" userLabel="Lists TVC" customClass="ListsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5iz-ro-ji6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCellIdentifier" id="FPo-aM-NjM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCellIdentifier" textLabel="nt5-tW-HIb" detailTextLabel="WDX-Hd-a25" style="IBUITableViewCellStyleValue1" id="FPo-aM-NjM">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FPo-aM-NjM" id="KLO-IC-ZL0">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nt5-tW-HIb">
+                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WDX-Hd-a25">
+                                            <rect key="frame" x="543" y="12" width="42" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="x1h-RF-iIq" kind="show" id="cgN-ZQ-6JX"/>
@@ -63,7 +79,7 @@
         <!--Create List TVC-->
         <scene sceneID="Iy7-XU-g3a">
             <objects>
-                <tableViewController title="Create List " id="ThY-lk-YAc" userLabel="Create List TVC" customClass="ListCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Create List " id="ThY-lk-YAc" userLabel="Create List TVC" customClass="CreateListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="R4Q-sf-zwX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,13 +239,14 @@
                             <outlet property="delegate" destination="x1h-RF-iIq" id="xhU-AM-KBB"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="New Task" id="rca-yj-uk8">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="uSX-wY-adD">
+                        <barButtonItem key="rightBarButtonItem" title="New Task" id="rca-yj-uk8">
                             <connections>
                                 <segue destination="cah-v4-1vd" kind="show" id="L7y-Fw-Lhs"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiM-CL-WzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -254,7 +271,7 @@
         <!--Create Task VC-->
         <scene sceneID="g2j-Iw-nrV">
             <objects>
-                <tableViewController title="Create Task " id="Uwm-Ty-TEx" userLabel="Create Task VC" customClass="ListCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Create Task " id="Uwm-Ty-TEx" userLabel="Create Task VC" customClass="CreateListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oPj-w4-Jm6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -1,76 +1,55 @@
 //
-//  ListTableViewController.m
+//  TasksTableViewController.m
 //  MarsWater
 //
-//  Created by Justine Gartner on 10/4/15.
+//  Created by Ayuna Vogel on 10/7/15.
 //  Copyright © 2015 Justine Gartner. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-#import "ListTableViewController.h"
-#import "AppDelegate.h"
-#import "List.h"
+#import "TasksTableViewController.h"
 
-@interface ListTableViewController ()<NSFetchedResultsControllerDelegate>
-
-@property(nonatomic) NSFetchedResultsController *fetchedResultsController;
+@interface TasksTableViewController ()
 
 @end
 
-@implementation ListTableViewController
+@implementation TasksTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    //Create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
-    //create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    
-    //set the sort descriptors on the fetchRequest
-    fetchRequest.sortDescriptors = @[sort];
-    
-    //create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    self.fetchedResultsController.delegate = self;
-    
-    [self.fetchedResultsController performFetch:nil];
-    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.fetchedResultsController.fetchedObjects.count;
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [list.createdAt description];
-    cell.backgroundColor = (UIColor *)list.color;
+    // Configure the cell...
     
     return cell;
 }
-
-
--(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
-    
-    [self.tableView reloadData];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

@@ -1,5 +1,5 @@
 //
-//  ListCreationTableViewController.h
+//  ListTableViewController.h
 //  MarsWater
 //
 //  Created by Justine Gartner on 10/4/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListCreationTableViewController : UITableViewController
+@interface ListsTableViewController : UITableViewController
 
 @end

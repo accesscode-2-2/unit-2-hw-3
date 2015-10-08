@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2957127E1BC5F7500090AEA6 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2957127D1BC5F7500090AEA6 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B80EDD91BC1AE4300283EB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EDD81BC1AE4300283EB5 /* main.m */; };
 		6B80EDDC1BC1AE4300283EB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EDDB1BC1AE4300283EB5 /* AppDelegate.m */; };
 		6B80EDE21BC1AE4300283EB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B80EDE01BC1AE4300283EB5 /* Main.storyboard */; };
@@ -17,11 +18,13 @@
 		6B80EDFE1BC1B32700283EB5 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EDF81BC1B32700283EB5 /* Task.m */; settings = {ASSET_TAGS = (); }; };
 		6B80EDFF1BC1B32700283EB5 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EDFA1BC1B32700283EB5 /* List+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		6B80EE001BC1B32700283EB5 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EDFC1BC1B32700283EB5 /* List.m */; settings = {ASSET_TAGS = (); }; };
-		6B80EE031BC1B92300283EB5 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EE021BC1B92300283EB5 /* ListTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		6B80EE061BC1B93700283EB5 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EE051BC1B93700283EB5 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B80EE031BC1B92300283EB5 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EE021BC1B92300283EB5 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B80EE061BC1B93700283EB5 /* CreateListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B80EE051BC1B93700283EB5 /* CreateListTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2957127C1BC5F7500090AEA6 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		2957127D1BC5F7500090AEA6 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
 		6B80EDD41BC1AE4300283EB5 /* MarsWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B80EDD81BC1AE4300283EB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B80EDDA1BC1AE4300283EB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,10 +42,10 @@
 		6B80EDFA1BC1B32700283EB5 /* List+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "List+CoreDataProperties.m"; sourceTree = "<group>"; };
 		6B80EDFB1BC1B32700283EB5 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 		6B80EDFC1BC1B32700283EB5 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
-		6B80EE011BC1B92300283EB5 /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
-		6B80EE021BC1B92300283EB5 /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
-		6B80EE041BC1B93700283EB5 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
-		6B80EE051BC1B93700283EB5 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+		6B80EE011BC1B92300283EB5 /* ListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsTableViewController.h; sourceTree = "<group>"; };
+		6B80EE021BC1B92300283EB5 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
+		6B80EE041BC1B93700283EB5 /* CreateListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateListTableViewController.h; sourceTree = "<group>"; };
+		6B80EE051BC1B93700283EB5 /* CreateListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateListTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,13 +79,15 @@
 			isa = PBXGroup;
 			children = (
 				6B80EDF41BC1B2B600283EB5 /* Model */,
+				6B80EDE01BC1AE4300283EB5 /* Main.storyboard */,
 				6B80EDDA1BC1AE4300283EB5 /* AppDelegate.h */,
 				6B80EDDB1BC1AE4300283EB5 /* AppDelegate.m */,
-				6B80EE011BC1B92300283EB5 /* ListTableViewController.h */,
-				6B80EE021BC1B92300283EB5 /* ListTableViewController.m */,
-				6B80EE041BC1B93700283EB5 /* ListCreationTableViewController.h */,
-				6B80EE051BC1B93700283EB5 /* ListCreationTableViewController.m */,
-				6B80EDE01BC1AE4300283EB5 /* Main.storyboard */,
+				6B80EE011BC1B92300283EB5 /* ListsTableViewController.h */,
+				6B80EE021BC1B92300283EB5 /* ListsTableViewController.m */,
+				6B80EE041BC1B93700283EB5 /* CreateListTableViewController.h */,
+				6B80EE051BC1B93700283EB5 /* CreateListTableViewController.m */,
+				2957127C1BC5F7500090AEA6 /* TasksTableViewController.h */,
+				2957127D1BC5F7500090AEA6 /* TasksTableViewController.m */,
 				6B80EDE61BC1AE4300283EB5 /* Assets.xcassets */,
 				6B80EDE81BC1AE4300283EB5 /* LaunchScreen.storyboard */,
 				6B80EDEB1BC1AE4300283EB5 /* Info.plist */,
@@ -103,14 +108,14 @@
 		6B80EDF41BC1B2B600283EB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6B80EDF51BC1B32700283EB5 /* Task+CoreDataProperties.h */,
-				6B80EDF61BC1B32700283EB5 /* Task+CoreDataProperties.m */,
-				6B80EDF71BC1B32700283EB5 /* Task.h */,
-				6B80EDF81BC1B32700283EB5 /* Task.m */,
 				6B80EDF91BC1B32700283EB5 /* List+CoreDataProperties.h */,
 				6B80EDFA1BC1B32700283EB5 /* List+CoreDataProperties.m */,
 				6B80EDFB1BC1B32700283EB5 /* List.h */,
 				6B80EDFC1BC1B32700283EB5 /* List.m */,
+				6B80EDF51BC1B32700283EB5 /* Task+CoreDataProperties.h */,
+				6B80EDF61BC1B32700283EB5 /* Task+CoreDataProperties.m */,
+				6B80EDF71BC1B32700283EB5 /* Task.h */,
+				6B80EDF81BC1B32700283EB5 /* Task.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -192,9 +197,10 @@
 				6B80EDFE1BC1B32700283EB5 /* Task.m in Sources */,
 				6B80EE001BC1B32700283EB5 /* List.m in Sources */,
 				6B80EDD91BC1AE4300283EB5 /* main.m in Sources */,
-				6B80EE061BC1B93700283EB5 /* ListCreationTableViewController.m in Sources */,
+				2957127E1BC5F7500090AEA6 /* TasksTableViewController.m in Sources */,
+				6B80EE061BC1B93700283EB5 /* CreateListTableViewController.m in Sources */,
 				6B80EDFF1BC1B32700283EB5 /* List+CoreDataProperties.m in Sources */,
-				6B80EE031BC1B92300283EB5 /* ListTableViewController.m in Sources */,
+				6B80EE031BC1B92300283EB5 /* ListsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +347,7 @@
 				6B80EDF01BC1AE4300283EB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

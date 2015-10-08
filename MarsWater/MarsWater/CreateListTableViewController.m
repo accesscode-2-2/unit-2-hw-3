@@ -7,11 +7,12 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "ListCreationTableViewController.h"
+
+#import "CreateListTableViewController.h"
 #import "List.h"
 #import "AppDelegate.h"
 
-@interface ListCreationTableViewController ()
+@interface CreateListTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@implementation ListCreationTableViewController
+@implementation CreateListTableViewController
 
 -(void)viewDidLoad{
     
@@ -52,7 +53,7 @@
     self.list.createdAt = [NSDate date];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil];
+    [delegate.managedObjectContext save:nil]; 
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
