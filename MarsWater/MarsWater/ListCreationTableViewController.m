@@ -61,7 +61,7 @@
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
-    
 }
+
 
 @end

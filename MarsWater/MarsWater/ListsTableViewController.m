@@ -59,22 +59,6 @@
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
-
-//
-//- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Update the data model
-//    [List removeObjectAtIndex:indexPath.row];
-//    
-//    // Animate the removal of the row
-//    [tableView beginUpdates];
-//    
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-//    
-//    [tableView endUpdates];
-//}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
     
@@ -99,7 +83,6 @@
         [self.list.managedObjectContext deleteObject:self.list];
     }
 }
-
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 
