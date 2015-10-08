@@ -31,7 +31,7 @@
     self.tableView.backgroundView.backgroundColor = self.list.color;
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     
     [self.tableView reloadData];
 }
@@ -71,7 +71,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         Task *selectedTask = self.list.task[indexPath.row];
-        [self removeObjectFromCoreDataContext:selectedTask];
+        [self removeObjectFromNSManagedObjectContext:selectedTask];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
@@ -90,9 +90,9 @@
     taskCreationTVC.list = self.list;
 }
 
-#pragma mark - Core Data
+#pragma mark - NSManagedObjectContext
 
--(void)removeObjectFromCoreDataContext:(Task *)selectedTask {
+-(void)removeObjectFromNSManagedObjectContext:(Task *)selectedTask {
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSManagedObjectContext *context = delegate.managedObjectContext;

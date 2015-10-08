@@ -86,8 +86,8 @@
 }
 
 #pragma mark - update list task
-//not currently in use, but was
-//keeping for reference
+//Not currently in use, but was.
+//Keeping for reference.
 
 /*
 -(void)updateListOfTasks{

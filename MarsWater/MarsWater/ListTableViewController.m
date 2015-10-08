@@ -79,7 +79,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         List *selectedList = self.fetchedResultsController.fetchedObjects[indexPath.row];
-        [self removeObjectFromCoreDataContext:selectedList];
+        [self removeObjectFromNSManagedObjectContext:selectedList];
         
     }
     
@@ -110,9 +110,9 @@
     
 }
 
-#pragma mark - Core Data
+#pragma mark - NSManagedObjectContext
 
--(void)removeObjectFromCoreDataContext:(List *)selectedList {
+-(void)removeObjectFromNSManagedObjectContext:(List *)selectedList {
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     NSManagedObjectContext *context = delegate.managedObjectContext;
