@@ -16,7 +16,5 @@
 
 @property (nonatomic) Task *task;
 @property (nonatomic) List *list;
-//@property (nonatomic) NSString *listName;
-//@property (nonatomic) id listColor;
 
 @end

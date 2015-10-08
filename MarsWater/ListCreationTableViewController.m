@@ -21,15 +21,14 @@
 
 @implementation ListCreationTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     [self setupNavigationBar];
-        
 }
 
-- (void)setupNavigationBar {
-    
+- (void)setupNavigationBar
+{
     self.navigationItem.title = @"Create New List";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
@@ -37,13 +36,15 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
 }
 
-- (void)cancel {
+- (void)cancel
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)save {
-    
+- (void)save
+{
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
     if (!self.list) {
         self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
     }
@@ -62,7 +63,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)colorButtonTapped:(UIButton *)sender {
+- (IBAction)colorButtonTapped:(UIButton *)sender
+{
     self.color = sender.backgroundColor;
 }
 

@@ -20,15 +20,14 @@
 
 @implementation ListsTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
     
     // 2) create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
@@ -49,15 +48,18 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListCellIdentifier" forIndexPath:indexPath];
     
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
@@ -68,11 +70,13 @@
     return cell;
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
     
     UITableView *tableView = self.tableView;
     
@@ -92,8 +96,9 @@
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];    
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 #pragma mark - prepareForSegue
@@ -108,22 +113,18 @@
         
         NSLog(@"%@", list);
         
-        detailController.list = list;
-        
-//          detailController.listName = list.title; // pass title from list dictionary to new viewController
-//          NSLog(@"%@", list.title);
-//          detailController.listColor = (UIColor *)list.color; // pass color from list dictionary to new viewController
+        detailController.list = list; // pass list name for navigation bar title
     }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) { // delete rows
         
         List *list = self.fetchedResultsController.fetchedObjects[indexPath.row]; // grab dictionary of stored items
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.managedObjectContext deleteObject:list];
         [delegate.managedObjectContext save:nil];
-        
     }
 }
 

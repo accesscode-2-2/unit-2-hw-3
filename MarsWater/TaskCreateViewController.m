@@ -23,7 +23,8 @@
 
 @implementation TaskCreateViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     
@@ -43,7 +44,7 @@
     // set the right button to save
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     
-   // NSLog(@"%@", self.taskTextField.text);
+    // NSLog(@"%@", self.taskTextField.text); // test it!
 }
 
 - (void)cancel
@@ -53,7 +54,7 @@
 
 - (IBAction)sliderValueChanged:(id)sender
 {
-    self.priorityNumber = [[NSNumber alloc]initWithFloat:self.prioritySlider.value];
+    self.priorityNumber = [[NSNumber alloc]initWithFloat:self.prioritySlider.value]; // set slider value to storage number
 }
 
 - (void)save
@@ -69,9 +70,10 @@
         // self.task.completedAt =
         
         AppDelegate *delegate = [UIApplication sharedApplication].delegate; // set delegate
+        
         [delegate.managedObjectContext save:nil];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil]; // dismiss viewController and return to TaskTableView
     }
     
     NSLog(@"task: %@, created at: %@, priority: %@", self.task.taskDescription, self.task.createdAt, self.task.priority); // test it!

@@ -18,12 +18,11 @@
 
 @implementation TaskTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     [self fetchResults];
-  //  [self.tableView reloadData];
-    
 }
 
 -(void)setupNavigationBar
@@ -47,52 +46,61 @@
     TaskCreateViewController *createVC = [storyboard instantiateViewControllerWithIdentifier:@"TaskCreateIdentifier"];
     createVC.list = self.list;
     
-//    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationItem"];
+    //    Here's another way to add a UINavigationController:
+    //    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationItem"];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createVC];
+    
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)fetchResults
 {
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO];
-    fetchRequest.sortDescriptors = @[sort];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate; // set delegate
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"]; // create fetch request instance for tasks
     
-    self.fetchedResultsController.delegate = self;
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO]; //create sort descriptor, sort by priority
     
-    [self.fetchedResultsController performFetch:nil];
+    fetchRequest.sortDescriptors = @[sort]; // have fetched items organized by sort descriptor
     
-    [self.tableView reloadData];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title]; // set task predicate to individual list
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil]; // create fetch request controller and set to our fetchRequest (tasks)
+    
+    self.fetchedResultsController.delegate = self; // set delegate for fetchRequestController
+    
+    [self.fetchedResultsController performFetch:nil]; // perform fetch
+    
+    [self.tableView reloadData]; // reload table view
 }
 
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fetchedResultsController.fetchedObjects.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.fetchedResultsController.fetchedObjects.count; // number of fetched items in memory
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskCellIdentifier" forIndexPath:indexPath];
     
     Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.textLabel.text = task.taskDescription; 
+    cell.textLabel.text = task.taskDescription;
     
     return cell;
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath { // this method reloads table after item is added
-    
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath // this method reloads table after item is added
+{
     [self.tableView reloadData];
 }
 
