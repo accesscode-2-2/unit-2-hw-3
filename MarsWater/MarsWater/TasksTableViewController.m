@@ -30,7 +30,7 @@
     
     
     self.tasksArray = [NSMutableArray arrayWithArray:[self.listAtIndexPath.tasks array]];
-    NSLog(@"Tasks Array Count: %d",self.tasksArray.count);
+    NSLog(@"Tasks Array Count: %lu",(unsigned long)self.tasksArray.count);
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     ////create an instance of NSFetchRequest with an entity name
@@ -106,7 +106,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TasksCellID" forIndexPath:indexPath];
     
     //Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath ];
+    //List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath ];
     if(self.listAtIndexPath.tasks.count > 0){
         Task *task = self.listAtIndexPath.tasks[indexPath.row];
         cell.textLabel.text = task.taskDescription;
@@ -173,49 +173,25 @@
                                {
                                    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
                                    
+                                   List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath];
+                                   
                                    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-                                   
-                                   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-                                   
-                                   //create a sort descriptor
-                                   NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-                                   
-                                   //set the sort descriptor on the fetch request
-                                   fetchRequest.sortDescriptors = @[sort];
-                                   
-                                   //create a fetchedResultsController with a fetchRequest and a managedObjectContext
-                                   NSFetchedResultsController *fetchedResutlsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-                                   
-                                   fetchedResutlsController.delegate = self;
-                                   
-                                   [fetchedResutlsController performFetch:nil];
-                                   
-                                   fetchedResutlsController.delegate = self;
-                                   self.fetchedResultsController = fetchedResutlsController;
-                                   
                                    
                                    task.taskDescription = alertController.textFields.firstObject.text;
                                    task.createdAt = [NSDate date];
                                    
-                                   List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath];
                                    
-                                   NSMutableOrderedSet *mutableSet = [list mutableOrderedSetValueForKey:@"tasks"];
+                                   NSMutableOrderedSet *ms = [list mutableOrderedSetValueForKey:@"tasks"];
+                                   [ms addObject:task];
+                                   self.listAtIndexPath.tasks = ms;
                                    
-                                   if(mutableSet == nil){
-                                       mutableSet = [[NSMutableOrderedSet alloc] initWithObject:task];
-                                   }else{
-                                       [mutableSet addObject:task];
-                                   }
+                                   [list setValue:ms forKey:@"tasks"];
                                    
-                                   [list setValue:mutableSet forKey:@"tasks"];
+                                   [delegate.managedObjectContext insertObject:task];
                                    
-                                   NSError *error = nil;
-                                   if(![list.managedObjectContext save:&error])
-                                   {
-                                       NSLog(@"Unable to save the new task");
-                                       NSLog(@"%@ %@", error, error.localizedDescription);
-                                   }
-                                   self.listAtIndexPath = list;
+                                   [delegate.managedObjectContext save:nil];
+                                   
+                                   [self.tableView reloadData];
                                    
                                    //[self.tableView reloadData];
                                    [self dismissViewControllerAnimated:YES completion:nil];
