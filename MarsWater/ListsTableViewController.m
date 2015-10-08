@@ -68,9 +68,32 @@
     return cell;
 }
 
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-   
-    [self.tableView reloadData];
+    
+    UITableView *tableView = self.tableView;
+    
+    switch (type) {
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];    
 }
 
 #pragma mark - prepareForSegue
@@ -85,19 +108,21 @@
         
         NSLog(@"%@", list);
         
-          detailController.listName = list.title; // pass title from list dictionary to new viewController
-          NSLog(@"%@", list.title);
-          detailController.listColor = (UIColor *)list.color; // pass color from list dictionary to new viewController
+        detailController.list = list;
+        
+//          detailController.listName = list.title; // pass title from list dictionary to new viewController
+//          NSLog(@"%@", list.title);
+//          detailController.listColor = (UIColor *)list.color; // pass color from list dictionary to new viewController
     }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) { // delete rows
         
-//        [_objects removeObjectAtIndex:indexPath.row];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else {
-//        NSLog(@"Unhandled editing style! %d", editingStyle);
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row]; // grab dictionary of stored items
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:list];
+        [delegate.managedObjectContext save:nil];
         
     }
 }

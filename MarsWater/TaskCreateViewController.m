@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Task.h"
 #import "AppDelegate.h" // to access the cool built in core data methods
+#import "List.h"
 
 @interface TaskCreateViewController ()
 
@@ -29,7 +30,6 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-    
 }
 
 - (void)setupNavigationBar
@@ -58,22 +58,23 @@
 
 - (void)save
 {
-    if (self.taskTextField != nil) { // if there is text to save
+    if (self.taskTextField.text.length != 0) { // if there is text to save
         
-    self.task.taskDescription = self.taskTextField.text;
-    self.task.createdAt = [NSDate date];
-    self.task.priority = self.priorityNumber;
+        self.task.taskDescription = self.taskTextField.text;
+        self.task.createdAt = [NSDate date];
+        self.task.priority = self.priorityNumber;
+        self.task.list = self.list;
+        
+        // self.task.dueAt =
+        // self.task.completedAt =
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate; // set delegate
+        [delegate.managedObjectContext save:nil];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     
-    // self.task.dueAt =
-    // self.task.completedAt =
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate; // set delegate
-    [delegate.managedObjectContext save:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-         }
-    
-     NSLog(@"task: %@, created at: %@, priority: %@", self.task.taskDescription, self.task.createdAt, self.task.priority); // test it!
+    NSLog(@"task: %@, created at: %@, priority: %@", self.task.taskDescription, self.task.createdAt, self.task.priority); // test it!
 }
 
 @end

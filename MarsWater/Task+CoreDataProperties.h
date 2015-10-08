@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *completedAt;
 @property (nullable, nonatomic, retain) List *list;
 
+// @property (nonatomic, readonly, getter=isEmpty) BOOL empty;
+
 @end
 
 NS_ASSUME_NONNULL_END

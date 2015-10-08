@@ -21,4 +21,9 @@
 @dynamic completedAt;
 @dynamic list;
 
+//- (BOOL)isEmpty
+//{
+//    return [self.taskDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
+//}
+
 @end

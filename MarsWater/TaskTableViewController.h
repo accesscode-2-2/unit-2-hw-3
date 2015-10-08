@@ -10,11 +10,13 @@
 #import "Task.h"
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
+#import "List.h"
 
 @interface TaskTableViewController : UITableViewController
 
 @property (nonatomic) Task *task;
-@property (nonatomic) NSString *listName;
-@property (nonatomic) id listColor;
+@property (nonatomic) List *list;
+//@property (nonatomic) NSString *listName;
+//@property (nonatomic) id listColor;
 
 @end

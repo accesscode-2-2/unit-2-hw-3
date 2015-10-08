@@ -8,6 +8,7 @@
 
 #import "TaskTableViewController.h"
 #import <CoreData/CoreData.h>
+#import "TaskCreateViewController.h"
 
 @interface TaskTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -27,7 +28,7 @@
 
 -(void)setupNavigationBar
 {
-    self.navigationItem.title = self.listName;
+    self.navigationItem.title = self.list.title;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
@@ -42,7 +43,13 @@
 - (void)createNewItem
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationItem"];
+    
+    TaskCreateViewController *createVC = [storyboard instantiateViewControllerWithIdentifier:@"TaskCreateIdentifier"];
+    createVC.list = self.list;
+    
+//    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationItem"];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createVC];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
@@ -52,6 +59,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"priority" ascending:NO];
     fetchRequest.sortDescriptors = @[sort];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     

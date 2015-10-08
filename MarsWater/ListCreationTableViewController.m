@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (nonatomic) List *list;
+@property (nonatomic) id color;
 
 @end
 
@@ -24,11 +25,7 @@
     [super viewDidLoad];
     
     [self setupNavigationBar];
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
-    
+        
 }
 
 - (void)setupNavigationBar {
@@ -46,18 +43,27 @@
 
 - (void)save {
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    if (!self.list) {
+        self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+    }
+    
     self.list.title = self.titleTextField.text;
     self.list.createdAt = [NSDate date];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    if (!self.color) {
+        self.list.color = [UIColor whiteColor];
+    } else {
+        self.list.color = self.color;
+    }
+    
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
-    
-    self.list.color = sender.backgroundColor;
+    self.color = sender.backgroundColor;
 }
 
 @end

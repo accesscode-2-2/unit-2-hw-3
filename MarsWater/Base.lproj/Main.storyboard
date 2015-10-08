@@ -136,7 +136,7 @@
         <!--Task Create View Controller-->
         <scene sceneID="jsI-Ej-wz3">
             <objects>
-                <viewController id="SXf-q1-NgF" customClass="TaskCreateViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskCreateIdentifier" id="SXf-q1-NgF" customClass="TaskCreateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MXC-pt-Fj2"/>
                         <viewControllerLayoutGuide type="bottom" id="WnB-cu-tzp"/>
@@ -145,11 +145,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="task description... " borderStyle="roundedRect" placeholder="task description... " clearsOnBeginEditing="YES" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vOl-7m-5rX">
-                                <rect key="frame" x="20" y="301" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whenever" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-s7-SDX">
                                 <rect key="frame" x="20" y="351" width="78" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -168,6 +163,11 @@
                                     <action selector="sliderValueChanged:" destination="SXf-q1-NgF" eventType="valueChanged" id="v2Y-Oi-xU7"/>
                                 </connections>
                             </slider>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="task description... " clearsOnBeginEditing="YES" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vOl-7m-5rX">
+                                <rect key="frame" x="20" y="301" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>

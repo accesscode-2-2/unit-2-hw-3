@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class List; // let this view controller know that List is a valid class
+
 @interface TaskCreateViewController : UIViewController
+
+@property (nonatomic) List *list;
 
 @end
