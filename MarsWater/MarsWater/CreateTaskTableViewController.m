@@ -1,46 +1,36 @@
 //
-//  TasksTableViewController.m
+//  CreateTaskTableViewController.m
 //  MarsWater
 //
-//  Created by Ayuna Vogel on 10/7/15.
+//  Created by Ayuna Vogel on 10/8/15.
 //  Copyright © 2015 Justine Gartner. All rights reserved.
 //
+#import <CoreData/CoreData.h>
 
-#import "TasksTableViewController.h"
+#import "CreateTaskTableViewController.h"
 #import "AppDelegate.h"
 #import "Task.h"
 
-@interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
+@interface CreateTaskTableViewController ()
 
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+
+@property (nonatomic) Task *task;
+
 
 @end
 
-@implementation TasksTableViewController
+@implementation CreateTaskTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupNavigationBar];
+
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
-    //Create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+    self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
-    //create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    
-    //set the sort descriptors on the fetchRequest
-    fetchRequest.sortDescriptors = @[sort];
-    
-    //create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    self.fetchedResultsController.delegate = self;
-    
-    [self.fetchedResultsController performFetch:nil];
-    
-
-    self.navigationItem.title = @"Tasks";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -54,38 +44,60 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+-(void)setupNavigationBar{
+    
+    self.navigationItem.title = @"Create New Task";
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fetchedResultsController.fetchedObjects.count;
+-(void)cancel{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)save{
+    
+    self.task.taskDescription = self.titleTextField.text;
+    self.task.createdAt = [NSDate date];
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.managedObjectContext save:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSLog(@"%@", self.task);
+}
+
+- (IBAction)colorButtonTapped:(UIButton *)sender {
+    
+    self.task.color = sender.backgroundColor;
+    
+    
+}
+
+//#pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Incomplete implementation, return the number of sections
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//#warning Incomplete implementation, return the number of rows
+//    return 0;
+//}
+
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
-    
-    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    
-    cell.textLabel.text = task.taskDescription;
-    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateStyle = NSDateFormatterShortStyle;
-//    cell.detailTextLabel.text = [formatter stringFromDate:task.createdAt];
-
-    cell.backgroundColor = (UIColor *)task.color;
+    // Configure the cell...
     
     return cell;
 }
-
-// NSFetchResultsController delegate method
--(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
-    
-    [self.tableView reloadData];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

@@ -20,5 +20,6 @@
 @dynamic priority;
 @dynamic completedAt;
 @dynamic list;
+@dynamic color; 
 
 @end

@@ -219,13 +219,13 @@
         <!--Tasks Table View Controller-->
         <scene sceneID="BdC-Cn-qpR">
             <objects>
-                <tableViewController title="Tasks" id="x1h-RF-iIq" userLabel="Tasks Table View Controller" sceneMemberID="viewController">
+                <tableViewController title="Tasks" id="x1h-RF-iIq" userLabel="Tasks Table View Controller" customClass="TasksTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="O2y-1E-K4s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EY9-Oc-rD1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellIdentifier" id="EY9-Oc-rD1">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EY9-Oc-rD1" id="Hj9-jG-srL">
@@ -271,7 +271,7 @@
         <!--Create Task VC-->
         <scene sceneID="g2j-Iw-nrV">
             <objects>
-                <tableViewController title="Create Task " id="Uwm-Ty-TEx" userLabel="Create Task VC" customClass="CreateListTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Create Task " id="Uwm-Ty-TEx" userLabel="Create Task VC" customClass="CreateTaskTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oPj-w4-Jm6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

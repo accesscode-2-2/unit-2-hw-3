@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *priority;
 @property (nullable, nonatomic, retain) NSDate *completedAt;
 @property (nullable, nonatomic, retain) NSManagedObject *list;
+@property (nullable, nonatomic, retain) id color;
 
 @end
 
