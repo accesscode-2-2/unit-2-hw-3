@@ -37,7 +37,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="x1h-RF-iIq" kind="show" id="cgN-ZQ-6JX"/>
+                                    <segue destination="x1h-RF-iIq" kind="show" identifier="TasksSegue" id="cgN-ZQ-6JX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

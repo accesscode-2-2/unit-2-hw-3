@@ -17,6 +17,8 @@
 
 @property (nonatomic) Task *task;
 
+@property (nonatomic) NSMutableOrderedSet *tasksInList;
+
 
 @end
 
@@ -25,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tasksInList = self.list.task.mutableCopy;
+    
     [self setupNavigationBar];
 
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -32,16 +36,12 @@
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setupNavigationBar{
@@ -50,6 +50,10 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:224.0/255.0 green:35.0/255.0 blue:70.0/255.0 alpha:1.0];
+
 }
 
 -(void)cancel{
@@ -60,10 +64,25 @@
 -(void)save{
     
     self.task.taskDescription = self.titleTextField.text;
-    self.task.createdAt = [NSDate date];
+
+    if (self.task.createdAt == nil) {
+        
+        self.task.createdAt = [NSDate date];
+        
+    }else {
+        
+        self.task.updatedAt = [NSDate date];
+    }
+
+    
+    //update tasksInList (NSOrderedSet)
+    
+    self.list.task = self.tasksInList;
+
+    //save to task to core data context
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil];
+    [delegate.managedObjectContext save:nil]; // nil = No Error, Save with no NSError parameter
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -74,30 +93,9 @@
     
     self.task.color = sender.backgroundColor;
     
-    
 }
 
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.

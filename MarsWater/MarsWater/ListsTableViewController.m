@@ -11,6 +11,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksTableViewController.h"
 
 @interface ListsTableViewController ()<NSFetchedResultsControllerDelegate>
 
@@ -65,19 +66,43 @@
     
     cell.textLabel.text = list.title;
     
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = NSDateFormatterShortStyle;
     
     cell.detailTextLabel.text = [formatter stringFromDate:list.createdAt];
-        
-    
-    
     
     cell.backgroundColor = (UIColor *)list.color;
     
     return cell;
 }
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        List *selectedList = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        [self removeObjectFromCoreDataContext:selectedList];
+        
+    }
+    
+}
+
+#pragma mark - Core Data
+
+-(void)removeObjectFromCoreDataContext:(List *)selectedList {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    [context deleteObject:selectedList];
+    [context processPendingChanges];
+    
+}
+
 
 // NSFetchResultsController delegate method
 -(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
@@ -85,25 +110,25 @@
     [self.tableView reloadData];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark - Navigation
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"TasksSegue"]){
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TasksTableViewController *tasksTVC = segue.destinationViewController;
+        
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+        tasksTVC.list = list;
+        
+        NSLog(@"taskTVC.list: %@", tasksTVC.list);
+    }
+    
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -119,14 +144,5 @@
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

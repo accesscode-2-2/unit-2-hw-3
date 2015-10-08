@@ -9,10 +9,11 @@
 #import "TasksTableViewController.h"
 #import "AppDelegate.h"
 #import "Task.h"
+#import "CreateTaskTableViewController.h"
 
 @interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) NSMutableOrderedSet *tasksList;
 
 @end
 
@@ -20,33 +21,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    //Create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
-    
-    //create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    
-    //set the sort descriptors on the fetchRequest
-    fetchRequest.sortDescriptors = @[sort];
-    
-    //create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    self.fetchedResultsController.delegate = self;
-    
-    [self.fetchedResultsController performFetch:nil];
-    
 
-    self.navigationItem.title = @"Tasks";
+    //self.navigationItem.title = @"Tasks";
+    self.navigationItem.title = self.list.title;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.tableView reloadData];
     
+    self.tableView.backgroundColor = self.list.color;
+    self.tableView.backgroundView.backgroundColor = self.list.color;
+
+
+    
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    
+//    //Create an instance of NSFetchRequest with an entity name
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+//    
+//    //create a sort descriptor
+//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+//    
+//    //set the sort descriptors on the fetchRequest
+//    fetchRequest.sortDescriptors = @[sort];
+//    
+//    //create a fetchedResultsController with a fetchRequest and a managedObjectContext
+//    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//    
+//    self.fetchedResultsController.delegate = self;
+//    
+//    [self.fetchedResultsController performFetch:nil];
+//    
+
+    
+     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,24 +74,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fetchedResultsController.fetchedObjects.count;
+    return self.list.task.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
     
-    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    Task *task = self.list.task[indexPath.row];
     
     cell.textLabel.text = task.taskDescription;
-    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateStyle = NSDateFormatterShortStyle;
-//    cell.detailTextLabel.text = [formatter stringFromDate:task.createdAt];
-
-    cell.backgroundColor = (UIColor *)task.color;
+    cell.backgroundColor = self.list.color;
     
     return cell;
+    //Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    //cell.textLabel.text = task.taskDescription;
+    //cell.backgroundColor = (UIColor *)task.color;
+    
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //    formatter.dateStyle = NSDateFormatterShortStyle;
+    //    cell.detailTextLabel.text = [formatter stringFromDate:task.createdAt];
 }
 
 // NSFetchResultsController delegate method
@@ -87,25 +102,49 @@
     [self.tableView reloadData];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        
+        Task *selectedTask = self.list.task[indexPath.row];
+        [self removeObjectFromCoreDataContext:selectedTask];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        
+    }
+    
 }
-*/
+
+
+#pragma mark - Core Data method 
+
+-(void)removeObjectFromCoreDataContext:(Task *)selectedTask {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    [context deleteObject:selectedTask];
+    [context processPendingChanges];
+    
+}
+
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    UINavigationController *navController = segue.destinationViewController;
+    
+    CreateTaskTableViewController *createTaskTVC = (CreateTaskTableViewController *)([navController viewControllers][0]);
+    createTaskTVC.list = self.list;
+}
+
+
 
 /*
 // Override to support rearranging the table view.
@@ -121,14 +160,5 @@
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
