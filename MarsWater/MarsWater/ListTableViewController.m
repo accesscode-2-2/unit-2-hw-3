@@ -67,24 +67,57 @@
     return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        List *selectedList = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        [self removeObjectFromCoreDataContext:selectedList];
+        
+    }
+    
+}
+
 
 -(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     
     [self.tableView reloadData];
 }
 
+#pragma mark - segue
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-
-    TaskTableViewController *taskTVC = segue.destinationViewController;
-    
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    
-    taskTVC.list = list;
-    
-    NSLog(@"taskTVC.list: %@", taskTVC.list);
+    if ([segue.identifier isEqualToString:@"TaskSegueIdentifier"]){
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TaskTableViewController *taskTVC = segue.destinationViewController;
+        
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+        taskTVC.list = list;
+        
+        NSLog(@"taskTVC.list: %@", taskTVC.list);
+    }
     
 }
+
+#pragma mark - Core Data
+
+-(void)removeObjectFromCoreDataContext:(List *)selectedList {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    [context deleteObject:selectedList];
+    [context processPendingChanges];
+    
+}
+
 
 @end
