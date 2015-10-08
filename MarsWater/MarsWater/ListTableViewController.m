@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     //Create an instance of NSFetchRequest with an entity name

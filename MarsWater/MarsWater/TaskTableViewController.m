@@ -27,8 +27,8 @@
     
     [self.tableView reloadData];
     
-    NSLog(@"list tasks: %@", self.list.task);
-    
+    self.tableView.backgroundColor = self.list.color;
+    self.tableView.backgroundView.backgroundColor = self.list.color;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -55,11 +55,8 @@
     
     Task *task = self.list.task[indexPath.row];
     
-    NSLog(@"self.list.task: %@", self.list.task[indexPath.row]);
-    
     cell.textLabel.text = task.taskDescription;
-    cell.backgroundColor = (UIColor *)self.list.color;
-
+    cell.backgroundColor = self.list.color;
     
     return cell;
 }

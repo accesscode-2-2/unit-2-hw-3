@@ -13,6 +13,8 @@
 @interface TaskCreationTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *taskTextField;
+@property (weak, nonatomic) IBOutlet UIButton *highButton;
+@property (weak, nonatomic) IBOutlet UIButton *lowButton;
 
 @property (nonatomic) Task *task;
 
@@ -26,10 +28,7 @@
     
     [super viewDidLoad];
     
-    
-    
-    self.listTasks = [[NSMutableOrderedSet alloc] init];
-
+    self.listTasks = self.list.task.mutableCopy;
     
     [self setupNavigationBar];
     
@@ -45,6 +44,9 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:224.0/255.0 green:35.0/255.0 blue:70.0/255.0 alpha:1.0];
 }
 
 -(void)cancel{
@@ -53,6 +55,8 @@
 }
 
 -(void)save{
+    
+    //set task properties
     
     self.task.taskDescription = self.taskTextField.text;
     
@@ -65,8 +69,13 @@
         self.task.updatedAt = [NSDate date];
     }
     
-    [self updateListOfTasks];
     
+    //update List's Task (NSOrderedSet)
+    
+    self.list.task = self.listTasks;
+    
+    
+    //save to task to core data context
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
@@ -74,9 +83,13 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    NSLog(@"%@", self.task);
 }
 
+#pragma mark - update list task
+//not currently in use, but was
+//keeping for reference
+
+/*
 -(void)updateListOfTasks{
     
     self.listTasks = self.list.task.mutableCopy;
@@ -85,17 +98,20 @@
     
     self.list.task = self.listTasks;
     
-}
+}*/
+
+#pragma mark - priority button
 
 - (IBAction)priorityButtonTapped:(UIButton *)sender {
     
-    //set tag property of each button
-    //use that property here - sender.tag
-    //to add the new task to the top (HIGH priority)
-    //or bottom (LOW priority) of the list
+    if (sender == self.highButton) {
+        
+        [self.listTasks insertObject:self.task atIndex:0];
     
-    NSLog(@"priority button tapped");
-    
+    }else if (sender == self.lowButton){
+        
+        [self.listTasks insertObject:self.task atIndex:self.listTasks.count];
+    }
 
 }
 
