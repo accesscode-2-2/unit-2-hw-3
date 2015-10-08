@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "List.h"
 
 @interface ListsTableViewController : UITableViewController
+
 
 @end

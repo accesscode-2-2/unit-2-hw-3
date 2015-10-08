@@ -1,34 +1,33 @@
 //
-//  ListsTableViewController.m
+//  TasksTableViewController.m
 //  MarsWater
 //
-//  Created by Xiulan Shi on 10/4/15.
+//  Created by Xiulan Shi on 10/6/15.
 //  Copyright © 2015 Xiulan Shi. All rights reserved.
 //
 
-#import "ListsTableViewController.h"
 #import <CoreData/CoreData.h>
-#import "AppDelegate.h"
-#import "List.h"
-#import "Task+CoreDataProperties.h"
 #import "TasksTableViewController.h"
+#import "Task.h"
+#import "AppDelegate.h"
 
-@interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
+@interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+
 @end
 
-@implementation ListsTableViewController
+@implementation TasksTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createAt" ascending:NO];
     
     fetchRequest.sortDescriptors = @[sort];
     
@@ -59,12 +58,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell...
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.textLabel.text = list.title;
-    cell.backgroundColor = (UIColor *)list.color;
+    Task *task  = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    cell.textLabel.text = task.taskDescription;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:task.dueAt];
     
     return cell;
 }
@@ -73,27 +73,5 @@
     
     [self.tableView reloadData];
 }
-
-#pragma mark - Navigation
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqual:@"showAdd"]) {
-//        
-//    }
-//    else {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//        List *currentList = [self.task objectAtIndex:indexPath.row];
-//        
-//        
-//        TasksTableViewController *detailVC = segue.destinationViewController;
-//        
-//        detailVC.currentList = currentList;
-//        
-//    }
-//    
-//}
-//
-
 
 @end
