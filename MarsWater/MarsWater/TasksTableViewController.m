@@ -16,18 +16,24 @@
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) Task *task;
 @property (nonatomic) List *list;
+
+@property (nonatomic) NSMutableArray<Task *> *tasksArray;
 @end
 
 @implementation TasksTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Tasks";
+    [self setupNavBar];
+    
+    
+    self.tasksArray = [NSMutableArray arrayWithArray:[self.listAtIndexPath.tasks array]];
+    NSLog(@"Tasks Array Count: %d",self.tasksArray.count);
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    //create an instance of NSFetchRequest with an entity name
+    ////create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
     
     //create a sort descriptor
@@ -37,83 +43,222 @@
     fetchRequest.sortDescriptors = @[sort];
     
     //create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *fetchedResutlsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
-    self.fetchedResultsController.delegate = self;
+    fetchedResutlsController.delegate = self;
     
-    [self.fetchedResultsController performFetch:nil];
-    self.list = [self.fetchedResultsController.fetchedObjects firstObject];
+    self.fetchedResultsController = fetchedResutlsController;
+    
+    NSError *error = nil;
+    if(![self.fetchedResultsController performFetch:&error])
+    {
+        NSLog(@"Could not Load Task Entity");
+        NSLog(@"%@ %@",error, error.localizedDescription);
+    }else{
+        self.list = [self.fetchedResultsController objectAtIndexPath:self.indexPath];
+        [self.tableView reloadData];
+    }
+    //    }else
+    //    {
+    //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //        self.list = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //        [self.tableView reloadData];
+    //    }
+    
+}
+
+- (void)setupNavBar
+{
+    self.navigationItem.title = @"Tasks";
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0.0/255 green:118.0/255 blue:255.0/255 alpha:1.0];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     [self.tableView reloadData];
-    
 }
 
 
 #pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.listAtIndexPath.tasks.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tasks.count;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TasksCellID" forIndexPath:indexPath];
     
-    
-    Task *task = self.tasks[indexPath.row];
-    cell.textLabel.text = task.taskDescription;
-    
+    //Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath ];
+    if(self.listAtIndexPath.tasks.count > 0){
+        Task *task = self.listAtIndexPath.tasks[indexPath.row];
+        cell.textLabel.text = task.taskDescription;
+    }
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return YES;
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        self.list = [self.fetchedResultsController.fetchedObjects firstObject];
-        self.task = self.list.tasks[indexPath.row];
-        [self.task.managedObjectContext deleteObject:self.task];
-        [self.tasks removeObjectAtIndex:indexPath.row];
+        //        //AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        //        List *list= self.listAtIndexPath;
+        //
+        //
+        //        Task *task = list.tasks[indexPath.row];
+        //
+        //        //might need to change this to delegate.context
+        //        [task.managedObjectContext deleteObject:task];
+        
+        //Task *task = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath];
+        Task *task = [list.tasks objectAtIndex:indexPath.row];
+        NSMutableOrderedSet *ms = [list mutableOrderedSetValueForKey:@"tasks"];
+        [ms removeObject:task];
+        self.listAtIndexPath.tasks = ms;
+        //        NSMutableOrderedSet *set = list.tasks.mutableCopy;
+        //        [set removeObjectAtIndex:indexPath.row];
+        //        list.tasks = set;
+        
+        // NSArray<Task *> tasksArray =
+//        NSMutableArray<Task *> *taskArray = [NSMutableArray arrayWithArray:[list.tasks array]];
+//        
+//        [taskArray removeObject:task];
+//        NSOrderedSet *set = [[NSOrderedSet alloc] initWithArray:taskArray];
+        
+        [list setValue:ms forKey:@"tasks"];
+        
+        [delegate.managedObjectContext deleteObject:task];
+        
+        [delegate.managedObjectContext save:nil];
+        
         [self.tableView reloadData];
+        
+        
     }
     
 }
 
-- (IBAction)addTasksButtonTapped:(UIBarButtonItem *)sender {
+- (IBAction)addTasksButtonTapped:(UIBarButtonItem *)sender
+{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Task" message:@"Please Enter A New Task" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField){
         textField.placeholder = NSLocalizedString(@"Enter Task", @"NewTaskPlaceHolder");
     }];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
-    {
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-        self.task.taskDescription = alertController.textFields.firstObject.text;
-        [self.tasks addObject:self.task];
-        
-        NSMutableOrderedSet *mutableSet = (NSMutableOrderedSet *)self.list.tasks;
-        [mutableSet addObject:self.task];
-        self.list.tasks = (NSOrderedSet *)mutableSet.copy;
-        
-        [self.tableView reloadData];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+                               {
+                                   AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                                   
+                                   Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+                                   
+                                   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+                                   
+                                   //create a sort descriptor
+                                   NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+                                   
+                                   //set the sort descriptor on the fetch request
+                                   fetchRequest.sortDescriptors = @[sort];
+                                   
+                                   //create a fetchedResultsController with a fetchRequest and a managedObjectContext
+                                   NSFetchedResultsController *fetchedResutlsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+                                   
+                                   fetchedResutlsController.delegate = self;
+                                   
+                                   [fetchedResutlsController performFetch:nil];
+                                   
+                                   fetchedResutlsController.delegate = self;
+                                   self.fetchedResultsController = fetchedResutlsController;
+                                   
+                                   
+                                   task.taskDescription = alertController.textFields.firstObject.text;
+                                   task.createdAt = [NSDate date];
+                                   
+                                   List *list = [self.fetchedResultsController objectAtIndexPath:self.indexPath];
+                                   
+                                   NSMutableOrderedSet *mutableSet = [list mutableOrderedSetValueForKey:@"tasks"];
+                                   
+                                   if(mutableSet == nil){
+                                       mutableSet = [[NSMutableOrderedSet alloc] initWithObject:task];
+                                   }else{
+                                       [mutableSet addObject:task];
+                                   }
+                                   
+                                   [list setValue:mutableSet forKey:@"tasks"];
+                                   
+                                   NSError *error = nil;
+                                   if(![list.managedObjectContext save:&error])
+                                   {
+                                       NSLog(@"Unable to save the new task");
+                                       NSLog(@"%@ %@", error, error.localizedDescription);
+                                   }
+                                   self.listAtIndexPath = list;
+                                   
+                                   //[self.tableView reloadData];
+                                   [self dismissViewControllerAnimated:YES completion:nil];
+                               }];
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - <NSFetchedResultsControllerDelegate>
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
-    
-    [self.tableView reloadData];
-}
-
+//- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+//{
+//    [self.tableView beginUpdates];
+//}
+//
+//- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+//    
+//    switch (type) {
+//        case NSFetchedResultsChangeDelete: {
+//            [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            break;
+//        }
+//        case NSFetchedResultsChangeInsert: {
+//            [self.tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            break;
+//        }
+//        case NSFetchedResultsChangeUpdate: {
+//            [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
+//            break;
+//        }
+//        case NSFetchedResultsChangeMove:{
+//            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+//            break;
+//        }
+//        default: {
+//            break;
+//        }
+//    }
+//}
+//
+//- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+//{
+//    [self.tableView endUpdates];
+//}
 
 @end

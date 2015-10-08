@@ -2,7 +2,7 @@
 //  List.h
 //  MarsWater
 //
-//  Created by Mesfin Bekele Mekonnen on 10/4/15.
+//  Created by Mesfin Bekele Mekonnen on 10/7/15.
 //  Copyright © 2015 Mesfin. All rights reserved.
 //
 
@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface List : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
-
+-(NSString *)subtitleText;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,13 +13,13 @@
 		DC015ABC1BC1AE4800961A06 /* MarsWater.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC015ABA1BC1AE4800961A06 /* MarsWater.xcdatamodeld */; };
 		DC015ABE1BC1AE4800961A06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC015ABD1BC1AE4800961A06 /* Assets.xcassets */; };
 		DC015AC11BC1AE4800961A06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC015ABF1BC1AE4800961A06 /* LaunchScreen.storyboard */; };
-		DC015AD71BC1B31E00961A06 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AD01BC1B31E00961A06 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		DC015AD81BC1B31E00961A06 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AD21BC1B31E00961A06 /* Task.m */; settings = {ASSET_TAGS = (); }; };
-		DC015AD91BC1B31E00961A06 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AD41BC1B31E00961A06 /* List+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		DC015ADA1BC1B31E00961A06 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AD61BC1B31E00961A06 /* List.m */; settings = {ASSET_TAGS = (); }; };
 		DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE21BC1B95300961A06 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DC015B481BC5A70300961A06 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B411BC5A70300961A06 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		DC015B491BC5A70300961A06 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B431BC5A70300961A06 /* Task.m */; settings = {ASSET_TAGS = (); }; };
+		DC015B4A1BC5A70300961A06 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B451BC5A70300961A06 /* List+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		DC015B4B1BC5A70300961A06 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B471BC5A70300961A06 /* List.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,20 +32,20 @@
 		DC015ABD1BC1AE4800961A06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC015AC01BC1AE4800961A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC015AC21BC1AE4800961A06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC015ACF1BC1B31E00961A06 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
-		DC015AD01BC1B31E00961A06 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
-		DC015AD11BC1B31E00961A06 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		DC015AD21BC1B31E00961A06 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		DC015AD31BC1B31E00961A06 /* List+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "List+CoreDataProperties.h"; sourceTree = "<group>"; };
-		DC015AD41BC1B31E00961A06 /* List+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "List+CoreDataProperties.m"; sourceTree = "<group>"; };
-		DC015AD51BC1B31E00961A06 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
-		DC015AD61BC1B31E00961A06 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		DC015ADE1BC1B91300961A06 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
 		DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
 		DC015AE11BC1B95300961A06 /* ListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsTableViewController.h; sourceTree = "<group>"; };
 		DC015AE21BC1B95300961A06 /* ListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
 		DC015AE81BC22F4C00961A06 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
 		DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		DC015B401BC5A70300961A06 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DC015B411BC5A70300961A06 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DC015B421BC5A70300961A06 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		DC015B431BC5A70300961A06 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		DC015B441BC5A70300961A06 /* List+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "List+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DC015B451BC5A70300961A06 /* List+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "List+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DC015B461BC5A70300961A06 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		DC015B471BC5A70300961A06 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,14 +103,14 @@
 		DC015ACE1BC1B28F00961A06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DC015ACF1BC1B31E00961A06 /* Task+CoreDataProperties.h */,
-				DC015AD01BC1B31E00961A06 /* Task+CoreDataProperties.m */,
-				DC015AD11BC1B31E00961A06 /* Task.h */,
-				DC015AD21BC1B31E00961A06 /* Task.m */,
-				DC015AD31BC1B31E00961A06 /* List+CoreDataProperties.h */,
-				DC015AD41BC1B31E00961A06 /* List+CoreDataProperties.m */,
-				DC015AD51BC1B31E00961A06 /* List.h */,
-				DC015AD61BC1B31E00961A06 /* List.m */,
+				DC015B401BC5A70300961A06 /* Task+CoreDataProperties.h */,
+				DC015B411BC5A70300961A06 /* Task+CoreDataProperties.m */,
+				DC015B421BC5A70300961A06 /* Task.h */,
+				DC015B431BC5A70300961A06 /* Task.m */,
+				DC015B441BC5A70300961A06 /* List+CoreDataProperties.h */,
+				DC015B451BC5A70300961A06 /* List+CoreDataProperties.m */,
+				DC015B461BC5A70300961A06 /* List.h */,
+				DC015B471BC5A70300961A06 /* List.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -200,15 +200,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC015ABC1BC1AE4800961A06 /* MarsWater.xcdatamodeld in Sources */,
-				DC015AD71BC1B31E00961A06 /* Task+CoreDataProperties.m in Sources */,
 				DC015AB31BC1AE4800961A06 /* AppDelegate.m in Sources */,
+				DC015B4A1BC5A70300961A06 /* List+CoreDataProperties.m in Sources */,
+				DC015B481BC5A70300961A06 /* Task+CoreDataProperties.m in Sources */,
 				DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */,
-				DC015AD81BC1B31E00961A06 /* Task.m in Sources */,
-				DC015ADA1BC1B31E00961A06 /* List.m in Sources */,
+				DC015B4B1BC5A70300961A06 /* List.m in Sources */,
+				DC015B491BC5A70300961A06 /* Task.m in Sources */,
 				DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */,
 				DC015AB01BC1AE4800961A06 /* main.m in Sources */,
 				DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */,
-				DC015AD91BC1B31E00961A06 /* List+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MarsWater/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.mesbekmek.MarsWater;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MarsWater/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.mesbekmek.MarsWater;
 				PRODUCT_NAME = "$(TARGET_NAME)";

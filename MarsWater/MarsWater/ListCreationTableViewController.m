@@ -16,82 +16,113 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *taskTextField;
 
-@property (nonatomic) List *list;
-@property (nonatomic) Task *task;
+@property (nonatomic) UIColor *listColor;
 
 @end
 
 @implementation ListCreationTableViewController
 
-- (void)viewDidLoad{
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
     [self setupNavigationBar];
 }
 
-- (void)setupNavigationBar{
+- (void)setupNavigationBar
+{
     self.navigationItem.title = @"Create new list";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0.0/255 green:118.0/255 blue:255.0/255 alpha:1.0];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
 }
 
-- (void)cancel{
-    
-    if(self.list.tasks.firstObject.taskDescription == nil){
-        [self.list.managedObjectContext deleteObject:self.list];
-    }
-    
+- (void)cancel
+{
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
 
-- (void)save{
-    
-    if(self.titleTextField.text){
-       
-        self.list.title = self.titleTextField.text;
-        self.list.createdAt = [NSDate date];
-    }
-    if(self.taskTextField.text){
-        
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        
-        //Checks to see if user has comma separated tasks or just one task
-        if([self.taskTextField.text rangeOfString:@","].location != NSNotFound)
+-(NSArray *)commaSeparatedTasksFromString:(NSString *)taskString
+{
+    NSArray *commaSeparatedTasks = [taskString componentsSeparatedByString:@","];
+    return commaSeparatedTasks;
+}
+
+- (void)save
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSString *title = self.titleTextField.text;
+    NSString *taskString = self.taskTextField.text;
+    if(title && title.length)
+    {
+        List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+        if(self.listColor == nil)
         {
-            NSArray *commaSeparatedTasks = [self.taskTextField.text componentsSeparatedByString:@","];
-            NSMutableArray<Task *> *tasksArray = [NSMutableArray<Task *> new];
-            for(NSString *taskString in commaSeparatedTasks)
-            {
-                self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-                self.task.taskDescription = taskString;
-                self.task.createdAt = [NSDate date];
-                [tasksArray addObject:self.task];
-                NSLog(@"These are your tasks%@",self.task);
-            }
-            self.list.tasks = [NSOrderedSet orderedSetWithArray:tasksArray];
-            //self.list.color = self.list.color;
+            //assigns a default color to a list if user decides not assign one.
+            [list setValue:[UIColor colorWithRed:0.0/255 green:118.0/255 blue:255.0/255 alpha:1.0] forKey:@"color"];
         }else
         {
-            self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-            self.task.taskDescription = self.taskTextField.text;
-            self.task.createdAt = [NSDate date];
-            self.list.tasks =[NSOrderedSet orderedSetWithObject:self.task];
+            [list setValue:self.listColor forKey:@"color"];
         }
+        [list setValue:title forKey:@"title"];
+        [list setValue:[NSDate date] forKey:@"createdAt"];
         
+        if(taskString && taskString.length)
+        {
+            //Checks to see if user has comma separated tasks or just one task
+            if([taskString rangeOfString:@","].location != NSNotFound)
+            {
+                NSArray *commaSeparatedTasks = [self commaSeparatedTasksFromString:taskString];
+                NSMutableOrderedSet *mutableSet = [list mutableOrderedSetValueForKey:@"tasks"];
+                for(NSString *taskString in commaSeparatedTasks){
+                    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+                    [task setValue:taskString forKey:@"taskDescription"];
+                    [task setValue:[NSDate date] forKey:@"createdAt"];
+                    [mutableSet addObject:task];
+                    [list setValue:mutableSet forKey:@"tasks"];
+                    NSLog(@"These are your taskStrings: %@",task.taskDescription);
+                }
+                //there's only one task
+            }else
+            {
+                Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+                NSMutableOrderedSet *mutableSet = [list mutableOrderedSetValueForKey:@"tasks"];
+                task.taskDescription = taskString;
+                task.createdAt = [NSDate date];
+                [mutableSet addObject:task];
+                [list setValue:mutableSet forKey:@"tasks"];
+            }
+        }
+        NSError *error = nil;
+        if(list.title != nil)
+        {
+            if([delegate.managedObjectContext save:&error]){
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }else
+            {
+                if(error)
+                {
+                    NSLog(@"Unable to save list");
+                    NSLog(@"%@ %@",error, error.localizedDescription);
+                }
+                [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do list could not be saved." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }
+        //there was no title
+    }else
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Hold up" message:@"You need to put a title before you save!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
     }
-    
-    NSLog(@"This are the tasks%@",self.list.tasks);
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
 }
 
 
-- (IBAction)colorButtonTapped:(UIButton *)sender {
-    self.list.color = sender.backgroundColor;
+- (IBAction)colorButtonTapped:(UIButton *)sender
+{
+    self.listColor = sender.backgroundColor;
 }
 
 
