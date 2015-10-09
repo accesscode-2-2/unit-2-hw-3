@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *updatedAt;
 @property (nullable, nonatomic, retain) NSNumber *priority;
 @property (nullable, nonatomic, retain) NSDate *completedAt;
-@property (nullable, nonatomic, retain) List *list;
+@property (nullable, nonatomic, retain) NSManagedObject *list;
 
 @end
 

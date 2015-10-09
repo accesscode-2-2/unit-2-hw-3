@@ -10,6 +10,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TaskCreationViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -64,12 +65,56 @@
     cell.textLabel.text = list.title;
     cell.detailTextLabel.text = [list.createdAt description];
     
+    if (list.task.count >= 1){
+        cell.detailTextLabel.text = [NSString stringWithFormat: @"Tasks: %lu " ,list.task.count];
+    }
     return cell;
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-   
+    
     [self.tableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"TaskCreation"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TaskCreationViewController *vc = segue.destinationViewController;
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        vc.list = list;
+        
+        NSLog(@"segue list %@", vc.list);
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSManagedObjectContext *context =
+        [self.fetchedResultsController managedObjectContext];
+        
+        NSManagedObject *objectToBeDeleted =
+        [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        [context deleteObject:objectToBeDeleted];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+        [delegate.managedObjectContext save:nil];
+        
+        NSError *error = nil;
+        if (![context save:&error])
+        {
+            NSLog(@"Error deleting movie, %@", [error userInfo]);
+        }
+        
+        [self.tableView reloadData];
+    }
 }
 
 @end
