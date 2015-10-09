@@ -42,7 +42,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="RGl-ZG-WQG" kind="show" id="yCg-Zq-2pJ"/>
+                                    <segue destination="RGl-ZG-WQG" kind="show" id="mbO-tm-o51"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -110,7 +110,7 @@
                     <navigationItem key="navigationItem" title="Tasks" id="kGb-ft-O3S">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1A3-BR-o6Z">
                             <connections>
-                                <segue destination="nG4-Du-PyF" kind="presentation" id="ljn-TZ-jNy"/>
+                                <segue destination="6Tv-bA-JM8" kind="presentation" id="4zF-tY-E8b"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -119,23 +119,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="647-fd-gTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1760" y="902"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mHJ-rJ-X0d">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xQ6-P9-3j5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="nG4-Du-PyF" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4ZX-gp-eP0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="826-6x-xTr" kind="relationship" relationship="rootViewController" id="RhY-KU-g77"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="2427" y="902"/>
         </scene>
         <!--List Creation Table View Controller-->
         <scene sceneID="Nx5-Rb-hgB">
@@ -280,6 +263,23 @@
             </objects>
             <point key="canvasLocation" x="2405" y="205"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QRa-WD-0SP">
+            <objects>
+                <navigationController id="6Tv-bA-JM8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="q4S-Ja-yaF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="826-6x-xTr" kind="relationship" relationship="rootViewController" id="Aof-Xb-o9p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h07-qE-Dlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2391" y="902"/>
+        </scene>
         <!--Task Creation Table View Controller-->
         <scene sceneID="brn-0C-5pN">
             <objects>
@@ -370,7 +370,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kH1-0w-lz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3095" y="902"/>
+            <point key="canvasLocation" x="3051" y="902"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5nr-jx-cZX">

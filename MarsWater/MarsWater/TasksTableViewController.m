@@ -15,7 +15,7 @@
 @interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSMutableOrderedSet *listTasks;
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+//@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 
 @end
@@ -25,16 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Tasks";
     self.navigationItem.title = self.list.title;
     
     [self.tableView reloadData];
     
-    self.tableView.backgroundColor = self.list.color;
-    self.tableView.backgroundView.backgroundColor = self.list.color;
-    
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     
     [self.tableView reloadData];
 }
@@ -67,12 +65,25 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    {
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            [self.listTasks removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        Task *selectedTask = self.list.task[indexPath.row];
+        [self removeObjectFromNSManagedObjectContext:selectedTask];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
     }
+    
+}
+
+-(void)removeObjectFromNSManagedObjectContext:(Task *)selectedTask {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    [context deleteObject:selectedTask];
+    [context processPendingChanges];
+    
 }
 
 #pragma mark - segue
@@ -93,6 +104,16 @@
     NSManagedObjectContext *context = delegate.managedObjectContext;
     [context deleteObject:selectedTask];
     [context processPendingChanges];
+    
+}
+
+-(void)pushTasksCreationTableViewController{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    TasksTableViewController *tasksCreationVC = [storyboard instantiateViewControllerWithIdentifier:@"tasksCreationTableViewController"];
+    
+    [self.navigationController pushViewController:tasksCreationVC animated:YES];
     
 }
 

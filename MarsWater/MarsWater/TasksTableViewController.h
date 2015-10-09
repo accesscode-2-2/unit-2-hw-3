@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "List.h"
 
-@interface TasksTableViewController : UITableViewController
+@protocol TaskTableViewControllerDelegate <NSObject>
+
+@end
+
+@interface TasksTableViewController : UITableViewController <UITableViewDelegate>
 
 @property (nonatomic) List *list;
 
+//@interface TasksTableViewController : UITableViewController <UITableViewDelegate>
+
+@property (nonatomic, weak)id <TaskTableViewControllerDelegate> delegate;
+
+@property (nonatomic) NSIndexPath *selectedTaskIndexPath;
+
 @end
+
