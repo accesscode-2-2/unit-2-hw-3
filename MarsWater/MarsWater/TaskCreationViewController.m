@@ -54,7 +54,7 @@
 
 - (void)save {
     self.addTaskTextField.text = self.task.taskDescription;
-    self.task.createdAt = [NSDate date];
+    self.task.createdAt = [NSDate date]; // not really necessary I gues since the textLabel or detail wont show it but w/e 
     [self dismissViewControllerAnimated:YES completion:nil];
     
     
