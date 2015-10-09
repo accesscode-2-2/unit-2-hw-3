@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6DE2C1D134E7E42733C08A7A796A852DF2F0373A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A3AEDD975711D11A3C07EE12753FF388EB8DBC2D" : 0,
+    "6DE2C1D134E7E42733C08A7A796A852DF2F0373A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DF0F57E6-66E2-436C-A7A3-E0FAA1F6209B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A3AEDD975711D11A3C07EE12753FF388EB8DBC2D" : "",
+    "6DE2C1D134E7E42733C08A7A796A852DF2F0373A" : "unit-2-hw-3\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MarsWater",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SavingForever\/MarsWater.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bereket6725\/unit-2-hw-3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6DE2C1D134E7E42733C08A7A796A852DF2F0373A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bereket6725\/presetTimerRepo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A3AEDD975711D11A3C07EE12753FF388EB8DBC2D"
+    }
+  ]
+}
