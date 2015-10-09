@@ -19,6 +19,8 @@
 		8DB2F6E81BC1E75500E58E65 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E21BC1E75500E58E65 /* List+CoreDataProperties.m */; };
 		8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E41BC1E75500E58E65 /* Task.m */; };
 		8DB2F6EA1BC1E75500E58E65 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E61BC1E75500E58E65 /* Task+CoreDataProperties.m */; };
+		ABF463FB1BC5F24C0054CE11 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF463FA1BC5F24C0054CE11 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ABF463FE1BC600E70054CE11 /* TaskCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF463FD1BC600E70054CE11 /* TaskCreationViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		8DB2F6E41BC1E75500E58E65 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		8DB2F6E51BC1E75500E58E65 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
 		8DB2F6E61BC1E75500E58E65 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ABF463F91BC5F24C0054CE11 /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		ABF463FA1BC5F24C0054CE11 /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		ABF463FC1BC600E70054CE11 /* TaskCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCreationViewController.h; sourceTree = "<group>"; };
+		ABF463FD1BC600E70054CE11 /* TaskCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCreationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,10 @@
 				8DA86CD31BC1B8E4006C50BC /* ListsTableViewController.m */,
 				8DA86CD51BC1B904006C50BC /* ListCreationTableViewController.h */,
 				8DA86CD61BC1B904006C50BC /* ListCreationTableViewController.m */,
+				ABF463F91BC5F24C0054CE11 /* TasksTableViewController.h */,
+				ABF463FA1BC5F24C0054CE11 /* TasksTableViewController.m */,
+				ABF463FC1BC600E70054CE11 /* TaskCreationViewController.h */,
+				ABF463FD1BC600E70054CE11 /* TaskCreationViewController.m */,
 				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,
 				8DA86CB61BC1AE57006C50BC /* Assets.xcassets */,
 				8DA86CB81BC1AE57006C50BC /* LaunchScreen.storyboard */,
@@ -189,8 +199,10 @@
 				8DA86CAC1BC1AE57006C50BC /* AppDelegate.m in Sources */,
 				8DB2F6EA1BC1E75500E58E65 /* Task+CoreDataProperties.m in Sources */,
 				8DA86CD41BC1B8E4006C50BC /* ListsTableViewController.m in Sources */,
+				ABF463FE1BC600E70054CE11 /* TaskCreationViewController.m in Sources */,
 				8DB2F6E71BC1E75500E58E65 /* List.m in Sources */,
 				8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */,
+				ABF463FB1BC5F24C0054CE11 /* TasksTableViewController.m in Sources */,
 				8DA86CD71BC1B904006C50BC /* ListCreationTableViewController.m in Sources */,
 				8DA86CA91BC1AE57006C50BC /* main.m in Sources */,
 				8DB2F6E81BC1E75500E58E65 /* List+CoreDataProperties.m in Sources */,
