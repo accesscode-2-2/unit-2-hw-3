@@ -8,14 +8,16 @@
 
 
 #import <CoreData/CoreData.h>
-#import "TasksCreationTableViewController.h"
 #import "AppDelegate.h"
 #import "TasksTableViewController.h"
 #import "Task.h"
+#import "List.h"
 
-@interface TasksTableViewController ()
+@interface TasksTableViewController ()<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSMutableOrderedSet *allTasks;
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) Task *task;
 
 @end
 
@@ -24,11 +26,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 1) create an instance of NSFetchRequest with an entity name
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    
+    
+    // 2) create a sort descriptor
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    
+    // 3) set the sortDescriptors on the fetchRequest
+    fetchRequest.sortDescriptors = @[sort];
+    
+    // 4) create a fetchedResultsController with a fetchRequest and a managedObjectContext,
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    self.fetchedResultsController.delegate = self;
+    
+    [self.fetchedResultsController performFetch:nil];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,18 +62,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return self.list.task.count;
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    cell.textLabel.text = task.taskDescription;
+
     return cell;
 }
-*/
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    [self.tableView reloadData];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
