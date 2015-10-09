@@ -78,9 +78,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         self.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         
-        UINavigationController *navController = segue.destinationViewController;
+       // UINavigationController *navController = segue.destinationViewController;
         
-        TasksTableViewController *viewController = navController.viewControllers[0];
+        TasksTableViewController *viewController = segue.destinationViewController;
         
         viewController.listName = self.list.title;
         viewController.listColor = (UIColor *)self.list.color;

@@ -17,6 +17,7 @@
 @property (nonatomic) Task *task;
 @property (strong, nonatomic) IBOutlet UITextField *taskTitleTextField;
 @property (nonatomic) NSMutableOrderedSet *taskForList;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
 
@@ -26,8 +27,6 @@
     
     self.navigationItem.title = @"New Task";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
 }
 - (void)viewDidLoad {
@@ -35,7 +34,8 @@
     
     [self setupNavBar];
     
-//    NSLog(@"List: %@",self.list);
+    self.datePicker.minimumDate = [NSDate date];
+    
     self.taskForList = [[NSMutableOrderedSet alloc]init];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -44,13 +44,12 @@
     
 }
 
-- (void) cancel{
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 - (void) save{
     
     self.task.taskDescription = self.taskTitleTextField.text;
+    self.task.dueAt = [self.datePicker date];
+    
+    NSLog(@"Due Date: %@", self.task.dueAt);
     
     if (self.task.createdAt == nil) {
         
@@ -79,7 +78,7 @@
     
     [delegate.managedObjectContext save:nil];
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

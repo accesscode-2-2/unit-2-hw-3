@@ -22,7 +22,7 @@
 @implementation TasksTableViewController
 
 - (void) setupNavBar{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.title = @"Tasks";
 }
 - (void) cancel {
@@ -155,6 +155,7 @@
         
         cell.textLabel.text = task.taskDescription;
         
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Due Date:%@",task.dueAt];
         
         return cell;
     }
