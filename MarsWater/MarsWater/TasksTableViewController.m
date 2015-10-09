@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     [self setupNavBar];
-    
+    self.tableView.rowHeight = 100;
     
     self.tasksArray = [NSMutableArray arrayWithArray:[self.listAtIndexPath.tasks array]];
     NSLog(@"Tasks Array Count: %lu",(unsigned long)self.tasksArray.count);
@@ -145,10 +145,10 @@
         //        list.tasks = set;
         
         // NSArray<Task *> tasksArray =
-//        NSMutableArray<Task *> *taskArray = [NSMutableArray arrayWithArray:[list.tasks array]];
-//        
-//        [taskArray removeObject:task];
-//        NSOrderedSet *set = [[NSOrderedSet alloc] initWithArray:taskArray];
+        //        NSMutableArray<Task *> *taskArray = [NSMutableArray arrayWithArray:[list.tasks array]];
+        //
+        //        [taskArray removeObject:task];
+        //        NSOrderedSet *set = [[NSOrderedSet alloc] initWithArray:taskArray];
         
         [list setValue:ms forKey:@"tasks"];
         
@@ -177,25 +177,28 @@
                                    
                                    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
                                    
-                                   task.taskDescription = alertController.textFields.firstObject.text;
-                                   task.createdAt = [NSDate date];
                                    
+                                       task.taskDescription = alertController.textFields.firstObject.text;
+                                       task.createdAt = [NSDate date];
+                                       
+                                       
+                                       NSMutableOrderedSet *ms = [list mutableOrderedSetValueForKey:@"tasks"];
+                                       [ms addObject:task];
+                                       self.listAtIndexPath.tasks = ms;
+                                       
+                                       [list setValue:ms forKey:@"tasks"];
+                                       
+                                       [delegate.managedObjectContext insertObject:task];
+                                       
+                                       [delegate.managedObjectContext save:nil];
+                                       
+                                       [self.tableView reloadData];
+                                       
+                                       
+                                       [self dismissViewControllerAnimated:YES completion:nil];
                                    
-                                   NSMutableOrderedSet *ms = [list mutableOrderedSetValueForKey:@"tasks"];
-                                   [ms addObject:task];
-                                   self.listAtIndexPath.tasks = ms;
-                                   
-                                   [list setValue:ms forKey:@"tasks"];
-                                   
-                                   [delegate.managedObjectContext insertObject:task];
-                                   
-                                   [delegate.managedObjectContext save:nil];
-                                   
-                                   [self.tableView reloadData];
-                                   
-                                   //[self.tableView reloadData];
-                                   [self dismissViewControllerAnimated:YES completion:nil];
                                }];
+    
     [alertController addAction:okAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -208,7 +211,7 @@
 //}
 //
 //- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
-//    
+//
 //    switch (type) {
 //        case NSFetchedResultsChangeDelete: {
 //            [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
