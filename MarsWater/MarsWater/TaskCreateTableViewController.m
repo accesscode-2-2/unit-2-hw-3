@@ -33,13 +33,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"List: %@",self.list);
+    [self setupNavBar];
+    
+//    NSLog(@"List: %@",self.list);
+    self.taskForList = [[NSMutableOrderedSet alloc]init];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
-    [self setupNavBar];
 }
 
 - (void) cancel{
@@ -49,13 +51,29 @@
 - (void) save{
     
     self.task.taskDescription = self.taskTitleTextField.text;
-    self.task.createdAt = [NSDate date];
     
-    self.taskForList = [[NSMutableOrderedSet alloc]init];
+    if (self.task.createdAt == nil) {
+        
+        self.task.createdAt = [NSDate date];
+        
+    }else {
+        
+        self.task.updatedAt = [NSDate date];
+    }
     
-    self.taskForList = [self.list.tasks mutableCopy];
-    
+    //create NSMutableOrderedSet in this view controller. I called mine NSMutableOrderedSet *taskForList;
+    //set mutablecopy of self.list.task.mutableCopy equal to it
+    self.taskForList = self.list.task.mutableCopy;
+
+    //add self.task to NSMutableOrderedSet created in this view controller
     [self.taskForList addObject:self.task];
+    
+    //set NSOrderedSet (self.list.task) equal to the NSMutableOrderedSet created in this view controller
+    self.list.task = self.taskForList;
+    
+    NSLog(@"self.list.tasks: %@",self.list.task);
+    
+
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     

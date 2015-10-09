@@ -9,7 +9,6 @@
 #import <CoreData/CoreData.h>
 #import "ListTableViewController.h"
 #import "AppDelegate.h"
-#import "List.h"
 #import "TasksTableViewController.h"
 
 @interface ListTableViewController () <NSFetchedResultsControllerDelegate>
@@ -77,15 +76,15 @@
     if ([[segue identifier] isEqualToString:@"taskSegueIdentifier"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        self.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         
         UINavigationController *navController = segue.destinationViewController;
         
         TasksTableViewController *viewController = navController.viewControllers[0];
         
-        viewController.listName = list.title;
-        viewController.listColor = (UIColor *)list.color;
-        viewController.list = list;
+        viewController.listName = self.list.title;
+        viewController.listColor = (UIColor *)self.list.color;
+        viewController.list = self.list;
     
     }
 }

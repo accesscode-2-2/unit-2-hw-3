@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSDate *createdAt;
 @property (nullable, nonatomic, retain) id color;
-@property (nullable, nonatomic, retain) NSOrderedSet *tasks;
+@property (nullable, nonatomic, retain) NSOrderedSet *task;
 
 @end
 

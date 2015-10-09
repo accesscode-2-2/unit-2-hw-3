@@ -22,8 +22,11 @@
 @implementation TasksTableViewController
 
 - (void) setupNavBar{
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewTask)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.title = @"Tasks";
+}
+- (void) cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,39 +39,89 @@
     
     [self.tableView reloadData];
     
- //   NSLog(@"%@",self.fetchedResultsController.fetchedObjects);
 }
 
 - (void) fetchResults {
+    
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    //1.create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Task"];
-    
-    //2. create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    
-    //3. set the sortdescriptors on the fetch request
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"taskDescription" ascending:NO];
     fetchRequest.sortDescriptors = @[sort];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title];
     
-    //4. create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
     self.fetchedResultsController.delegate = self;
     
     [self.fetchedResultsController performFetch:nil];
     
-//    [self.tableView reloadData];
+    NSLog(@"Fetched Results: %@", self.fetchedResultsController.fetchedObjects);
+    
+    [self.tableView reloadData];
+    
 }
 
-- (void)createNewTask{
-    
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-////    TaskCreateTableViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"TaskCreateID"];
-////    [self presentViewController:viewController animated:YES completion:nil];
-//    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationID"];
-//    [self presentViewController:navigationController animated:YES completion:nil];
-}
+//- (void) fetchResults {
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    
+//    //1.create an instance of NSFetchRequest with an entity name
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"List"];
+//    
+//    //[fetchRequest valueForKey:@"task"];
+//    
+////    NSLog(@"fetch request: %@",fetchRequest);
+//    
+//    //2. create a sort descriptor
+//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+//    
+////    NSPredicate *taskPredicate = [NSPredicate predicateWithFormat:@"task == %@", self.task];
+////    
+////    [fetchRequest setPredicate:taskPredicate];
+//    
+//    //3. set the sortdescriptors on the fetch request
+//    fetchRequest.sortDescriptors = @[sort];
+//    
+//    //4. create a fetchedResultsController with a fetchRequest and a managedObjectContext
+//    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//    
+//    self.fetchedResultsController.delegate = self;
+//    
+//    [self.fetchedResultsController performFetch:nil];
+//    
+//    
+//    NSArray *arrayOfLists = self.fetchedResultsController.fetchedObjects;
+//    NSLog(@"Array Of Lists: %@",arrayOfLists);
+//    
+//    NSLog(@"This List: %@",self.list);
+//    
+//   // for arrayOfLists
+//    
+//    for (List *list in arrayOfLists) {
+//        if (self.list == list){
+//            self.list = list;
+//            NSLog(@"Extracted List: %@",list);
+//        }
+//}
+//    
+//    for (List *task in [self.list valueForKey:@"task"]) {
+//        NSLog(@"name = %@", [Task valueForKey:@"taskDescription"]);
+//    }
+//    
+//   // NSLog(@"Task Array: %@",self.list.task);
+//   
+////    NSOrderedSet *task = self.list.task;
+////
+////    NSLog(@"TASK ORDERED SET: %@",task);
+//    
+//    
+////    NSLog(@"*********");
+////    NSLog(@"FETCHED RESULTS: %@",self.fetchedResultsController.fetchedObjects);
+////    NSLog(@"*********");
+//    
+//    //NSLog(@"THIS LIST: %@", self.list);
+//    
+//    [self.tableView reloadData];
+//}
 
 #pragma mark - Table view data source
 
@@ -99,12 +152,9 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCellIdentifier" forIndexPath:indexPath];
         
         Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row - numberOfStaticCells];
-       
-//        NSString *string = [self.array objectAtIndex:indexPath.row - numberOfStaticCells];
-//        
-//        NSLog(@"%@",string);
         
         cell.textLabel.text = task.taskDescription;
+        
         
         return cell;
     }
@@ -126,6 +176,7 @@
     if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
         TaskCreateTableViewController *viewController = segue.destinationViewController;
         viewController.list = self.list;
+        NSLog(@"passing this list: %@", self.list);
     }
     
 }
