@@ -32,6 +32,7 @@
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
 
+    NSLog(@"%@", self.list);
     // Do any additional setup after loading the view.
 }
 
@@ -77,6 +78,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
+        TaskCreationViewController *viewController = segue.destinationViewController;
+        viewController.list = self.list;
+        NSLog(@"passing this list: %@", self.list);
+    }
+    
+}
 /*
 #pragma mark - Navigation
 

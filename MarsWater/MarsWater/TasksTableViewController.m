@@ -12,7 +12,7 @@
 #import "TaskCreationViewController.h"
 
 
-@interface TasksTableViewController ()
+@interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @end

@@ -292,7 +292,7 @@
                     <navigationItem key="navigationItem" id="fu2-zs-KSy">
                         <barButtonItem key="rightBarButtonItem" title="ADD A TASK" id="G7q-cE-V00">
                             <connections>
-                                <segue destination="gI7-xg-Mtg" kind="presentation" id="4Bj-Wh-cgb"/>
+                                <segue destination="gI7-xg-Mtg" kind="presentation" identifier="TaskCreateSegue" id="4Bj-Wh-cgb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
