@@ -2,8 +2,8 @@
 //  ListCreationTableViewController.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
-//  Copyright © 2015 Michael Kavouras. All rights reserved.
+//  Created by Xiulan Shi on 10/4/15.
+//  Copyright © 2015 Xiulan Shi. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 
 @interface ListCreationTableViewController ()
-
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
 @property (nonatomic) List *list;
@@ -29,6 +28,7 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+    
 }
 
 - (void)setupNavigationBar {
@@ -38,8 +38,6 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    
-    // set the right button to save
 }
 
 - (void)cancel {
@@ -54,6 +52,7 @@
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
