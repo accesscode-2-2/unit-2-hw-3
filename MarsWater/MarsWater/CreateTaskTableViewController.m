@@ -27,13 +27,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tasksInList = self.list.task.mutableCopy;
-    
-    [self setupNavigationBar];
-
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+    
+    [self setupNavigationBar];
+
+    self.tasksInList = self.list.task.mutableCopy;
     
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -61,8 +61,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)colorButtonTapped:(UIButton *)sender {
+    
+    self.task.color = sender.backgroundColor;
+    sender.alpha = 0.3;
+}
+
+
 -(void)save{
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+ 
     self.task.taskDescription = self.titleTextField.text;
 
     if (self.task.createdAt == nil) {
@@ -75,13 +84,8 @@
     }
 
     
-    //update tasksInList (NSOrderedSet)
+    self.task.list = self.list;
     
-    self.list.task = self.tasksInList;
-
-    //save to task to core data context
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil]; // nil = No Error, Save with no NSError parameter
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -89,11 +93,6 @@
     NSLog(@"%@", self.task);
 }
 
-- (IBAction)colorButtonTapped:(UIButton *)sender {
-    
-    self.task.color = sender.backgroundColor;
-    
-}
 
 
 

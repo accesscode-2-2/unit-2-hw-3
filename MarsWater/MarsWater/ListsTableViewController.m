@@ -71,7 +71,11 @@
     
     cell.detailTextLabel.text = [formatter stringFromDate:list.createdAt];
     
-    cell.backgroundColor = (UIColor *)list.color;
+    if (!list.color) {
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        cell.backgroundColor = (UIColor *)list.color;
+    }
     
     return cell;
 }

@@ -84,7 +84,12 @@
     Task *task = self.list.task[indexPath.row];
     
     cell.textLabel.text = task.taskDescription;
-    cell.backgroundColor = self.list.color;
+    self.tableView.backgroundColor = self.list.color;
+    if (!task.color) {
+        cell.backgroundColor = [UIColor whiteColor];
+    } else {
+        cell.backgroundColor = task.color;
+    }
     
     return cell;
     //Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];

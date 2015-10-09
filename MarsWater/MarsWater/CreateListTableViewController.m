@@ -15,7 +15,6 @@
 @interface CreateListTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
 @property (nonatomic)List *list;
 
 @end
@@ -23,15 +22,14 @@
 @implementation CreateListTableViewController
 
 -(void)viewDidLoad{
-    
     [super viewDidLoad];
     
-    [self setupNavigationBar];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
     self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+
     
+    [self setupNavigationBar];
 }
 
 -(void)setupNavigationBar{
@@ -51,23 +49,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)colorButtonTapped:(UIButton *)sender {
+    
+    self.list.color = sender.backgroundColor;
+    sender.alpha = 0.3;
+}
+
 -(void)save{
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    // set task's properties
     
     self.list.title = self.titleTextField.text;
     self.list.createdAt = [NSDate date];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil]; 
+    [delegate.managedObjectContext save:nil]; // saves task's properties to the core data context, incl. color method that is outside of this method, because appdelegate and entity were initiated in the viewDidLoad method 
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"%@", self.list);
 }
 
-- (IBAction)colorButtonTapped:(UIButton *)sender {
-    
-    self.list.color = sender.backgroundColor;
-    
-}
 
 @end
