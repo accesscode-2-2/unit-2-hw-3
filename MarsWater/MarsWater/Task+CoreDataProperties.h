@@ -2,8 +2,8 @@
 //  Task+CoreDataProperties.h
 //  MarsWater
 //
-//  Created by Jovanny Espinal on 10/4/15.
-//  Copyright © 2015 Jovanny Espinal. All rights reserved.
+//  Created by Michael Kavouras on 10/4/15.
+//  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *updatedAt;
 @property (nullable, nonatomic, retain) NSNumber *priority;
 @property (nullable, nonatomic, retain) NSDate *completedAt;
-@property (nullable, nonatomic, retain) Task *list;
+@property (nullable, nonatomic, retain) List *list;
 
 @end
 

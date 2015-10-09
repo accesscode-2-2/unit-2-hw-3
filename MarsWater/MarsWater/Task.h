@@ -2,12 +2,14 @@
 //  Task.h
 //  MarsWater
 //
-//  Created by Jovanny Espinal on 10/4/15.
-//  Copyright © 2015 Jovanny Espinal. All rights reserved.
+//  Created by Michael Kavouras on 10/4/15.
+//  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
+@class List;
 
 NS_ASSUME_NONNULL_BEGIN
 

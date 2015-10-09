@@ -1,15 +1,13 @@
 //
-//  List.m
+//  ListsTableViewController.h
 //  MarsWater
 //
 //  Created by Michael Kavouras on 10/4/15.
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
-#import "List.h"
+#import <UIKit/UIKit.h>
 
-@implementation List
-
-// Insert code here to add functionality to your managed object subclass
+@interface ListsTableViewController : UITableViewController
 
 @end
