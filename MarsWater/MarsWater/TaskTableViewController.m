@@ -79,6 +79,18 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Task *selectedTask = self.list.task[indexPath.row];
+    
+    [self.delegate didSelectTask:selectedTask atIndexPath:self.selectedTaskIndexPath];
+    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
 
 #pragma mark - segue
 
@@ -99,6 +111,59 @@
     [context deleteObject:selectedTask];
     [context processPendingChanges];
     
+}
+
+#pragma mark - alert controller
+
+-(void)showAlertActions{
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:@"What would you like to do?"
+                                 message:@"Select One"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *markAsDone = [UIAlertAction
+                                 actionWithTitle:@"Mark Done"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     //Give task a check mark image
+                                     //Move task to bottom of list.task
+                                     //change background color of cell
+                                     //set task's completedAt property
+                                     
+                                     [view dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+    
+    UIAlertAction *edit = [UIAlertAction
+                           actionWithTitle:@"Edit"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               //push a taskCreationTableViewController
+                               //add functionality on tCTVC to replace object at index?
+                               
+                               [view dismissViewControllerAnimated:YES completion:nil];
+                               
+                           }];
+    
+    
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:markAsDone];
+    [view addAction:edit];
+    [view addAction:cancel];
+    
+    [self presentViewController:view animated:YES completion:nil];
 }
 
 

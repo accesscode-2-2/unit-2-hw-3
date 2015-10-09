@@ -7,16 +7,20 @@
 //
 
 #import "TaskCreationTableViewController.h"
+#import "TaskTableViewController.h"
 #import "Task.h"
 #import "AppDelegate.h"
 
-@interface TaskCreationTableViewController ()
+@interface TaskCreationTableViewController () <TaskTableViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *taskTextField;
 @property (weak, nonatomic) IBOutlet UIButton *highButton;
 @property (weak, nonatomic) IBOutlet UIButton *lowButton;
 
+@property (nonatomic) BOOL priorityButtonSelected;
+
 @property (nonatomic) Task *task;
+@property (nonatomic) Task *selectedTask;
 
 @property (nonatomic) NSMutableOrderedSet *listTasks;
 
@@ -28,6 +32,8 @@
     
     [super viewDidLoad];
     
+    self.priorityButtonSelected = NO;
+    
     self.listTasks = self.list.task.mutableCopy;
     
     [self setupNavigationBar];
@@ -37,6 +43,22 @@
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
 }
+
+/*
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if (self.task == nil) {
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+
+        self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+    }else{
+        
+        
+    }
+}*/
+
+
 
 -(void)setupNavigationBar{
     
@@ -56,7 +78,51 @@
 
 -(void)save{
     
-    //set task properties
+    if (self.priorityButtonSelected == NO) {
+        
+        [self alertController];
+    
+    }else {
+        
+        //set task properties
+        
+        [self setTaskProperties];
+        
+        
+        //update List's Task (NSOrderedSet)
+        
+        self.list.task = self.listTasks;
+        
+        
+        //save task with NSManagedObjectContext
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+        [delegate.managedObjectContext save:nil];
+        
+        
+        //clear self.task
+        
+        self.task = nil;
+        
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+}
+
+#pragma mark - taskTableViewControllerDelegate protocol methods
+
+-(void)didSelectTask:(Task *)selectedTask atIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedTask = selectedTask;
+    
+    NSLog(@"selected task: %@", selectedTask);
+}
+
+#pragma mark - task properties
+
+-(void)setTaskProperties{
     
     self.task.taskDescription = self.taskTextField.text;
     
@@ -68,41 +134,14 @@
         
         self.task.updatedAt = [NSDate date];
     }
-    
-    
-    //update List's Task (NSOrderedSet)
-    
-    self.list.task = self.listTasks;
-    
-    
-    //save to task to core data context
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    [delegate.managedObjectContext save:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
-#pragma mark - update list task
-//Not currently in use, but was.
-//Keeping for reference.
-
-/*
--(void)updateListOfTasks{
-    
-    self.listTasks = self.list.task.mutableCopy;
-    
-    [self.listTasks addObject:self.task];
-    
-    self.list.task = self.listTasks;
-    
-}*/
 
 #pragma mark - priority button
 
 - (IBAction)priorityButtonTapped:(UIButton *)sender {
+    
+    self.priorityButtonSelected = YES;
     
     if (sender == self.highButton) {
         
@@ -114,5 +153,39 @@
     }
 
 }
+
+#pragma mark - alertController
+
+-(void)alertController{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                   message:@"Please select a priority level."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
+#pragma mark - update list task
+//Not currently in use, but was.
+//Keeping for reference.
+
+/*
+ -(void)updateListOfTasks{
+ 
+ self.listTasks = self.list.task.mutableCopy;
+ 
+ [self.listTasks addObject:self.task];
+ 
+ self.list.task = self.listTasks;
+ 
+ }*/
+
+
 
 @end
