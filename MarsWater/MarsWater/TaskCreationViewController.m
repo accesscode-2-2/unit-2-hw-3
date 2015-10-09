@@ -15,6 +15,8 @@
 
 @interface TaskCreationViewController ()
 
+@property (nonatomic) NSMutableOrderedSet *taskList;
+
 @end
 
 @implementation TaskCreationViewController
@@ -54,10 +56,28 @@
 }
 
 - (void)save {
-    self.addTaskTextField.text = self.task.taskDescription;
-    self.task.createdAt = [NSDate date]; // not really necessary I gues since the textLabel or detail wont show it but w/e 
+    
+    self.task.taskDescription = self.addTaskTextField.text;
+    self.task.createdAt = [NSDate date]; // not really necessary I gues since the textLabel or detail wont show it but w/e
+   
+    self.taskList = self.list.task.mutableCopy;
+    
+    [self.taskList addObject:self.task];
+    
+    self.list.task = self.taskList;
+    
+    NSLog(@"self.list.tasks: %@",self.list.task);
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    [delegate.managedObjectContext save:nil];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
+   // [self dismiss];
+    
+    
+    //self.task.taskDescription = self.addTaskTextField.text;
     
 //    self.list.title = self.titleTextField.text;
 //    self.list.createdAt = [NSDate date];
