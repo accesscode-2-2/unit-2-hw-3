@@ -82,13 +82,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
-        TaskCreationViewController *viewController = segue.destinationViewController;
-        viewController.list = self.list;
-        
+   
         UINavigationController *navController = segue.destinationViewController;
-        
-        viewController = navController.viewControllers[0];
+        TaskCreationViewController* viewController = navController.viewControllers[0];
         NSLog(@"passing this list: %@", self.list);
+         viewController.list = self.list;
     }
     
 }
