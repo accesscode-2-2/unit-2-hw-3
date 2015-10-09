@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "List.h"
+#import "Task.h"
 
 @interface TasksTableViewController : UITableViewController
 
 @property (nonatomic) List *list;
+@property (nonatomic) List *nextIndexPath;
+@property (nonatomic) NSIndexPath *indexPath;
+
 
 @end

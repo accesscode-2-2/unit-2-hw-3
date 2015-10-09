@@ -42,7 +42,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="S4H-4V-nk9" kind="show" id="KMe-xP-w4L"/>
+                                    <segue destination="S4H-4V-nk9" kind="show" id="BXV-sV-Cr1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -282,6 +282,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KMe-xP-w4L"/>
+        <segue reference="BXV-sV-Cr1"/>
     </inferredMetricsTieBreakers>
 </document>
