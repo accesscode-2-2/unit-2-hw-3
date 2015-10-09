@@ -27,17 +27,20 @@
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
-    // 1) create an instance of NSFetchRequest with an entity name
+    // create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     
     
-    // 2) create a sort descriptor
+    // create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     
-    // 3) set the sortDescriptors on the fetchRequest
+    // set the sortDescriptors on the fetchRequest
     fetchRequest.sortDescriptors = @[sort];
     
-    // 4) create a fetchedResultsController with a fetchRequest and a managedObjectContext,
+    // NARROWS the search from the fetchRequest based on "list.title"
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title];
+    
+    // create a fetchedResultsController with a fetchRequest and a managedObjectContext,
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
     self.fetchedResultsController.delegate = self;
