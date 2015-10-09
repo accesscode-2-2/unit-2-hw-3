@@ -10,6 +10,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TaskCreationViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -71,6 +72,22 @@
    
     [self.tableView reloadData];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"TaskCreation"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TaskCreationViewController *vc = segue.destinationViewController;
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        vc.list = list;
+        
+        NSLog(@"segue list %@", vc.list);
+    }
+}
+
+
 
 @end
 
