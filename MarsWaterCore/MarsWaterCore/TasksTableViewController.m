@@ -9,12 +9,13 @@
 #import "TasksTableViewController.h"
 #import "AppDelegate.h"
 #import "Task.h"
-#import "List.h"
 #import <CoreData/CoreData.h>
+#import "TaskCreationTableViewController.h"
 
 @interface TasksTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 
 @end
 
@@ -37,9 +38,19 @@
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
     self.fetchedResultsController.delegate = self;
+    
     [self.fetchedResultsController performFetch:nil];
     
     [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+- (IBAction)addButtonTapped:(id)sender {
+    TaskCreationTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskCreation"];
+    viewController.list = self.list;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -50,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.fetchedResultsController.fetchedObjects.count;
+    return self.list.task.count;
 }
 
 
@@ -77,6 +88,8 @@
         if (task.completedAt != nil) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.backgroundColor = [UIColor redColor];
+            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.detailTextLabel.textColor = [UIColor whiteColor];
         }
     }
     

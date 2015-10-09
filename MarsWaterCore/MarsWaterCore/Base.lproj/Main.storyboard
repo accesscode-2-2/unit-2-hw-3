@@ -103,7 +103,7 @@
                     <navigationItem key="navigationItem" title="Tasks" id="TAp-sf-O4S">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aag-4e-CEe">
                             <connections>
-                                <segue destination="hFb-st-NzS" kind="presentation" id="554-Qx-VmD"/>
+                                <action selector="addButtonTapped:" destination="K9e-gg-Eg0" id="7Mx-Nb-Sbu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -115,7 +115,7 @@
         <!--Create A Task-->
         <scene sceneID="Ebf-U2-qXZ">
             <objects>
-                <tableViewController id="jE8-89-uWz" customClass="TaskCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TaskCreation" id="jE8-89-uWz" customClass="TaskCreationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="M5E-Tu-7ph">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,7 +247,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8OY-Ew-5Jn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="961"/>
+            <point key="canvasLocation" x="1787" y="961"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nn7-IO-ibl">

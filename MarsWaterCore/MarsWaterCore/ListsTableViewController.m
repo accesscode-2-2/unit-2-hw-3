@@ -53,6 +53,7 @@
         TasksTableViewController *viewController = [segue destinationViewController];
         List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         viewController.navigationItem.title = [NSString stringWithFormat:@"%@", list.title];
+        viewController.list = list;
     }
 }
 
