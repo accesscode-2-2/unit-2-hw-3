@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
 @interface TaskListTableViewController : UITableViewController
+
+@property (nonatomic) Task *task;
 
 @end

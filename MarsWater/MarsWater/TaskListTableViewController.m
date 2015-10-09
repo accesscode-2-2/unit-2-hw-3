@@ -43,10 +43,6 @@
     return 0;
 }
 
-- (IBAction)backTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
