@@ -19,6 +19,8 @@
 		3895F1611BC1B5760096DF08 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3895F1601BC1B5760096DF08 /* Task.m */; };
 		3895F1641BC1B9190096DF08 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3895F1631BC1B9190096DF08 /* ListTableViewController.m */; };
 		3895F1671BC1B9280096DF08 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3895F1661BC1B9280096DF08 /* ListCreationTableViewController.m */; };
+		38EADF061BC822630007EC3E /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EADF051BC822630007EC3E /* TasksTableViewController.m */; };
+		38EADF091BC8247A0007EC3E /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EADF081BC8247A0007EC3E /* NewTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		3895F1631BC1B9190096DF08 /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
 		3895F1651BC1B9280096DF08 /* ListCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCreationTableViewController.h; sourceTree = "<group>"; };
 		3895F1661BC1B9280096DF08 /* ListCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCreationTableViewController.m; sourceTree = "<group>"; };
+		38EADF041BC822630007EC3E /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		38EADF051BC822630007EC3E /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
+		38EADF071BC8247A0007EC3E /* NewTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTaskViewController.h; sourceTree = "<group>"; };
+		38EADF081BC8247A0007EC3E /* NewTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,10 @@
 				3895F1651BC1B9280096DF08 /* ListCreationTableViewController.h */,
 				3895F1661BC1B9280096DF08 /* ListCreationTableViewController.m */,
 				3895F1271BC1AE5C0096DF08 /* Main.storyboard */,
+				38EADF071BC8247A0007EC3E /* NewTaskViewController.h */,
+				38EADF081BC8247A0007EC3E /* NewTaskViewController.m */,
+				38EADF041BC822630007EC3E /* TasksTableViewController.h */,
+				38EADF051BC822630007EC3E /* TasksTableViewController.m */,
 				3895F12A1BC1AE5C0096DF08 /* Images.xcassets */,
 				3895F12C1BC1AE5C0096DF08 /* LaunchScreen.xib */,
 				3895F1211BC1AE5C0096DF08 /* MarsWater.xcdatamodeld */,
@@ -243,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3895F15E1BC1B5760096DF08 /* List.m in Sources */,
+				38EADF061BC822630007EC3E /* TasksTableViewController.m in Sources */,
+				38EADF091BC8247A0007EC3E /* NewTaskViewController.m in Sources */,
 				3895F1231BC1AE5C0096DF08 /* MarsWater.xcdatamodeld in Sources */,
 				3895F1201BC1AE5C0096DF08 /* AppDelegate.m in Sources */,
 				3895F1641BC1B9190096DF08 /* ListTableViewController.m in Sources */,
@@ -444,6 +456,7 @@
 				3895F13F1BC1AE5D0096DF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3895F1401BC1AE5D0096DF08 /* Build configuration list for PBXNativeTarget "MarsWaterTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +465,7 @@
 				3895F1421BC1AE5D0096DF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

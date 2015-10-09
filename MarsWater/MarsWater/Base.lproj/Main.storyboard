@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCellIdentifier" textLabel="pUn-HH-QXd" style="IBUITableViewCellStyleDefault" id="Kpb-XW-8ux">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCellIdentifier" textLabel="pUn-HH-QXd" rowHeight="100" style="IBUITableViewCellStyleDefault" id="Kpb-XW-8ux">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kpb-XW-8ux" id="5Io-7G-QaG">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -27,6 +27,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="pCf-oq-nFl" kind="show" identifier="passList" id="7eR-6L-ry5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -168,12 +171,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Nac-EN-2nJ"/>
                     <connections>
+                        <outlet property="orangebtn" destination="1Kg-hD-rkq" id="SEl-W2-P7q"/>
                         <outlet property="titleTextField" destination="k6f-7Y-Kf9" id="pU3-q8-Oib"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JC-fU-mRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2135" y="-10"/>
+            <point key="canvasLocation" x="2179" y="-446"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GLu-wd-WXc">
@@ -205,7 +209,93 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5z-le-YSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="-10"/>
+            <point key="canvasLocation" x="1537" y="-446"/>
+        </scene>
+        <!--Tasks-->
+        <scene sceneID="WCj-xy-LHF">
+            <objects>
+                <tableViewController id="pCf-oq-nFl" customClass="TasksTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rxB-Fu-0yW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCellIdentifier" id="nlx-wy-H6Z">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nlx-wy-H6Z" id="Ibc-Rx-Bt3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pCf-oq-nFl" id="qbz-DL-z8Z"/>
+                            <outlet property="delegate" destination="pCf-oq-nFl" id="ANi-lL-zew"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tasks" id="o4a-XM-zPZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dGX-j9-VKu">
+                            <connections>
+                                <segue destination="63d-7l-MTL" kind="presentation" id="Mxb-Im-Esg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhu-s6-jh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="220"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GP1-pJ-5w9">
+            <objects>
+                <navigationController id="63d-7l-MTL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TVf-69-umv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="O8E-NB-XFH" kind="relationship" relationship="rootViewController" id="o1E-UT-CG3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLN-TO-8iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="220"/>
+        </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="Dug-Yp-uNS">
+            <objects>
+                <viewController storyboardIdentifier="NewTaskVCIdentifier" id="O8E-NB-XFH" customClass="NewTaskViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UBG-Sn-coz"/>
+                        <viewControllerLayoutGuide type="bottom" id="NSw-Vp-Q5m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yh6-aW-9fN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08k-2E-hpc">
+                                <rect key="frame" x="24" y="84" width="552" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ttw-cO-451"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="08k-2E-hpc" firstAttribute="leading" secondItem="Yh6-aW-9fN" secondAttribute="leadingMargin" constant="8" id="Tr0-9B-fYQ"/>
+                            <constraint firstItem="08k-2E-hpc" firstAttribute="top" secondItem="UBG-Sn-coz" secondAttribute="bottom" constant="20" id="VWb-eH-A21"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="08k-2E-hpc" secondAttribute="trailing" constant="8" id="eWA-Mu-W3r"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bDF-yQ-OIf"/>
+                    <connections>
+                        <outlet property="taskName" destination="08k-2E-hpc" id="E3f-cp-EZa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yEe-Mb-tDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2844" y="217"/>
         </scene>
     </scenes>
 </document>

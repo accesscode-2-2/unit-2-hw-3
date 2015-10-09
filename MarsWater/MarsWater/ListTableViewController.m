@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksTableViewController.h"
 
 @interface ListTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -20,78 +21,91 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self fetchResults];
     
+}
+
+- (void)fetchResults
+{
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"List"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     fetchRequest.sortDescriptors = @[sort];
-    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
     self.fetchedResultsController.delegate = self;
     [self.fetchedResultsController performFetch:nil];
     
     [self.tableView reloadData];
-    
-    
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+- (void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+    UITableView *tableView = self.tableView;
+    
+    switch (type) {
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
-    
-   
     List *list = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
     cell.textLabel.text = list.title;
-    
-    //cell.backgroundColor = list.color;
-    // Configure the cell...
-    
-    cell.backgroundColor = [self colorwithHexString:list.color alpha:0.25];
+    cell.backgroundColor = [self colorwithHexString:list.color alpha:1];
     
     return cell;
 }
 
+
+//Returns UIColor from hex string
 - (UIColor *)colorwithHexString:(NSString *)hexStr alpha:(CGFloat)alpha;
 {
-    //-----------------------------------------
-    // Convert hex string to an integer
-    //-----------------------------------------
     unsigned int hexint = 0;
-    
-    // Create scanner
     NSScanner *scanner = [NSScanner scannerWithString:hexStr];
-    
-    // Tell scanner to skip the # character
     [scanner setCharactersToBeSkipped:[NSCharacterSet
                                        characterSetWithCharactersInString:@"#"]];
     [scanner scanHexInt:&hexint];
-    
-    //-----------------------------------------
-    // Create color object, specifying alpha
-    //-----------------------------------------
     UIColor *color =
     [UIColor colorWithRed:((CGFloat) ((hexint & 0xFF0000) >> 16))/255
                     green:((CGFloat) ((hexint & 0xFF00) >> 8))/255
@@ -101,49 +115,29 @@
     return color;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"passList"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        TasksTableViewController *taskTableVC = segue.destinationViewController;
+        taskTableVC.list = list;
+    }
 }
-*/
+
+//Delete a list
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:list];
+        [delegate.managedObjectContext save:nil];
+    }
+}
 
 @end
