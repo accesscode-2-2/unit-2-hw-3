@@ -21,6 +21,7 @@
 
 @property (nonatomic) Task *task;
 @property (nonatomic) Task *selectedTask;
+@property (nonatomic) NSIndexPath *selectedTaskIndexPath;
 
 @property (nonatomic) NSMutableOrderedSet *listTasks;
 
@@ -34,35 +35,40 @@
     
     self.priorityButtonSelected = NO;
     
+    self.taskTextField.text = @"";
+    
     self.listTasks = self.list.task.mutableCopy;
     
     [self setupNavigationBar];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+    [self createNewTask];
     
 }
 
-/*
--(void)viewWillAppear:(BOOL)animated{
+-(void)createNewTask{
     
-    if (self.task == nil) {
+    if (self.selectedTask == nil) {
         
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-
+        
         self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
-    }else{
-        
-        
     }
-}*/
 
-
+}
 
 -(void)setupNavigationBar{
     
-    self.navigationItem.title = [NSString stringWithFormat:@"Add New Task to %@", self.list.title];
+    if (self.selectedTask == nil) {
+        
+        self.navigationItem.title = [NSString stringWithFormat:@"Add New Task to %@", self.list.title];
+    
+    }else {
+        
+        self.navigationItem.title = [NSString stringWithFormat:@"Edit %@", self.selectedTask.taskDescription];
+        
+        self.taskTextField.placeholder = self.selectedTask.taskDescription;
+        
+    }
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
@@ -78,15 +84,20 @@
 
 -(void)save{
     
-    if (self.priorityButtonSelected == NO) {
+    if ([self.taskTextField.text isEqualToString:@""]) {
         
-        [self alertController];
+        [self emptyTextFieldAlertController];
+    
+    }else if (self.priorityButtonSelected == NO) {
+        
+        [self priorityAlertController];
     
     }else {
         
         //set task properties
         
-        [self setTaskProperties];
+        [self setNewTaskProperties];
+        [self setSelectedTaskProperties];
         
         
         //update List's Task (NSOrderedSet)
@@ -101,15 +112,17 @@
         [delegate.managedObjectContext save:nil];
         
         
-        //clear self.task
+        //clear self.task & self.selectedTask
         
         self.task = nil;
-        
+        self.selectedTask = nil;
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     
 }
+
+
 
 #pragma mark - taskTableViewControllerDelegate protocol methods
 
@@ -117,49 +130,98 @@
     
     self.selectedTask = selectedTask;
     
+    self.selectedTaskIndexPath = indexPath;
+    
     NSLog(@"selected task: %@", selectedTask);
 }
 
 #pragma mark - task properties
 
--(void)setTaskProperties{
+-(void)setNewTaskProperties{
     
-    self.task.taskDescription = self.taskTextField.text;
-    
-    if (self.task.createdAt == nil) {
+    if (self.task != nil){
+        
+        self.task.taskDescription = self.taskTextField.text;
         
         self.task.createdAt = [NSDate date];
+    }
+}
+
+-(void)setSelectedTaskProperties{
+    
+    if (self.selectedTask != nil) {
         
-    }else {
+        self.selectedTask.taskDescription = self.taskTextField.text;
         
-        self.task.updatedAt = [NSDate date];
+        self.selectedTask.updatedAt = [NSDate date];
     }
 }
 
 
 #pragma mark - priority button
 
-- (IBAction)priorityButtonTapped:(UIButton *)sender {
+- (IBAction)priorityButtonTapped:(UIButton *)sender forTask: (Task *)task{
     
     self.priorityButtonSelected = YES;
     
-    if (sender == self.highButton) {
+    if (self.selectedTask == nil) {
         
-        [self.listTasks insertObject:self.task atIndex:0];
-    
-    }else if (sender == self.lowButton){
+        task = self.task;
         
-        [self.listTasks insertObject:self.task atIndex:self.listTasks.count];
+        if (sender == self.highButton) {
+            
+            [self.listTasks insertObject:task atIndex:0];
+            
+        }else if (sender == self.lowButton){
+            
+            [self.listTasks insertObject:task atIndex:self.listTasks.count];
+        }
+        
+    }else {
+        
+        task = self.selectedTask;
+        
+        
+        NSMutableIndexSet *movedObjectIndex = [[NSMutableIndexSet alloc] init];
+        
+        [movedObjectIndex addIndex:self.selectedTaskIndexPath.row];
+        
+        
+        if (sender == self.highButton) {
+            
+            [self.listTasks moveObjectsAtIndexes:movedObjectIndex toIndex:0];
+            
+        }else if (sender == self.lowButton){
+            
+            [self.listTasks moveObjectsAtIndexes:movedObjectIndex toIndex:self.listTasks.count];
+        }
     }
+    
+    
 
 }
 
+
 #pragma mark - alertController
 
--(void)alertController{
+-(void)priorityAlertController{
     
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
                                                                    message:@"Please select a priority level."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+-(void)emptyTextFieldAlertController{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                   message:@"Please fill in the task description."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

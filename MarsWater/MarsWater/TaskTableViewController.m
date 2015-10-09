@@ -85,6 +85,8 @@
     
     [self.delegate didSelectTask:selectedTask atIndexPath:self.selectedTaskIndexPath];
     
+    [self showAlertActions];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,8 +143,8 @@
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
                            {
-                               //push a taskCreationTableViewController
-                               //add functionality on tCTVC to replace object at index?
+                               
+                               [self pushTaskCreationTableViewController];
                                
                                [view dismissViewControllerAnimated:YES completion:nil];
                                
@@ -164,6 +166,16 @@
     [view addAction:cancel];
     
     [self presentViewController:view animated:YES completion:nil];
+}
+
+-(void)pushTaskCreationTableViewController{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    TaskCreationTableViewController *taskCreationTVC = [storyboard instantiateViewControllerWithIdentifier:@"taskCreationTableViewController"];
+    
+    [self.navigationController pushViewController:taskCreationTVC animated:YES];
+
 }
 
 
