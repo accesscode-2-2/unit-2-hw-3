@@ -238,24 +238,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmv-Zn-X0E">
-                                        <rect key="frame" x="252" y="275" width="96" height="30"/>
-                                        <state key="normal" title="ADD TASK! :D">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="AddTaskButtonTapped:" destination="ymX-Lf-Dbb" eventType="touchUpInside" id="Ut3-EV-Ngl"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="xmv-Zn-X0E" firstAttribute="centerX" secondItem="YVU-bz-z9O" secondAttribute="centerX" id="bW2-Bq-qYf"/>
                                     <constraint firstItem="CNo-qL-eE5" firstAttribute="leading" secondItem="YVU-bz-z9O" secondAttribute="leading" constant="40" id="hoG-D1-tcK"/>
                                     <constraint firstAttribute="trailing" secondItem="CNo-qL-eE5" secondAttribute="trailing" constant="32" id="meF-ai-JFD"/>
                                     <constraint firstItem="CNo-qL-eE5" firstAttribute="top" secondItem="YVU-bz-z9O" secondAttribute="top" constant="80" id="vD8-Ba-VW4"/>
-                                    <constraint firstItem="xmv-Zn-X0E" firstAttribute="centerY" secondItem="YVU-bz-z9O" secondAttribute="centerY" id="zs7-6z-o33"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -268,6 +257,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U3V-oR-iDR"/>
+                    <connections>
+                        <outlet property="addTaskTextField" destination="CNo-qL-eE5" id="BSQ-ED-yG9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FK6-E0-pDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "TasksTableViewController.h"
+#import <CoreData/CoreData.h>
+#import "Task.h"
 
 @interface TaskCreationViewController : UIViewController
 
 <UITextFieldDelegate>
 
+
+@property (strong, nonatomic) IBOutlet UITextField *addTaskTextField;
+@property (nonatomic) Task* task;
 @end

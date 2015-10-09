@@ -7,6 +7,11 @@
 //
 
 #import "TaskCreationViewController.h"
+//#import "AppDelegate.h"
+//#import "TasksTableViewController.h"
+//#import <CoreData/CoreData.h>
+//#import "Task.h"
+
 
 @interface TaskCreationViewController ()
 
@@ -14,20 +19,19 @@
 
 @implementation TaskCreationViewController
 
-- (IBAction)AddTaskButtonTapped:(id)sender {
-    
-    
-    
-    
-}
+
+
 
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [self setupNavigationBar];
+    
+    self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+
     // Do any additional setup after loading the view.
 }
 
@@ -49,8 +53,11 @@
 }
 
 - (void)save {
-    
+    self.addTaskTextField.text = self.task.taskDescription;
+    self.task.createdAt = [NSDate date];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 //    self.list.title = self.titleTextField.text;
 //    self.list.createdAt = [NSDate date];
 //    

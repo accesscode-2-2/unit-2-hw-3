@@ -7,9 +7,14 @@
 //
 
 #import "TasksTableViewController.h"
+#import "AppDelegate.h"
+#import  <CoreData/CoreData.h>
+#import "TaskCreationViewController.h"
+
 
 @interface TasksTableViewController ()
 
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation TasksTableViewController
@@ -18,6 +23,29 @@
     [super viewDidLoad];
     [self setupNavigationBar];
      NSLog(@"%@", self.list.title);
+    
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    // 1) create an instance of NSFetchRequest with an entity name
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
+    
+    
+    // 2) create a sort descriptor
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    
+    // 3) set the sortDescriptors on the fetchRequest
+    fetchRequest.sortDescriptors = @[sort];
+    
+    // 4) create a fetchedResultsController with a fetchRequest and a managedObjectContext,
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    self.fetchedResultsController.delegate = self;
+    
+    [self.fetchedResultsController performFetch:nil];
+    
+    [self.tableView reloadData];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,12 +75,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 
 /*
