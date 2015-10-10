@@ -21,20 +21,15 @@
 
 @implementation TaskCreationViewController
 
-
-
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [self setupNavigationBar];
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
 
-    NSLog(@"%@", self.list);
+    NSLog(@"Current List 2: %@", self.list);
     // Do any additional setup after loading the view.
 }
 
@@ -88,28 +83,17 @@
 //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
-   
-        UINavigationController *navController = segue.destinationViewController;
-        TaskCreationViewController* viewController = navController.viewControllers[0];
-        NSLog(@"passing this list: %@", self.list);
-         viewController.list = self.list;
-    }
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    
+//    if ([[segue identifier]isEqualToString:@"taskCreateSegue"]){
+//   
+//        UINavigationController *navController = segue.destinationViewController;
+//        TaskCreationViewController* viewController = navController.viewControllers[0];
+//        NSLog(@"passing this list: %@", self.list);
+//         viewController.list = self.list;
+//    }
+//    
+//}
 /*
 #pragma mark - Navigation
 

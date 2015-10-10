@@ -9,7 +9,6 @@
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
-#import "List.h"
 #import "TasksTableViewController.h"
 #import "ListCreationTableViewController.h"
 
@@ -80,12 +79,16 @@
     
     if([segue.identifier  isEqual: @"TasksSegueIdentifer"]){
         
-    
     UINavigationController* navigationController = segue.destinationViewController;
     
     TasksTableViewController* tableViewController = navigationController.childViewControllers[0];
     NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
-    tableViewController.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    self.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+    tableViewController.list = self.list;
+        
+        NSLog(@"List Passed: %@",self.list);
+    
     }
   
 }
