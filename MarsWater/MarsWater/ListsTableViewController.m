@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
+#import "TasksTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
 
@@ -72,5 +73,15 @@
     [self.tableView reloadData];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"taskSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TasksTableViewController *tasksTVC = segue.destinationViewController;
+        
+        tasksTVC.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
+}
 @end
 

@@ -31,6 +31,8 @@
     self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
 }
 
+
+
 - (void)setupNavigationBar {
     
     self.navigationItem.title = @"Create new list";

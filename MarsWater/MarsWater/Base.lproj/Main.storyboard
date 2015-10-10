@@ -42,7 +42,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="RGl-ZG-WQG" kind="show" id="mbO-tm-o51"/>
+                                    <segue destination="RGl-ZG-WQG" kind="show" identifier="taskSegue" id="mbO-tm-o51"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -363,7 +363,18 @@
                             <outlet property="delegate" destination="826-6x-xTr" id="a2s-HI-VEV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dwG-Vi-YBF"/>
+                    <navigationItem key="navigationItem" id="dwG-Vi-YBF">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="sHg-ED-1mn">
+                            <connections>
+                                <action selector="cancelTask:" destination="826-6x-xTr" id="jzH-Fa-gCX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="35w-oY-gBv">
+                            <connections>
+                                <action selector="saveTask:" destination="826-6x-xTr" id="xed-Nr-fNY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createTaskTextField" destination="4EF-bC-TtP" id="QiJ-l4-YKi"/>
                     </connections>
