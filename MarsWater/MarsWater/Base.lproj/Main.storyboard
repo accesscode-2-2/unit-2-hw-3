@@ -73,7 +73,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cEC-u6-OGv">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="cEC-u6-OGv">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEC-u6-OGv" id="LE6-zs-Avu">
@@ -141,7 +141,22 @@
                             <outlet property="delegate" destination="auN-gd-UOJ" id="2SJ-RZ-cGD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="6AJ-g0-Rvu"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="6AJ-g0-Rvu">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Dhb-PK-bva">
+                            <connections>
+                                <action selector="cancel:" destination="auN-gd-UOJ" id="EU2-OS-SaB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="QVw-vg-sgQ" userLabel="Done">
+                            <connections>
+                                <action selector="done:" destination="auN-gd-UOJ" id="JVX-k0-XNw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="4nM-sa-G5i" id="39E-D1-3cq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LR0-Yi-YKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
