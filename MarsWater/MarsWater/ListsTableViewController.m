@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
+#import "TasksTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
 
@@ -63,7 +64,8 @@
     cell.backgroundColor = (UIColor *)list.color;
     cell.textLabel.text = list.title;
     cell.detailTextLabel.text = [list.createdAt description];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
 }
 
@@ -72,5 +74,16 @@
     [self.tableView reloadData];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"taskSegue"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TasksTableViewController *vc = segue.destinationViewController;
+        
+        vc.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
+}
 @end
 

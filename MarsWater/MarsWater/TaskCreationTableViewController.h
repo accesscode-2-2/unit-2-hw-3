@@ -1,5 +1,5 @@
 //
-//  TasksTableViewController.h
+//  TaskCreationTableViewController.h
 //  MarsWater
 //
 //  Created by Diana Elezaj on 10/9/15.
@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "List.h"
 
-@interface TasksTableViewController : UITableViewController
+@interface TaskCreationTableViewController : UITableViewController
 
 @property (nonatomic) List *list;
+
 @end

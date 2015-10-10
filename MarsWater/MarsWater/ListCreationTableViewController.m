@@ -11,13 +11,13 @@
 #import "List.h"
 #import "AppDelegate.h"
 
-@interface ListCreationTableViewController () <UITextFieldDelegate>
+@interface ListCreationTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UIButton *orangeButton;
-@property (weak, nonatomic) IBOutlet UIButton *pinkButton;
-@property (weak, nonatomic) IBOutlet UIButton *purpleButton;
-@property (weak, nonatomic) IBOutlet UIButton *blueButton;
+@property (weak, nonatomic) IBOutlet UIButton *redColor;
+@property (weak, nonatomic) IBOutlet UIButton *orangeColor;
+@property (weak, nonatomic) IBOutlet UIButton *blueColor;
+@property (weak, nonatomic) IBOutlet UIButton *lightBlueColor;
 @property (nonatomic) UIImage *checkBackgroundImage;
 
 
@@ -29,10 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.checkBackgroundImage = [UIImage imageNamed:@"check"];
-    self.titleTextField.delegate = self;
 
+    
     [self setupNavigationBar];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -48,21 +47,21 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     
+    // set the right button to save
 }
 
 - (void)cancel {
+    
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:self.list];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
-// set the right button to save
 
 - (void)save {
     
     if ([self.titleTextField.text isEqualToString:@""]) {
-       
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ooops!" message:@"Please fill out the textfields" preferredStyle: UIAlertControllerStyleAlert];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ooops!" message:@"Please fill out the title field" preferredStyle: UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction
                                    actionWithTitle:NSLocalizedString(@"OK", @"OK action")
@@ -74,10 +73,9 @@
         
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
-
+        
     }
     else {
-    
     self.list.title = self.titleTextField.text;
     self.list.createdAt = [NSDate date];
     
@@ -85,76 +83,52 @@
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    }
+}
 }
 
-//# pragma mark - text field delegate methods
-//-(BOOL) textFieldShouldReturn {
-//    
-//    [self.view endEditing:YES];
-//    NSLog(@"enter");
-//    [self save];
-//     [self.tableView reloadData];
-//    
-//    //    NSString * query = self.searchTextField.text;
-//    
-//    //    [self makeNewAPIRequestWithSearchTerm:query andLocation:textField.text callBackBlock:^{
-//    //        [self.tableView reloadData];
-//    //    }];
-//    
-//    
-//    return YES;
-//}
-
-
-
-- (IBAction)orangeButtonTapped:(UIButton *)sender {
+- (IBAction)redColorSelected:(UIButton *)sender {
     
     self.list.color = sender.backgroundColor;
     
-    [self.orangeButton setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
+    [self.redColor setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
     
-    [self.pinkButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.purpleButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.blueButton setBackgroundImage:nil forState:UIControlStateNormal];
-
+    [self.orangeColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.blueColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.lightBlueColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
-
-- (IBAction)pinkButtonTapped:(UIButton *)sender {
+ 
+- (IBAction)orangeColorSelected:(UIButton *)sender {
     
     self.list.color = sender.backgroundColor;
     
-    [self.pinkButton setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
+    [self.orangeColor setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
     
-    [self.orangeButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.purpleButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.blueButton setBackgroundImage:nil forState:UIControlStateNormal];
-    }
-- (IBAction)purpleButtonTapped:(UIButton *)sender {
-    
-    
-    self.list.color = sender.backgroundColor;
-    [self.purpleButton setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
-    
-    [self.pinkButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.orangeButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.blueButton setBackgroundImage:nil forState:UIControlStateNormal];
-    
+    [self.redColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.blueColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.lightBlueColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
-- (IBAction)blueButtonTapped:(UIButton *)sender {
-    
-    
+- (IBAction)blueColorSelected:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
-    [self.blueButton setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
     
-    [self.pinkButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.purpleButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [self.orangeButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.blueColor setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
     
+    [self.orangeColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.redColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.lightBlueColor setBackgroundImage:nil forState:UIControlStateNormal];
+}
+- (IBAction)lightBlueColorSelected:(UIButton *)sender {
+    self.list.color = sender.backgroundColor;
+    
+    [self.lightBlueColor setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
+    
+    [self.orangeColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.blueColor setBackgroundImage:nil forState:UIControlStateNormal];
+    [self.redColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
 
 
-
-
+- (IBAction)colorButtonTapped:(UIButton *)sender {
+    self.list.color = sender.backgroundColor;
+}
 
 @end
