@@ -8,11 +8,16 @@
 
 #import "TaskCreationTableViewController.h"
 #import "AppDelegate.h"
+#import "List.h"
 #import "Task.h"
 
-@interface TaskCreationTableViewController ()
+@interface TaskCreationTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) Task *task;
+@property (nonatomic) List *list;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) NSOrderedSet *tasks;
 
 @end
 
@@ -25,7 +30,20 @@
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    fetchRequest.sortDescriptors = @[sort];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController.delegate = self;
+    
+    [self.fetchedResultsController performFetch:nil];
+    
+    self.list = self.fetchedResultsController.fetchedObjects[self.listIndex];
+    NSLog(@"%@", self.list.task);
+    
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+    
 }
 
 - (void)setupNavigationBar {
@@ -43,8 +61,17 @@
 }
 
 - (void)save {
-    //self.task.taskDescription = self.titleTextField.text;
+    self.task.taskDescription = self.descriptionTextField.text;
     self.task.createdAt = [NSDate date];
+    
+    NSMutableSet *tasks = [[NSMutableSet alloc] init];
+    
+    if (self.list.task != nil) {
+        tasks = [NSMutableSet setWithSet:self.list.task];
+    } else {
+        tasks = [self.list mutableSetValueForKey:@"task"];
+    }
+    [tasks addObject:self.task];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil];

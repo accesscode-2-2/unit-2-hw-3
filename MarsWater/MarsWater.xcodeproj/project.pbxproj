@@ -103,9 +103,9 @@
 		8DA86CA61BC1AE57006C50BC /* MarsWater */ = {
 			isa = PBXGroup;
 			children = (
-				8DA86CD11BC1B329006C50BC /* Model */,
 				8DA86CAA1BC1AE57006C50BC /* AppDelegate.h */,
 				8DA86CAB1BC1AE57006C50BC /* AppDelegate.m */,
+				8DA86CD11BC1B329006C50BC /* Model */,
 				3BC2FF811BC892B6003A57F0 /* List */,
 				3BC2FF821BC892BF003A57F0 /* Task */,
 				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,

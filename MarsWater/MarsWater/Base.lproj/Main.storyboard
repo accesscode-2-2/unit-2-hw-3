@@ -107,9 +107,6 @@
                     <navigationItem key="navigationItem" title="Tasks" id="sX9-rm-Enn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzZ-jB-NHa"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="l2z-qs-zEp" kind="presentation" identifier="newTaskSegue" id="RdB-As-uZ3"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9U1-GV-Zk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -168,6 +165,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="KEK-h1-04Q"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="lJ6-hM-3kh" id="ptX-nv-a18"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5g-zB-vGR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -176,7 +176,7 @@
         <!--Navigation Controller-->
         <scene sceneID="5Wp-qo-luQ">
             <objects>
-                <navigationController id="l2z-qs-zEp" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newTaskNav" id="l2z-qs-zEp" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U4H-8V-wxZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

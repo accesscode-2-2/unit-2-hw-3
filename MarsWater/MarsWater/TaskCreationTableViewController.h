@@ -10,4 +10,6 @@
 
 @interface TaskCreationTableViewController : UITableViewController
 
+@property (nonatomic) NSInteger listIndex;
+
 @end

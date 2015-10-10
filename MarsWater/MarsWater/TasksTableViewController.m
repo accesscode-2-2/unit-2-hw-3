@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "TasksTableViewController.h"
+#import "TaskCreationTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
 
@@ -41,14 +42,30 @@
     [self.fetchedResultsController performFetch:nil];
     
     List *list = self.fetchedResultsController.fetchedObjects[self.listIndex];
-    self.tasks = list.task;
+    NSLog(@"%@", list.task);
+    self.tasks = [list.task allObjects];
     self.navigationItem.title = list.title;
     
     [self.tableView reloadData];
 }
 
 - (void)newTask:(id)sender {
-    [self performSegueWithIdentifier:@"newTaskSegue" sender:sender];
+    
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *newTaskNC = [main instantiateViewControllerWithIdentifier:@"newTaskNav"];
+    
+    TaskCreationTableViewController *taskCreationTVC = (TaskCreationTableViewController *)[newTaskNC topViewController];
+    
+    UIStoryboardSegue *segue = [UIStoryboardSegue segueWithIdentifier:@"newTaskSegue" source:self destination:newTaskNC performHandler:^{
+        
+        taskCreationTVC.listIndex = self.listIndex;
+        [self presentViewController:newTaskNC animated:YES completion:nil];
+    
+    }];
+    
+    [self prepareForSegue:segue sender:self];
+    [segue perform];
 }
 
 #pragma mark - Table view data source
@@ -64,8 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", self.listIndex];
+    cell.textLabel.text = [self.tasks[indexPath.row] taskDescription];
     
     return cell;
 }
