@@ -1,41 +1,27 @@
 //
-//  ListTableViewController.m
+//  TaskCreateTableViewController.m
 //  MarsWater
 //
-//  Created by Brian Blanco on 10/4/15.
+//  Created by Brian Blanco on 10/9/15.
 //  Copyright © 2015 Brian Blanco. All rights reserved.
 //
 
-#import "ListTableViewController.h"
-#import <CoreData/CoreData.h>
-#import "AppDelegate.h"
-#import "List.h"
+#import "TaskCreateTableViewController.h"
 
-@interface ListTableViewController () <NSFetchedResultsControllerDelegate>
-
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@interface TaskCreateTableViewController ()
 
 @end
 
-@implementation ListTableViewController
+@implementation TaskCreateTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    fetchRequest.sortDescriptors = @[sort];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    self.fetchedResultsController.delegate = self;
-    
-    [self.fetchedResultsController performFetch:nil];
-    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,37 +33,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return self.fetchedResultsController.fetchedObjects.count;
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.textLabel.text = list.title;
-    cell.backgroundColor = (UIColor *)list.color;
-    cell.detailTextLabel.text = [list.createdAt description];
+    // Configure the cell...
     
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-    [self.tableView reloadData];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.
