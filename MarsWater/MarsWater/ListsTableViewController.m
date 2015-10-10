@@ -82,13 +82,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"tasksDetailSegue"]) {
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-        // takes the information of the selected row in List
-        //List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-        // send this information to the desired view controller (TasksDetailTableViewController)
-        // but only after you import the file
+
         TasksDetailTableViewController *tasksDetailTVC = segue.destinationViewController;
-        // information passed
-//        tasksDetailTVC.list = list;
+
         tasksDetailTVC.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     }
 }
