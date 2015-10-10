@@ -2,14 +2,14 @@
 //  ListsTableViewController.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
-//  Copyright © 2015 Michael Kavouras. All rights reserved.
+//  Created by Eric Sze on 10/4/15.
+//  Copyright © 2015 myApps. All rights reserved.
 //
-
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksDetailTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -22,28 +22,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
-    // 1) create an instance of NSFetchRequest with an entity name
+    // Steps to create a fetch request:
+    // 1) Create an instance of NSFetchRequest with the entity name in .xcdatamodeld
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
     
-    
-    // 2) create a sort descriptor
+    // 2) Specify criteria for filtering which objects to fetch Create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     
-    // 3) set the sortDescriptors on the fetchRequest
+    // 3) Specify how the fetched objects should be sorted // Set the sortDescriptors on the fetchRequest
     fetchRequest.sortDescriptors = @[sort];
     
-    // 4) create a fetchedResultsController with a fetchRequest and a managedObjectContext,
+    // 4) Create a fetchedResultsController with a fetchRequest and a managedObjectContext
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
+
     self.fetchedResultsController.delegate = self;
     
+    // 5) Perform the fetch
     [self.fetchedResultsController performFetch:nil];
     
+    // after you fetch, you want to reload the data
     [self.tableView reloadData];
+    
 }
+
 
 
 #pragma mark - Table view data source
@@ -56,21 +59,49 @@
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListCellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
     
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.backgroundColor = (UIColor *)list.color;
     cell.textLabel.text = list.title;
     cell.detailTextLabel.text = [list.createdAt description];
-    
+    cell.backgroundColor = (UIColor *)list.color;
+
     return cell;
 }
 
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-   
+    
     [self.tableView reloadData];
+    
 }
 
-@end
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"tasksDetailSegue"]) {
+        NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+
+        TasksDetailTableViewController *tasksDetailTVC = segue.destinationViewController;
+
+        tasksDetailTVC.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
+}
+
+
+// Delete cells from UITableView
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // takes entire dictionary
+        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        // set the delegate
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:list];
+        [delegate.managedObjectContext save:nil];
+    }
+}
+
+
+@end
