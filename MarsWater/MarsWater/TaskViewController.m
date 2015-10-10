@@ -12,15 +12,20 @@
 @interface TaskViewController () <UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic) NSMutableOrderedSet* taskSet;
 
 @end
 
 @implementation TaskViewController
 
 - (void)viewDidLoad {
+    
+     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.textField.delegate = self;
-    [super viewDidLoad];
+    self.taskSet = [[NSMutableOrderedSet alloc]init];
+    
+
     // Do any additional setup after loading the view.
 }
 
@@ -52,15 +57,20 @@
     [textField endEditing:YES];
     
     AppDelegate* delegate = [UIApplication sharedApplication].delegate;
+    
      Task* task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
     
     task.taskDescription = textField.text;
-   
-    [self.list.task addObject:task];
-    NSLog(@"%@", self.list.task);
-    NSLog(@"%@", self.list);
     
+    task.createdAt = [NSDate date];
+    
+     self.taskSet = self.list.task.mutableCopy;
+    
+     [self.taskSet addObject:task];
+    
+    self.list.task = self.taskSet;
+   
     
     [delegate.managedObjectContext save:nil];
     [self.tableView reloadData];
