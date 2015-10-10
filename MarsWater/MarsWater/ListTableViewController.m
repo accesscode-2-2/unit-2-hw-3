@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "ListTableViewController.h"
 #import "TaskTableViewController.h"
+#import "TaskCreationTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
 

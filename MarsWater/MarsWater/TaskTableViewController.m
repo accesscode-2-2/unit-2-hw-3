@@ -12,9 +12,9 @@
 #import "AppDelegate.h"
 #import "Task.h"
 
-@interface TaskTableViewController ()<NSFetchedResultsControllerDelegate>
+@interface TaskTableViewController ()
 
-@property (nonatomic) NSMutableOrderedSet *listTasks;
+@property (nonatomic) Task *selectedTask;
 
 @end
 
@@ -81,11 +81,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Task *selectedTask = self.list.task[indexPath.row];
+    self.selectedTask = self.list.task[indexPath.row];
     
-    [self.delegate didSelectTask:selectedTask atIndexPath:self.selectedTaskIndexPath];
-    
-    [self showAlertActions];
+    [self showAlertActionsForSelectedTask:self.selectedTask atIndexPathRow:indexPath.row];
     
 }
 
@@ -117,7 +115,7 @@
 
 #pragma mark - alert controller
 
--(void)showAlertActions{
+-(void)showAlertActionsForSelectedTask: (Task *)selectedTask atIndexPathRow: (NSInteger)indexPathRow{
     
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:@"What would you like to do?"
@@ -144,7 +142,7 @@
                            handler:^(UIAlertAction * action)
                            {
                                
-                               [self pushTaskCreationTableViewController];
+                               [self pushTaskCreationTableViewControllerWithSelectedTask:selectedTask atIndexPathRow:indexPathRow];
                                
                                [view dismissViewControllerAnimated:YES completion:nil];
                                
@@ -168,11 +166,14 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 
--(void)pushTaskCreationTableViewController{
+-(void)pushTaskCreationTableViewControllerWithSelectedTask:(Task *)selectedTask atIndexPathRow: (NSInteger)indexPathRow {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     TaskCreationTableViewController *taskCreationTVC = [storyboard instantiateViewControllerWithIdentifier:@"taskCreationTableViewController"];
+    taskCreationTVC.list = self.list;
+    taskCreationTVC.selectedTask = selectedTask;
+    taskCreationTVC.selectedTaskIndexPathRow = indexPathRow;
     
     [self.navigationController pushViewController:taskCreationTVC animated:YES];
 

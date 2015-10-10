@@ -11,7 +11,7 @@
 #import "Task.h"
 #import "AppDelegate.h"
 
-@interface TaskCreationTableViewController () <TaskTableViewControllerDelegate>
+@interface TaskCreationTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *taskTextField;
 @property (weak, nonatomic) IBOutlet UIButton *highButton;
@@ -20,8 +20,6 @@
 @property (nonatomic) BOOL priorityButtonSelected;
 
 @property (nonatomic) Task *task;
-@property (nonatomic) Task *selectedTask;
-@property (nonatomic) NSIndexPath *selectedTaskIndexPath;
 
 @property (nonatomic) NSMutableOrderedSet *listTasks;
 
@@ -80,6 +78,7 @@
 -(void)cancel{
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)save{
@@ -118,21 +117,11 @@
         self.selectedTask = nil;
         
         [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    
     }
     
-}
-
-
-
-#pragma mark - taskTableViewControllerDelegate protocol methods
-
--(void)didSelectTask:(Task *)selectedTask atIndexPath:(NSIndexPath *)indexPath{
-    
-    self.selectedTask = selectedTask;
-    
-    self.selectedTaskIndexPath = indexPath;
-    
-    NSLog(@"selected task: %@", selectedTask);
 }
 
 #pragma mark - task properties
@@ -182,18 +171,18 @@
         task = self.selectedTask;
         
         
-        NSMutableIndexSet *movedObjectIndex = [[NSMutableIndexSet alloc] init];
+        NSMutableIndexSet *movedTaskIndex = [[NSMutableIndexSet alloc] init];
         
-        [movedObjectIndex addIndex:self.selectedTaskIndexPath.row];
+        [movedTaskIndex addIndex:self.selectedTaskIndexPathRow];
         
         
         if (sender == self.highButton) {
             
-            [self.listTasks moveObjectsAtIndexes:movedObjectIndex toIndex:0];
+            [self.listTasks moveObjectsAtIndexes:movedTaskIndex toIndex:0];
             
         }else if (sender == self.lowButton){
             
-            [self.listTasks moveObjectsAtIndexes:movedObjectIndex toIndex:self.listTasks.count];
+            [self.listTasks moveObjectsAtIndexes:movedTaskIndex toIndex:self.listTasks.count - 1];
         }
     }
     
@@ -231,23 +220,5 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-
-
-#pragma mark - update list task
-//Not currently in use, but was.
-//Keeping for reference.
-
-/*
- -(void)updateListOfTasks{
- 
- self.listTasks = self.list.task.mutableCopy;
- 
- [self.listTasks addObject:self.task];
- 
- self.list.task = self.listTasks;
- 
- }*/
-
-
 
 @end

@@ -12,5 +12,7 @@
 @interface TaskCreationTableViewController : UITableViewController
 
 @property (nonatomic) List *list;
+@property (nonatomic) Task *selectedTask;
+@property (nonatomic) NSInteger selectedTaskIndexPathRow;
 
 @end
