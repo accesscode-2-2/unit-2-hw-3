@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
+//  Created by Z on 10/10/15.
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,12 +13,12 @@
 
 @implementation Task (CoreDataProperties)
 
-@dynamic taskDescription;
+@dynamic completedAt;
 @dynamic createdAt;
 @dynamic dueAt;
-@dynamic updatedAt;
 @dynamic priority;
-@dynamic completedAt;
+@dynamic taskDescription;
+@dynamic updatedAt;
 @dynamic list;
 
 @end

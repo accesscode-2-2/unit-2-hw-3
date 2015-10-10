@@ -11,9 +11,10 @@
 #import "List.h"
 #import "AppDelegate.h"
 
-@interface ListCreationTableViewController ()
-
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@interface ListCreationTableViewController () <UITextFieldDelegate>
+@property (nonatomic) NSMutableOrderedSet *myTasks;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextField *taskField;
 
 @property (nonatomic) List *list;
 
@@ -39,7 +40,6 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     
-    // set the right button to save
 }
 
 - (void)cancel {
@@ -47,17 +47,37 @@
 }
 
 - (void)save {
-    self.list.title = self.titleTextField.text;
+    AppDelegate *delegate= [UIApplication sharedApplication].delegate;
+    if ([self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length==0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Save Failed" message:@"Set a name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    else if([self.taskField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length!=0) {
+        Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
+        [task setValue:self.taskField.text forKey:@"taskDescription"];
+        self.taskField.text = @"";
+        [self.myTasks addObject:task];
+    }
+    
+    [self.list setValue:self.textField.text forKey:@"title"];
+    
     self.list.createdAt = [NSDate date];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil];
+    [self.list setValue:self.myTasks forKey:@"task"];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [delegate.managedObjectContext save:nil];
+    [self cancel];
 }
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
+}
+
+#pragma mark - Text Field methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
 }
 
 @end

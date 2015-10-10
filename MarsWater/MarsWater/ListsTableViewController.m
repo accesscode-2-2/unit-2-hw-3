@@ -19,15 +19,29 @@
 
 @implementation ListsTableViewController
 
+
+#pragma mark - lifecycle methods
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"List"];
+    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO]];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController.delegate = self;
+    [self.fetchedResultsController performFetch:nil];
+
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
     
     // 2) create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
@@ -44,7 +58,6 @@
     
     [self.tableView reloadData];
 }
-
 
 #pragma mark - Table view data source
 
@@ -65,6 +78,21 @@
     cell.detailTextLabel.text = [list.createdAt description];
     
     return cell;
+}
+
+#pragma mark - delete methods
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        List *listRemoved = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:listRemoved];
+        [self viewWillAppear:YES];
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
