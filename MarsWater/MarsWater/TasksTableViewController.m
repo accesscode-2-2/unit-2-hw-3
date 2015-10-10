@@ -15,6 +15,7 @@
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) NSArray *tasks;
+@property (nonatomic) UIBarButtonItem *addButton;
 
 @end
 
@@ -22,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // give a new action to our "+" button
+    self.addButton = self.navigationItem.rightBarButtonItem;
+    [self.addButton setTarget:self];
+    [self.addButton setAction:@selector(newTask:)];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
@@ -41,6 +47,10 @@
     [self.tableView reloadData];
 }
 
+- (void)newTask:(id)sender {
+    [self performSegueWithIdentifier:@"newTaskSegue" sender:sender];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -48,7 +58,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //return self.fetchedResultsController.fetchedObjects.count;
     return self.tasks.count;
 }
 

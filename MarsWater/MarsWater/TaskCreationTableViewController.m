@@ -30,7 +30,7 @@
 
 - (void)setupNavigationBar {
     
-    self.navigationItem.title = @"Create new task";
+    self.navigationItem.title = @"New Task";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
@@ -50,16 +50,6 @@
     [delegate.managedObjectContext save:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
 }
 
 @end
