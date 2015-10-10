@@ -10,6 +10,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TaskDetailTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -68,9 +69,21 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-   
+    
     [self.tableView reloadData];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"createtask"])
+    {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TaskDetailTableViewController *vc = [segue destinationViewController];
+        
+        vc.lists = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
+}
 @end
 
