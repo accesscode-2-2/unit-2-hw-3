@@ -11,7 +11,9 @@
 #import "TaskCreationTableViewController.h"
 #import "CustomTableViewCell.h"
 
-@interface TasksTableViewController ()
+@interface TasksTableViewController ()<NSFetchedResultsControllerDelegate>
+
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -22,6 +24,12 @@
     self.navigationItem.title = self.list.title;
     [self.tableView reloadData];
 
+    
+    
+    
+    
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -40,19 +48,31 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
     
     Task *task = self.list.task[indexPath.row];
     
-    cell.textLabel.text = task.taskDescription;
-//    cell.detailTextLabel.text = [task.createdAt description];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Due at: %@",[dateFormatter stringFromDate:task.dueAt] ];
+    cell.titleLabel.text =  task.taskDescription ;
     
     
-    NSLog(@"task %@", task);
+    NSDateFormatter *createdDateFormatter = [[NSDateFormatter alloc] init];
+    [createdDateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    cell.createdAtLabel.text = [NSString stringWithFormat:@"Created at: %@",[createdDateFormatter stringFromDate:task.createdAt] ];
+    
+    NSDateFormatter *dueAtDateFormatter = [[NSDateFormatter alloc] init];
+    [dueAtDateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    cell.dueAtLabel.text = [NSString stringWithFormat:@"Due at: %@",[dueAtDateFormatter stringFromDate:task.dueAt] ];
+    
+    cell.priorityLabel.text = [NSString stringWithFormat:@"Priority: %@",task.priority];;
+    
+    
     return cell;
+}
+- (IBAction)segmentSelected:(UISegmentedControl *)sender {
+    [self.tableView reloadData];
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -63,9 +63,17 @@
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     cell.backgroundColor = (UIColor *)list.color;
     cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [list.createdAt description];
+//    cell.detailTextLabel.text = [list.createdAt description];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+    NSDateFormatter *createdDateFormatter = [[NSDateFormatter alloc] init];
+    [createdDateFormatter setDateFormat:@"yyyy-MM-dd    HH:mm:ss"];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created at: %@",[createdDateFormatter stringFromDate:list.createdAt ]];
+    
+    
+    
+    
     return cell;
 }
 
