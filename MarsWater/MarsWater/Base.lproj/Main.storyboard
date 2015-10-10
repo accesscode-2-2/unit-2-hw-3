@@ -90,7 +90,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="7cK-ga-xzV" detailTextLabel="nIy-xh-I8U" style="IBUITableViewCellStyleSubtitle" id="0h1-rc-JUg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskReuseIdentifier" textLabel="7cK-ga-xzV" detailTextLabel="nIy-xh-I8U" style="IBUITableViewCellStyleSubtitle" id="0h1-rc-JUg">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0h1-rc-JUg" id="S7U-xm-MfS">
@@ -343,8 +343,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Create New Task" id="3KD-bi-yi6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="SqH-fT-URm"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="SqH-fT-URm">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="WyH-92-CVE" id="d9o-N0-3F5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="8QN-f3-zN2" id="7ai-M0-M0I"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5b-ft-sRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

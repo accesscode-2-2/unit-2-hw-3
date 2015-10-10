@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "List.h"
+#import "Task.h"
 #import "AppDelegate.h"
 
 @interface TaskCreationTableViewController : UITableViewController
 
 @property (nonatomic) List *lists;
+@property (nonatomic) Task *task;
 
 @end
