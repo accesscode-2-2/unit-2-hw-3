@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class List;
+#import "List.h"
+#import "AppDelegate.h"
+#import "Task.h"
 
 @interface TaskCreationViewController : UIViewController
 

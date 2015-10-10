@@ -16,6 +16,6 @@
 @interface TasksDetailTableViewController : UITableViewController
 
 @property (nonatomic) List *list;
-@property (nonatomic) Task *task;
+//@property (nonatomic) Task *task;
 
 @end

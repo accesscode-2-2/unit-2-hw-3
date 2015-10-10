@@ -7,9 +7,7 @@
 //
 
 #import "TaskCreationViewController.h"
-#import "List.h"
-#import "AppDelegate.h"
-#import "Task.h"
+
 
 
 @interface TaskCreationViewController ()
@@ -53,10 +51,8 @@
     
     if (self.taskTextField.text.length != 0) {
         self.task.taskDescription = self.taskTextField.text;
-        self.list.createdAt = [NSDate date];
-        
-        [self.listTasks addObject:self.task];
-        self.list.task = self.listTasks;
+        self.task.createdAt = [NSDate date];
+        self.task.list = self.list;
         
         [delegate.managedObjectContext save:nil];
         
