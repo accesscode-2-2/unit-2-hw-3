@@ -2,7 +2,7 @@
 //  List+CoreDataProperties.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
+//  Created by Z on 10/10/15.
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,9 @@
 
 @implementation List (CoreDataProperties)
 
-@dynamic title;
-@dynamic createdAt;
 @dynamic color;
+@dynamic createdAt;
+@dynamic title;
 @dynamic task;
 
 @end
