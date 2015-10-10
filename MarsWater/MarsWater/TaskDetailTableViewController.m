@@ -11,6 +11,11 @@
 #import "TaskCreationTableViewController.h"
 
 @interface TaskDetailTableViewController ()
+<
+NSFetchedResultsControllerDelegate
+>
+
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -23,6 +28,13 @@
     
     }
 
+- (IBAction)addButton:(id)sender {
+    
+    TaskCreationTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskCreation"];
+    viewController.lists = self.lists;
+    [self.navigationController pushViewController: viewController animated:YES];
+    
+}
 
 #pragma mark - Table view data source
 
@@ -49,8 +61,13 @@
     return cell;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    [self.tableView reloadData];
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
 /*    -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         
         if ([[segue identifier] isEqualToString:@"addCourse"]) {
@@ -71,14 +88,12 @@
         }s the selected object to the new view controller.
  */
     
-    UINavigationController *nav = [segue destinationViewController];
-    
-    TaskCreationTableViewController *vc = (TaskCreationTableViewController *)[nav topViewController];
-    
-    vc.lists = self.lists;
-}
-
-
+//    UINavigationController *nav = [segue destinationViewController];
+//    
+//    TaskCreationTableViewController *vc = (TaskCreationTableViewController *)[nav topViewController];
+//    
+//    vc.lists = self.lists;
+//}
 
 
 @end

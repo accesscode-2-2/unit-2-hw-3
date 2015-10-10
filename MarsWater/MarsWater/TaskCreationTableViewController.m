@@ -32,6 +32,8 @@ NSFetchedResultsControllerDelegate
 
 - (IBAction)saveButtonTapped:(id)sender
 {
+    NSLog(@"save button tapped");
+    
     self.task.taskDescription = self.textField.text;
     
     NSMutableOrderedSet *mutableSet = self.lists.task.mutableCopy;
@@ -41,9 +43,11 @@ NSFetchedResultsControllerDelegate
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 
 
+    NSLog(@"%@", self.textField.text);
+    NSLog(@"%@", self.lists.task);
 }
 
 @end
