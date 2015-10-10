@@ -1,34 +1,32 @@
 //
-//  ListsTableViewController.m
+//  TasksTableViewController.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
+//  Created by Lauren Caponong on 10/9/15.
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
-#import "ListsTableViewController.h"
 #import "TasksTableViewController.h"
 #import "AppDelegate.h"
-#import "List.h"
+#import "Task.h"
 
-@interface ListsTableViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TasksTableViewController () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
-@implementation ListsTableViewController
+@implementation TasksTableViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     
     
     // 2) create a sort descriptor
@@ -55,20 +53,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListCellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"TaskCellIdentifier" forIndexPath:indexPath];
     
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.backgroundColor = (UIColor *)list.color;
-    cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [list.createdAt description];
+    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+
+//    cell.backgroundColor = (UIColor *)task.color;
+    
+    cell.textLabel.text = task.taskDescription;
+    
+    NSString *taskCreatedAtTime = [task.createdAt description];
+    cell.detailTextLabel.text = taskCreatedAtTime;
     
     return cell;
-    
 }
 
 
@@ -80,16 +80,5 @@
 
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    if ([segue.identifier isEqualToString:@"taskSegue"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        TasksTableViewController *tvcForTasks = segue.destinationViewController;
-        tvcForTasks.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    }
-}
-
 
 @end
-
