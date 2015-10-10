@@ -53,7 +53,6 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    
 }
 
 - (void)cancel {
@@ -63,10 +62,11 @@
 - (void)save {
     self.task.taskDescription = self.descriptionTextField.text;
     self.task.createdAt = [NSDate date];
-    self.task.list = self.list;
     
-    NSMutableSet *tasks =  [self.list.task mutableCopy];
-    [tasks addObject:self.task];
+    // because of the relationship between a list and a task, setting the list
+    // property of a task automatically adds that task to the task property of
+    // the list. no need to do anything else.
+    self.task.list = self.list;
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil];

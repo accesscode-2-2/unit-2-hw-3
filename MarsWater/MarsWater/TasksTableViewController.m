@@ -44,7 +44,6 @@
     
     // use the fetched data to populate our tableview
     [self buildTasksForTableView];
-    
 }
 
 // this needs to be called every time the data in the database changes since our
@@ -103,7 +102,6 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
     // we  need to update our self.tasks property to reflect the changes in the database
-    
     [self buildTasksForTableView];
     
     [self.tableView reloadData];

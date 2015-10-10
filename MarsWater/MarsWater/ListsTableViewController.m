@@ -65,6 +65,8 @@
     return cell;
 }
 
+#pragma mark - Table view delegate method
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -76,6 +78,8 @@
     [self.navigationController pushViewController:tasksTVC animated:YES];
         
 }
+
+#pragma mark - NSFetchedResultsControllerDelegate method
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
    
