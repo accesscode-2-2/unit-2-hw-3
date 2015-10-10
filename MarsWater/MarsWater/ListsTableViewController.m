@@ -73,17 +73,28 @@
     [self.tableView reloadData];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    
+//    TasksTableViewController *vc = (TasksTableViewController *)segue.destinationViewController;
+//    
+//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+////    List *list = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+//    vc.nextIndexPath = list;
+//    vc.indexPath = indexPath;
+//    
+//}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    TasksTableViewController *vc = (TasksTableViewController *)segue.destinationViewController;
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//    List *list = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    vc.nextIndexPath = list;
-    vc.indexPath = indexPath;
-    
-}
+        if ([segue.identifier isEqualToString:@"segue"]) {
+                NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+                TasksTableViewController *vc = segue.destinationViewController;
+        
+                vc.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+            }
+    }
 
 @end
 
