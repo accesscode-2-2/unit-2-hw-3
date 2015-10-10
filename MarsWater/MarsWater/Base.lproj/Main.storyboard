@@ -51,7 +51,7 @@
                     <navigationItem key="navigationItem" title="Tasks" id="I6p-KO-3CF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Bv-Aj-ksd">
                             <connections>
-                                <segue destination="HSO-o8-ETB" kind="show" id="zTh-sR-1mG"/>
+                                <segue destination="HSO-o8-ETB" kind="presentation" id="zTh-sR-1mG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

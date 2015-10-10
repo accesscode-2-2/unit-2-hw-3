@@ -8,7 +8,8 @@
 
 #import "TasksDetailTableViewController.h"
 #import "TaskCreationViewController.h"
-#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
+#import "Task.h"
 
 @interface TasksDetailTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -90,23 +91,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.fetchedResultsController.fetchedObjects.count;
+    return self.list.task.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskCellIdentifier" forIndexPath:indexPath];
     
-    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    Task *task = self.list.task[indexPath.row];
     cell.textLabel.text = task.taskDescription;
     
     return cell;
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    [self.tableView reloadData];
-    
-}
+//- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+//    
+//    [self.tableView reloadData];
+//    
+//}
 
 @end

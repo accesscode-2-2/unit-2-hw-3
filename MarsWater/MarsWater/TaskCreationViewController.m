@@ -8,7 +8,6 @@
 
 #import "TaskCreationViewController.h"
 #import "List.h"
-#import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "Task.h"
 
@@ -17,6 +16,7 @@
 
 @property (nonatomic) Task *task;
 @property (nonatomic, weak) IBOutlet UITextField *taskTextField;
+@property (nonatomic) NSMutableOrderedSet *listTasks;
 
 @end
 
@@ -49,18 +49,20 @@
 
 - (void)save {
     
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
     if (self.taskTextField.text.length != 0) {
-        self.list.title = self.taskTextField.text;
         self.list.createdAt = [NSDate date];
-        self.task.list = self.list;
+        [self.listTasks addObject:self.task];
+        self.list.task = self.listTasks;
         self.task.taskDescription = self.taskTextField.text;
         
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+
         [delegate.managedObjectContext save:nil];
         
         [self dismissViewControllerAnimated:YES completion:nil];
-
     }
+    
     NSLog(@"%@", self.task.taskDescription);
 }
 

@@ -71,50 +71,25 @@
     return cell;
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
-    UITableView *tableView = self.tableView;
+    [self.tableView reloadData];
     
-    switch (type) {
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
-                                  withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        default:
-            break;
-    }
 }
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-
-//- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-//    
-//    [self.tableView reloadData];
-//    
-//}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"tasksDetailSegue"]) {
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
         // takes the information of the selected row in List
-        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        //List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         // send this information to the desired view controller (TasksDetailTableViewController)
         // but only after you import the file
         TasksDetailTableViewController *tasksDetailTVC = segue.destinationViewController;
         // information passed
-        tasksDetailTVC.list = list;
+//        tasksDetailTVC.list = list;
+        tasksDetailTVC.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     }
 }
 
