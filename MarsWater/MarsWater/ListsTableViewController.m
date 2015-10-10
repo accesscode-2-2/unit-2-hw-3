@@ -9,7 +9,8 @@
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
-#import "List.h"
+#import "TasksTableViewController.h"
+#import "ListCreationTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -71,6 +72,27 @@
    
     [self.tableView reloadData];
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    
+    if([segue.identifier  isEqual: @"TasksSegueIdentifer"]){
+        
+    UINavigationController* navigationController = segue.destinationViewController;
+    
+    TasksTableViewController* tableViewController = navigationController.childViewControllers[0];
+    NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+    self.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+        
+    tableViewController.list = self.list;
+        
+        NSLog(@"List Passed: %@",self.list);
+    
+    }
+  
+}
+
 
 @end
 
