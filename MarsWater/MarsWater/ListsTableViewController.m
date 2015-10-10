@@ -10,6 +10,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TaskViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -65,6 +66,28 @@
     cell.detailTextLabel.text = [list.createdAt description];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+
+    TaskViewController *taskvc = [self.storyboard instantiateViewControllerWithIdentifier:@"TaskViewController"];
+    taskvc.list = list;
+    
+    [self.navigationController pushViewController:taskvc animated:YES];
+    
+}
+
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//        [self.managedObjectContext deleteObject:];
+//        [self.managedObjectContext save:nil];
+        
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
