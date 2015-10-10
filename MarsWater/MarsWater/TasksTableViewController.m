@@ -1,23 +1,23 @@
 //
-//  ListsTableViewController.m
+//  TasksTableViewController.m
 //  MarsWater
 //
-//  Created by Michael Kavouras on 10/4/15.
+//  Created by Lauren Caponong on 10/9/15.
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
-#import "ListsTableViewController.h"
+#import "TasksTableViewController.h"
 #import "AppDelegate.h"
-#import "List.h"
+#import "Task.h"
 
-@interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
+@interface TasksTableViewController () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
-@implementation ListsTableViewController
+@implementation TasksTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +26,7 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     
     
     // 2) create a sort descriptor
@@ -57,37 +57,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"ListCellIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"TaskCellIdentifier" forIndexPath:indexPath];
     
-    List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-    cell.backgroundColor = (UIColor *)list.color;
-    cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [list.createdAt description];
+    Task *task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+
+//    cell.backgroundColor = (UIColor *)task.color;
+    
+    cell.textLabel.text = task.taskDescription;
+    
+    NSString *taskCreatedAtTime = [task.createdAt description];
+    cell.detailTextLabel.text = taskCreatedAtTime;
     
     return cell;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
+    [self.tableView reloadData];
 }
 
 
 
-//#pragma mark - delete row from table view
-//
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
-//
-////
-////- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-////    
-////    if (editingStyle == UITableViewCellEditingStyleDelete) {
-////        
-////        //remove the deleted object from your data source.
-////        //If your data source is an NSMutableArray, do this
-////        [self.fetchedResultsController.fetchedObjects removeObjectAtIndex:indexPath.row];
-////        [tableView reloadData]; // tell table to refresh now
-////    }
-////}
-
 
 @end
-
