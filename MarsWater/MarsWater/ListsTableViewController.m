@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "ListsTableViewController.h"
+#import "TasksTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
 
@@ -79,12 +80,14 @@
 
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    
-    
+    if ([segue.identifier isEqualToString:@"taskSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        TasksTableViewController *tvcForTasks = segue.destinationViewController;
+        tvcForTasks.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
 }
 
 
