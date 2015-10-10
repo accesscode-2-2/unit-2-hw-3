@@ -43,7 +43,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="wuz-ns-SZK" kind="show" id="Dej-7I-Xs1"/>
+                                    <segue destination="wuz-ns-SZK" kind="show" identifier="Tasks" id="Dej-7I-Xs1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -73,12 +73,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iMe-zr-K1E">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellIdentifier" textLabel="y24-xT-fVX" detailTextLabel="gyg-si-ijZ" style="IBUITableViewCellStyleSubtitle" id="iMe-zr-K1E">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iMe-zr-K1E" id="9P0-yo-N6p">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y24-xT-fVX">
+                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gyg-si-ijZ">
+                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -254,10 +270,10 @@
             </objects>
             <point key="canvasLocation" x="2453" y="373"/>
         </scene>
-        <!--View Controller-->
+        <!--Task Creation View Controller-->
         <scene sceneID="Nay-6V-N6q">
             <objects>
-                <viewController id="QJo-6o-30C" sceneMemberID="viewController">
+                <viewController id="QJo-6o-30C" customClass="TaskCreationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HMg-oh-wtW"/>
                         <viewControllerLayoutGuide type="bottom" id="8DE-QZ-hLO"/>
@@ -271,14 +287,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sM1-dJ-s6r">
+                                <rect key="frame" x="20" y="146" width="560" height="183"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="183" id="mEd-im-tRP"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="466132012.93718201">
+                                    <!--2015-10-10 01:06:52 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh7-Sm-WFk">
+                                <rect key="frame" x="20" y="117" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Oh7-Sm-WFk" firstAttribute="top" secondItem="OFY-qL-mN8" secondAttribute="bottom" constant="15" id="3XI-q5-uQ5"/>
                             <constraint firstItem="OFY-qL-mN8" firstAttribute="trailing" secondItem="yKS-gF-vdM" secondAttribute="trailingMargin" id="JoI-kS-WrR"/>
                             <constraint firstItem="OFY-qL-mN8" firstAttribute="top" secondItem="HMg-oh-wtW" secondAttribute="bottom" constant="8" id="QA4-q6-xs9"/>
                             <constraint firstItem="OFY-qL-mN8" firstAttribute="leading" secondItem="yKS-gF-vdM" secondAttribute="leadingMargin" id="XeH-NT-yrX"/>
+                            <constraint firstItem="sM1-dJ-s6r" firstAttribute="top" secondItem="Oh7-Sm-WFk" secondAttribute="bottom" constant="8" id="bkr-bv-dYV"/>
+                            <constraint firstItem="sM1-dJ-s6r" firstAttribute="leading" secondItem="yKS-gF-vdM" secondAttribute="leading" constant="20" id="vGi-l3-ixg"/>
+                            <constraint firstItem="Oh7-Sm-WFk" firstAttribute="leading" secondItem="yKS-gF-vdM" secondAttribute="leadingMargin" id="vLo-Pv-trE"/>
+                            <constraint firstAttribute="trailing" secondItem="sM1-dJ-s6r" secondAttribute="trailing" constant="20" id="y8f-fj-ys5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="5Kp-YZ-YN9">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="6zh-ku-BPB">
+                            <connections>
+                                <action selector="createTapped:" destination="QJo-6o-30C" id="ldJ-5v-Tg5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="sM1-dJ-s6r" id="vXZ-uI-lhr"/>
+                        <outlet property="descriptionField" destination="OFY-qL-mN8" id="eUv-QQ-enU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6If-F0-Xpj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -75,11 +75,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    TaskListTableViewController *vc = [segue destinationViewController];
-
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-
-    vc.task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    if ([[segue identifier] isEqualToString:@"Tasks"]) {
+        
+        TaskListTableViewController *vc = [segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        vc.task = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    }
 
 }
 
