@@ -7,13 +7,10 @@
 //
 
 #import "TasksDetailTableViewController.h"
-#import "TaskCreationViewController.h"
-#import "AppDelegate.h"
-#import "Task.h"
 
-@interface TasksDetailTableViewController () <NSFetchedResultsControllerDelegate>
+@interface TasksDetailTableViewController () // <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+//@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -23,7 +20,12 @@
     [super viewDidLoad];
     
     [self setupNavigationBar];
-    [self fetchResults];
+//    [self fetchResults];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [self.tableView reloadData];
 }
 
 - (void)setupNavigationBar {
@@ -54,33 +56,33 @@
     
 }
 
-- (void)fetchResults {
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    // Steps to create a fetch request:
-    // 1) Create an instance of NSFetchRequest with the entity name in .xcdatamodeld
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
-    // 2) Specify criteria for filtering which objects to fetch Create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"priority" ascending:NO];
-    
-    // 3) Specify how the fetched objects should be sorted // Set the sortDescriptors on the fetchRequest
-    fetchRequest.sortDescriptors = @[sort];
-    
-    // 4) Create a fetchedResultsController with a fetchRequest and a managedObjectContext
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-
-// set delegate for fetchedResultsController here?
-    self.fetchedResultsController.delegate = self;
-    
-    // 5) Perform the fetch
-    [self.fetchedResultsController performFetch:nil];
-    
-    // after you fetch, you want to reload the data
-    [self.tableView reloadData];
-    
-}
+//- (void)fetchResults {
+//    
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    
+//    // Steps to create a fetch request:
+//    // 1) Create an instance of NSFetchRequest with the entity name in .xcdatamodeld
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+//    
+//    // 2) Specify criteria for filtering which objects to fetch Create a sort descriptor
+//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"priority" ascending:NO];
+//    
+//    // 3) Specify how the fetched objects should be sorted // Set the sortDescriptors on the fetchRequest
+//    fetchRequest.sortDescriptors = @[sort];
+//    
+//    // 4) Create a fetchedResultsController with a fetchRequest and a managedObjectContext
+//    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//
+//// set delegate for fetchedResultsController here?
+//    self.fetchedResultsController.delegate = self;
+//    
+//    // 5) Perform the fetch
+//    [self.fetchedResultsController performFetch:nil];
+//    
+//    // after you fetch, you want to reload the data
+//    [self.tableView reloadData];
+//    
+//}
 
 
 

@@ -24,11 +24,11 @@
     
     [self setupNavigationBar];
     
-//    // gives us access to this class: AppDelegate
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    
-//    // insertNewObject: take the entity you want by listing it as a string    // take managedObjectContext from AppDelegate
-//    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+    // gives us access to this class: AppDelegate
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    // insertNewObject: take the entity you want by listing it as a string    // take managedObjectContext from AppDelegate
+    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
     
 //    NSLog(@"%@", self.list);
 }
@@ -66,11 +66,5 @@
     self.list.color = sender.backgroundColor;
 
 }
-
-
-// how to populate created task appear on previous table view controller after "save" is hit
-// make selected cell present modally a new table view controller for user to add or delete tasks
-// ask how to use core data to get this done, which tutorials should I follow to be able to get all of this done
-
 
 @end

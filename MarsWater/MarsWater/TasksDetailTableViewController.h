@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Task.h"
 #import "ListsTableViewController.h"
+#import "TaskCreationViewController.h"
 
 @interface TasksDetailTableViewController : UITableViewController
 
