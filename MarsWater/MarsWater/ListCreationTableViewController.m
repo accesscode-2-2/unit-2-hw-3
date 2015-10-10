@@ -8,7 +8,6 @@
 
 #import <CoreData/CoreData.h>
 #import "ListCreationTableViewController.h"
-#import "List.h"
 #import "AppDelegate.h"
 
 @interface ListCreationTableViewController ()
@@ -31,15 +30,32 @@
     
     [self setupNavigationBar];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [self createNewList];
     
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+}
+
+-(void)createNewList{
     
+    if (self.selectedList == nil) {
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+        self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
+    }
 }
 
 -(void)setupNavigationBar{
     
-    self.navigationItem.title = @"Create New List";
+    if (self.selectedList == nil) {
+        
+         self.navigationItem.title = @"Create New List";
+        
+    }else {
+        
+        self.navigationItem.title = [NSString stringWithFormat:@"Edit '%@'", self.selectedList.title];
+        
+        self.titleTextField.text = self.selectedList.title;
+    }
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
@@ -53,6 +69,7 @@
     [self removeObjectFromNSManagedObjectContext:self.list];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)save{
@@ -67,32 +84,56 @@
         
     }else {
         
-        self.list.title = self.titleTextField.text;
-        self.list.createdAt = [NSDate date];
+        [self setNewListProperties];
+        [self setSelectedListProperties];
         
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.managedObjectContext save:nil];
         
+        self.list = nil;
+        self.selectedList = nil;
+        
         [self dismissViewControllerAnimated:YES completion:nil];
         
-        NSLog(@"%@", self.list);
+        [self.navigationController popViewControllerAnimated:YES];
+        
     }
     
 }
 
+-(void)setNewListProperties{
+    
+    if (self.list != nil) {
+        
+        self.list.title = self.titleTextField.text;
+        self.list.createdAt = [NSDate date];
+    }
+}
+
+-(void)setSelectedListProperties{
+    
+    if (self.selectedList != nil) {
+        
+        self.selectedList.title = self.titleTextField.text;
+    }
+}
+
+
+#pragma  mark - color button
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     
     self.colorButtonSelected = YES;
     
     self.list.color = sender.backgroundColor;
+    self.selectedList.color = sender.backgroundColor;
 }
 
 #pragma mark - alertController
 
 -(void)colorButtonAlertController{
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:@"Please select a color."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
@@ -106,7 +147,7 @@
 
 -(void)emptyTextFieldAlertController{
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:@"Please fill in the list title."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     

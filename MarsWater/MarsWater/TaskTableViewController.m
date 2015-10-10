@@ -25,8 +25,6 @@
     
     self.navigationItem.title = self.list.title;
     
-    //[self.tableView reloadData];
-    
     self.tableView.backgroundColor = self.list.color;
     self.tableView.backgroundView.backgroundColor = self.list.color;
 }
@@ -107,10 +105,6 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
 
 #pragma mark - segue
 
@@ -139,7 +133,7 @@
     
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:@"What would you like to do?"
-                                 message:@"Select One"
+                                 message:nil
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *markAsDone = [UIAlertAction
@@ -169,14 +163,14 @@
                                  }];
     
     UIAlertAction *edit = [UIAlertAction
-                           actionWithTitle:@"Edit"
+                           actionWithTitle:@"Edit Task"
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
                            {
                                
                                selectedTask.completedAt = nil;
                                
-                               [self pushTaskCreationTableViewControllerWithSelectedTask:selectedTask atIndexPathRow:indexPathRow];
+                               [self editSelectedTask:selectedTask atIndexPathRow:indexPathRow];
                                
                                [self.tableView reloadData];
                                
@@ -202,7 +196,10 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 
--(void)pushTaskCreationTableViewControllerWithSelectedTask:(Task *)selectedTask atIndexPathRow: (NSInteger)indexPathRow {
+
+#pragma mark - push taskCreationTableViewController for selected task
+
+-(void)editSelectedTask:(Task *)selectedTask atIndexPathRow: (NSInteger)indexPathRow {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     

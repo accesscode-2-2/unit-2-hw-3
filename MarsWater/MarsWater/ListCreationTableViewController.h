@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "List.h"
 
 @interface ListCreationTableViewController : UITableViewController
+
+@property (nonatomic)List *selectedList;
 
 @end

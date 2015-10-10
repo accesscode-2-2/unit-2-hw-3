@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "ListCreationTableViewController.h"
 #import "ListTableViewController.h"
 #import "TaskTableViewController.h"
 #import "TaskCreationTableViewController.h"
@@ -16,6 +17,8 @@
 @interface ListTableViewController ()<NSFetchedResultsControllerDelegate>
 
 @property(nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic)List *selectedList;
 
 @end
 
@@ -74,8 +77,6 @@
     cell.detailTextLabel.text = createdAtString;
     cell.backgroundColor = (UIColor *)list.color;
     
-    
-    
     return cell;
 }
 
@@ -95,28 +96,22 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedList = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    
+    [self showAlertActionsForSelectedList:self.selectedList];
+    
+}
+
+
+#pragma mark - NSFetchedResultsControllerDelegate protocols
 
 -(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     
     [self.tableView reloadData];
 }
 
-#pragma mark - segue
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    if ([segue.identifier isEqualToString:@"TaskSegueIdentifier"]){
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        TaskTableViewController *taskTVC = segue.destinationViewController;
-        
-        List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
-        
-        taskTVC.list = list;
-    }
-    
-}
 
 #pragma mark - NSManagedObjectContext
 
@@ -128,6 +123,89 @@
     [context processPendingChanges];
     
 }
+
+
+#pragma mark - alert controller
+
+-(void)showAlertActionsForSelectedList: (List *)selectedList {
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:@"What would you like to do?"
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *addTask = [UIAlertAction
+                                 actionWithTitle:@"Add Task"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [self goToTasksForList:selectedList];
+                                     
+                                     [self.tableView reloadData];
+                                     
+                                     [view dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+    
+    UIAlertAction *edit = [UIAlertAction
+                           actionWithTitle:@"Edit List"
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               
+                               [self editSelectedList:selectedList];
+                               
+                               [self.tableView reloadData];
+                               
+                               [view dismissViewControllerAnimated:YES completion:nil];
+                               
+                           }];
+    
+    
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:addTask];
+    [view addAction:edit];
+    [view addAction:cancel];
+    
+    [self presentViewController:view animated:YES completion:nil];
+}
+
+#pragma mark - push listCreationTableViewController for selected list
+
+-(void)editSelectedList:(List *)selectedList {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    ListCreationTableViewController *listCreationTVC = [storyboard instantiateViewControllerWithIdentifier:@"listCreationTableViewController"];
+    listCreationTVC.selectedList = selectedList;
+    
+    [self.navigationController pushViewController:listCreationTVC animated:YES];
+    
+}
+
+-(void)goToTasksForList:(List *)selectedList{
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    TaskTableViewController *taskTVC = [storyboard instantiateViewControllerWithIdentifier:@"taskTableViewController"];
+    taskTVC.list = selectedList;
+
+    
+    [self.navigationController pushViewController:taskTVC animated:YES];
+    
+}
+
+
+
 
 
 @end

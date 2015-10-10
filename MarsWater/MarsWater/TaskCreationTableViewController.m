@@ -64,7 +64,7 @@
         
         self.navigationItem.title = [NSString stringWithFormat:@"Edit '%@'", self.selectedTask.taskDescription];
         
-        self.taskTextField.placeholder = self.selectedTask.taskDescription;
+        self.taskTextField.text = self.selectedTask.taskDescription;
         
     }
     
@@ -195,7 +195,7 @@
 
 -(void)priorityAlertController{
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:@"Please select a priority level."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
@@ -209,7 +209,7 @@
 
 -(void)emptyTextFieldAlertController{
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:@"Please fill in the task description."
                                                             preferredStyle:UIAlertControllerStyleAlert];
     

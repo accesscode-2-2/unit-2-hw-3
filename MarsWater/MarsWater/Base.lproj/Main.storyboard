@@ -38,9 +38,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <segue destination="KNs-hQ-Ram" kind="show" identifier="TaskSegueIdentifier" id="DtG-wq-oWG"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -82,14 +79,14 @@
         <!--Tasks-->
         <scene sceneID="IeI-rG-Yqd">
             <objects>
-                <tableViewController title="Tasks" id="KNs-hQ-Ram" customClass="TaskTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="taskTableViewController" title="Tasks" id="KNs-hQ-Ram" customClass="TaskTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7HJ-1M-G65">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellIdentifier" textLabel="vz4-Pt-LRs" detailTextLabel="atk-JG-LOq" style="IBUITableViewCellStyleSubtitle" id="hT1-Mh-I6l">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hT1-Mh-I6l" id="Xci-lL-0Qc">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -261,7 +258,7 @@
         <!--List Creation-->
         <scene sceneID="Iy7-XU-g3a">
             <objects>
-                <tableViewController title="List Creation" id="ThY-lk-YAc" customClass="ListCreationTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="listCreationTableViewController" title="List Creation" id="ThY-lk-YAc" customClass="ListCreationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="R4Q-sf-zwX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
