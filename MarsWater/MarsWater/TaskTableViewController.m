@@ -25,7 +25,7 @@
     
     self.navigationItem.title = self.list.title;
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
     self.tableView.backgroundColor = self.list.color;
     self.tableView.backgroundView.backgroundColor = self.list.color;
@@ -55,8 +55,28 @@
     
     Task *task = self.list.task[indexPath.row];
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+
+    NSString *formattedDateString = [dateFormatter stringFromDate:task.completedAt];
+    NSString *completedOnString = [NSString stringWithFormat:@"Completed on: %@", formattedDateString];
+    
     cell.textLabel.text = task.taskDescription;
     cell.backgroundColor = self.list.color;
+    
+    UIImage *checkmark = [UIImage imageNamed:@"checkmark"];
+    
+    if (task.completedAt == nil) {
+        
+        cell.detailTextLabel.text = @"";
+        cell.imageView.image = nil;
+        
+    }else {
+        
+        cell.imageView.image = checkmark;
+        cell.detailTextLabel.text = completedOnString;
+    }
+    
     
     return cell;
 }
@@ -127,10 +147,22 @@
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * action)
                                  {
-                                     //Give task a check mark image
+                                     //Give task a completedAt property
+                                     
+                                     selectedTask.completedAt = [NSDate date];
+                                     
                                      //Move task to bottom of list.task
-                                     //change background color of cell
-                                     //set task's completedAt property
+                                     
+                                     NSMutableIndexSet *movedTaskIndex = [[NSMutableIndexSet alloc] init];
+                                     [movedTaskIndex addIndex:indexPathRow];
+                                     
+                                     NSMutableOrderedSet *listTasks = self.list.task.mutableCopy;
+                                     
+                                     [listTasks moveObjectsAtIndexes:movedTaskIndex toIndex:self.list.task.count - 1];
+                                     
+                                     self.list.task = listTasks;
+                                     
+                                     [self.tableView reloadData];
                                      
                                      [view dismissViewControllerAnimated:YES completion:nil];
                                      
@@ -142,7 +174,11 @@
                            handler:^(UIAlertAction * action)
                            {
                                
+                               selectedTask.completedAt = nil;
+                               
                                [self pushTaskCreationTableViewControllerWithSelectedTask:selectedTask atIndexPathRow:indexPathRow];
+                               
+                               [self.tableView reloadData];
                                
                                [view dismissViewControllerAnimated:YES completion:nil];
                                

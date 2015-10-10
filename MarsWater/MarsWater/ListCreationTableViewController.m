@@ -17,6 +17,8 @@
 
 @property (nonatomic)List *list;
 
+@property (nonatomic)BOOL colorButtonSelected;
+
 @end
 
 @implementation ListCreationTableViewController
@@ -24,6 +26,8 @@
 -(void)viewDidLoad{
     
     [super viewDidLoad];
+    
+    self.colorButtonSelected = NO;
     
     [self setupNavigationBar];
     
@@ -46,27 +50,84 @@
 
 -(void)cancel{
     
+    [self removeObjectFromNSManagedObjectContext:self.list];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)save{
     
-    self.list.title = self.titleTextField.text;
-    self.list.createdAt = [NSDate date];
+    if ([self.titleTextField.text isEqualToString:@""]) {
+        
+        [self emptyTextFieldAlertController];
+        
+    }else if (self.colorButtonSelected == NO) {
+        
+        [self colorButtonAlertController];
+        
+    }else {
+        
+        self.list.title = self.titleTextField.text;
+        self.list.createdAt = [NSDate date];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext save:nil];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        NSLog(@"%@", self.list);
+    }
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    NSLog(@"%@", self.list);
 }
+
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     
-    self.list.color = sender.backgroundColor;
+    self.colorButtonSelected = YES;
     
+    self.list.color = sender.backgroundColor;
+}
+
+#pragma mark - alertController
+
+-(void)colorButtonAlertController{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                   message:@"Please select a color."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
+
+-(void)emptyTextFieldAlertController{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                   message:@"Please fill in the list title."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+#pragma mark - NSManagedObjectContext
+
+-(void)removeObjectFromNSManagedObjectContext:(List *)list {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    [context deleteObject:list];
+    [context processPendingChanges];
+    
+}
+
 
 @end

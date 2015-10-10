@@ -58,11 +58,11 @@
     
     if (self.selectedTask == nil) {
         
-        self.navigationItem.title = [NSString stringWithFormat:@"Add New Task to %@", self.list.title];
+        self.navigationItem.title = [NSString stringWithFormat:@"Add New Task to '%@'", self.list.title];
     
     }else {
         
-        self.navigationItem.title = [NSString stringWithFormat:@"Edit %@", self.selectedTask.taskDescription];
+        self.navigationItem.title = [NSString stringWithFormat:@"Edit '%@'", self.selectedTask.taskDescription];
         
         self.taskTextField.placeholder = self.selectedTask.taskDescription;
         

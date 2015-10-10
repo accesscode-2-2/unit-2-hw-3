@@ -62,10 +62,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCellIdentifier" forIndexPath:indexPath];
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+    
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    
+    NSString *formattedDateString = [dateFormatter stringFromDate:list.createdAt];
+    NSString *createdAtString = [NSString stringWithFormat:@"Created on: %@", formattedDateString];
+    
     cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [list.createdAt description];
+    cell.detailTextLabel.text = createdAtString;
     cell.backgroundColor = (UIColor *)list.color;
+    
+    
     
     return cell;
 }
@@ -105,8 +114,6 @@
         List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         
         taskTVC.list = list;
-        
-        NSLog(@"taskTVC.list: %@", taskTVC.list);
     }
     
 }
