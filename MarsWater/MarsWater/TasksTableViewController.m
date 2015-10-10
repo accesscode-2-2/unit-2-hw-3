@@ -30,23 +30,34 @@
     [self.addButton setTarget:self];
     [self.addButton setAction:@selector(newTask:)];
     
+    // build our fetch request and create our fetchedResultsController
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     fetchRequest.sortDescriptors = @[sort];
-
+    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
     
     [self.fetchedResultsController performFetch:nil];
     
-    List *list = self.fetchedResultsController.fetchedObjects[self.listIndex];
-    NSLog(@"%@", list.task);
-    self.tasks = [list.task allObjects];
-    self.navigationItem.title = list.title;
+    // use the fetched data to populate our tableview
+    [self buildTasksForTableView];
     
-    [self.tableView reloadData];
+}
+
+// this needs to be called every time the data in the database changes since our
+// self.tasks property is a sorted copy of the data in the mysql database
+- (void)buildTasksForTableView {
+    
+    List *list = self.fetchedResultsController.fetchedObjects[self.listIndex];
+    NSArray *temp = [list.task allObjects];
+    
+    NSSortDescriptor *sortDate = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+    self.tasks = [temp sortedArrayUsingDescriptors:@[sortDate]];
+    NSLog(@"self.tasks: %@", self.tasks);
+    self.navigationItem.title = list.title;
 }
 
 - (void)newTask:(id)sender {
@@ -57,14 +68,14 @@
     
     TaskCreationTableViewController *taskCreationTVC = (TaskCreationTableViewController *)[newTaskNC topViewController];
     
+    // create a custom segue and use it to pass the listIndex to the next view controller
     UIStoryboardSegue *segue = [UIStoryboardSegue segueWithIdentifier:@"newTaskSegue" source:self destination:newTaskNC performHandler:^{
         
         taskCreationTVC.listIndex = self.listIndex;
         [self presentViewController:newTaskNC animated:YES completion:nil];
     
     }];
-    
-    [self prepareForSegue:segue sender:self];
+
     [segue perform];
 }
 
@@ -82,11 +93,18 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taskIdentifier" forIndexPath:indexPath];
     
     cell.textLabel.text = [self.tasks[indexPath.row] taskDescription];
+    cell.detailTextLabel.text = [[self.tasks[indexPath.row] createdAt] description];
     
     return cell;
 }
 
+#pragma mark - NSFetchedResultsControllerDelegate method
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    // we  need to update our self.tasks property to reflect the changes in the database
+    
+    [self buildTasksForTableView];
     
     [self.tableView reloadData];
 }

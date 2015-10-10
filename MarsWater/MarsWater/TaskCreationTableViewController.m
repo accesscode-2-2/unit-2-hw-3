@@ -63,6 +63,7 @@
 - (void)save {
     self.task.taskDescription = self.descriptionTextField.text;
     self.task.createdAt = [NSDate date];
+    self.task.list = self.list;
     
     NSMutableSet *tasks =  [self.list.task mutableCopy];
     [tasks addObject:self.task];
