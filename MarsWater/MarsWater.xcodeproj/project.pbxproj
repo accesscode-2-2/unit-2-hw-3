@@ -19,6 +19,8 @@
 		8DB2F6E81BC1E75500E58E65 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E21BC1E75500E58E65 /* List+CoreDataProperties.m */; };
 		8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E41BC1E75500E58E65 /* Task.m */; };
 		8DB2F6EA1BC1E75500E58E65 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2F6E61BC1E75500E58E65 /* Task+CoreDataProperties.m */; };
+		EB6E7B1D1BC5DCC000A07298 /* TaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E7B1C1BC5DCC000A07298 /* TaskTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		EB6E7B251BC5F7C500A07298 /* TableCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6E7B241BC5F7C500A07298 /* TableCreationViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,11 @@
 		8DB2F6E41BC1E75500E58E65 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		8DB2F6E51BC1E75500E58E65 /* Task+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Task+CoreDataProperties.h"; sourceTree = "<group>"; };
 		8DB2F6E61BC1E75500E58E65 /* Task+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Task+CoreDataProperties.m"; sourceTree = "<group>"; };
+		EB6E7B1B1BC5DCC000A07298 /* TaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTableViewController.h; sourceTree = "<group>"; };
+		EB6E7B1C1BC5DCC000A07298 /* TaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewController.m; sourceTree = "<group>"; };
+		EB6E7B231BC5F7C500A07298 /* TableCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCreationViewController.h; sourceTree = "<group>"; };
+		EB6E7B241BC5F7C500A07298 /* TableCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCreationViewController.m; sourceTree = "<group>"; };
+		EBC201A01BC75B0E009F719F /* TaskCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCreationDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,13 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				8DA86CD11BC1B329006C50BC /* Model */,
+				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,
 				8DA86CAA1BC1AE57006C50BC /* AppDelegate.h */,
 				8DA86CAB1BC1AE57006C50BC /* AppDelegate.m */,
-				8DA86CD21BC1B8E4006C50BC /* ListsTableViewController.h */,
-				8DA86CD31BC1B8E4006C50BC /* ListsTableViewController.m */,
-				8DA86CD51BC1B904006C50BC /* ListCreationTableViewController.h */,
-				8DA86CD61BC1B904006C50BC /* ListCreationTableViewController.m */,
-				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,
+				EB6E7B211BC5ED2000A07298 /* lists */,
+				EB6E7B221BC5ED3D00A07298 /* task */,
 				8DA86CB61BC1AE57006C50BC /* Assets.xcassets */,
 				8DA86CB81BC1AE57006C50BC /* LaunchScreen.storyboard */,
 				8DA86CBB1BC1AE57006C50BC /* Info.plist */,
@@ -113,6 +118,29 @@
 				8DB2F6E61BC1E75500E58E65 /* Task+CoreDataProperties.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		EB6E7B211BC5ED2000A07298 /* lists */ = {
+			isa = PBXGroup;
+			children = (
+				8DA86CD21BC1B8E4006C50BC /* ListsTableViewController.h */,
+				8DA86CD31BC1B8E4006C50BC /* ListsTableViewController.m */,
+				8DA86CD51BC1B904006C50BC /* ListCreationTableViewController.h */,
+				8DA86CD61BC1B904006C50BC /* ListCreationTableViewController.m */,
+			);
+			name = lists;
+			sourceTree = "<group>";
+		};
+		EB6E7B221BC5ED3D00A07298 /* task */ = {
+			isa = PBXGroup;
+			children = (
+				EB6E7B1B1BC5DCC000A07298 /* TaskTableViewController.h */,
+				EB6E7B1C1BC5DCC000A07298 /* TaskTableViewController.m */,
+				EB6E7B231BC5F7C500A07298 /* TableCreationViewController.h */,
+				EB6E7B241BC5F7C500A07298 /* TableCreationViewController.m */,
+				EBC201A01BC75B0E009F719F /* TaskCreationDelegate.h */,
+			);
+			name = task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,10 +215,12 @@
 			files = (
 				8DA86CB51BC1AE57006C50BC /* MarsWater.xcdatamodeld in Sources */,
 				8DA86CAC1BC1AE57006C50BC /* AppDelegate.m in Sources */,
+				EB6E7B1D1BC5DCC000A07298 /* TaskTableViewController.m in Sources */,
 				8DB2F6EA1BC1E75500E58E65 /* Task+CoreDataProperties.m in Sources */,
 				8DA86CD41BC1B8E4006C50BC /* ListsTableViewController.m in Sources */,
 				8DB2F6E71BC1E75500E58E65 /* List.m in Sources */,
 				8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */,
+				EB6E7B251BC5F7C500A07298 /* TableCreationViewController.m in Sources */,
 				8DA86CD71BC1B904006C50BC /* ListCreationTableViewController.m in Sources */,
 				8DA86CA91BC1AE57006C50BC /* main.m in Sources */,
 				8DB2F6E81BC1E75500E58E65 /* List+CoreDataProperties.m in Sources */,
