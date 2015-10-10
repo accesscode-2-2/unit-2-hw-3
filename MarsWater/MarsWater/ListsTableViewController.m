@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "List.h"
 
-@interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
+@interface ListsTableViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
@@ -20,6 +20,7 @@
 @implementation ListsTableViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     
@@ -53,6 +54,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
@@ -70,23 +72,20 @@
 
 
 
-//#pragma mark - delete row from table view
-//
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
-//
-////
-////- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-////    
-////    if (editingStyle == UITableViewCellEditingStyleDelete) {
-////        
-////        //remove the deleted object from your data source.
-////        //If your data source is an NSMutableArray, do this
-////        [self.fetchedResultsController.fetchedObjects removeObjectAtIndex:indexPath.row];
-////        [tableView reloadData]; // tell table to refresh now
-////    }
-////}
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    [self.tableView reloadData];
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%ld", (long)indexPath.row); // you can see selected row number in your console;
+    
+    
+    
+}
 
 
 @end
