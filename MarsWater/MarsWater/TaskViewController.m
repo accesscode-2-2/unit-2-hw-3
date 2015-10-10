@@ -47,6 +47,7 @@
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell" forIndexPath:indexPath];
     
+    
     Task* task = self.list.task[indexPath.row];
     cell.textLabel.text = task.taskDescription;
     
@@ -57,6 +58,7 @@
     [textField endEditing:YES];
     
     AppDelegate* delegate = [UIApplication sharedApplication].delegate;
+<<<<<<< HEAD
     
      Task* task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
@@ -71,6 +73,15 @@
     
     self.list.task = self.taskSet;
    
+=======
+     Task* task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.list.managedObjectContext];
+    
+    
+    task.taskDescription = textField.text;
+   
+    [self.list.task addObject:task];
+    NSLog(@"%ld", self.list.task.count);
+>>>>>>> 4d888eab090242ebc30bbf045466aa9db7f30ab4
     
     [delegate.managedObjectContext save:nil];
     [self.tableView reloadData];
