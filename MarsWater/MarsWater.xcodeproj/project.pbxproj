@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C49A641BC6F01900CD143F /* TaskCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C49A631BC6F01900CD143F /* TaskCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		42C49A6A1BC6F1A000CD143F /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C49A691BC6F1A000CD143F /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8DA86CA91BC1AE57006C50BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA86CA81BC1AE57006C50BC /* main.m */; };
 		8DA86CAC1BC1AE57006C50BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA86CAB1BC1AE57006C50BC /* AppDelegate.m */; };
 		8DA86CB21BC1AE57006C50BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA86CB01BC1AE57006C50BC /* Main.storyboard */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42C49A621BC6F01900CD143F /* TaskCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCreationTableViewController.h; sourceTree = "<group>"; };
+		42C49A631BC6F01900CD143F /* TaskCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCreationTableViewController.m; sourceTree = "<group>"; };
+		42C49A681BC6F1A000CD143F /* TasksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksTableViewController.h; sourceTree = "<group>"; };
+		42C49A691BC6F1A000CD143F /* TasksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksTableViewController.m; sourceTree = "<group>"; };
 		8DA86CA41BC1AE57006C50BC /* MarsWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA86CA81BC1AE57006C50BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8DA86CAA1BC1AE57006C50BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +88,10 @@
 				8DA86CD31BC1B8E4006C50BC /* ListsTableViewController.m */,
 				8DA86CD51BC1B904006C50BC /* ListCreationTableViewController.h */,
 				8DA86CD61BC1B904006C50BC /* ListCreationTableViewController.m */,
+				42C49A621BC6F01900CD143F /* TaskCreationTableViewController.h */,
+				42C49A631BC6F01900CD143F /* TaskCreationTableViewController.m */,
+				42C49A681BC6F1A000CD143F /* TasksTableViewController.h */,
+				42C49A691BC6F1A000CD143F /* TasksTableViewController.m */,
 				8DA86CB01BC1AE57006C50BC /* Main.storyboard */,
 				8DA86CB61BC1AE57006C50BC /* Assets.xcassets */,
 				8DA86CB81BC1AE57006C50BC /* LaunchScreen.storyboard */,
@@ -146,6 +156,7 @@
 				TargetAttributes = {
 					8DA86CA31BC1AE57006C50BC = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = FP79X83Q3E;
 					};
 				};
 			};
@@ -188,6 +199,8 @@
 				8DA86CB51BC1AE57006C50BC /* MarsWater.xcdatamodeld in Sources */,
 				8DA86CAC1BC1AE57006C50BC /* AppDelegate.m in Sources */,
 				8DB2F6EA1BC1E75500E58E65 /* Task+CoreDataProperties.m in Sources */,
+				42C49A6A1BC6F1A000CD143F /* TasksTableViewController.m in Sources */,
+				42C49A641BC6F01900CD143F /* TaskCreationTableViewController.m in Sources */,
 				8DA86CD41BC1B8E4006C50BC /* ListsTableViewController.m in Sources */,
 				8DB2F6E71BC1E75500E58E65 /* List.m in Sources */,
 				8DB2F6E91BC1E75500E58E65 /* Task.m in Sources */,
@@ -303,10 +316,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarsWater/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.MarsWater;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -314,10 +330,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MarsWater/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.MarsWater;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
