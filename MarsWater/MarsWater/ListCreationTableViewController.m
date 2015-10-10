@@ -17,6 +17,9 @@
 
 @property (nonatomic) List *list;
 
+//@property (nonatomic) NotesDocument *document;
+
+
 @end
 
 @implementation ListCreationTableViewController
@@ -59,5 +62,8 @@
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
 }
+
+
+
 
 @end
