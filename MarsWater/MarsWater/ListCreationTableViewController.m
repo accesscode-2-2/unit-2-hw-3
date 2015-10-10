@@ -59,12 +59,16 @@
     
     NSLog(@"%@", self.list);
     
+    if (self.list.color == nil) {
+        self.list.color = [UIColor colorWithRed:0.363368 green:0.694405 blue:0.180309 alpha:1];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)colorButtonTapped:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
-
+    
 }
 
 @end
