@@ -106,10 +106,26 @@
     return cell;
 }
 
+#pragma mark - segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    UINavigationController *navController = segue.destinationViewController;
+    
+    TaskCreationViewController *taskCreationVC = (TaskCreationViewController
+                                                        *)([navController viewControllers][0]);
+    taskCreationVC.list = self.list;
+}
+
+
 //- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
 //    
 //    [self.tableView reloadData];
 //    
 //}
+
+
+
+
 
 @end
