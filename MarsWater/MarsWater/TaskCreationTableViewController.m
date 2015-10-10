@@ -64,13 +64,7 @@
     self.task.taskDescription = self.descriptionTextField.text;
     self.task.createdAt = [NSDate date];
     
-    NSMutableSet *tasks = [[NSMutableSet alloc] init];
-    
-    if (self.list.task != nil) {
-        tasks = [NSMutableSet setWithSet:self.list.task];
-    } else {
-        tasks = [self.list mutableSetValueForKey:@"task"];
-    }
+    NSMutableSet *tasks =  [self.list.task mutableCopy];
     [tasks addObject:self.task];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
