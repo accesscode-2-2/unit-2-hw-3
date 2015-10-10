@@ -54,6 +54,8 @@
     
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.managedObjectContext deleteObject:self.list];
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

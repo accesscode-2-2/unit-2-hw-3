@@ -74,9 +74,10 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="OqQ-GX-fnX">
-                            <rect key="frame" x="0.0" y="64" width="600" height="29"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
+                                <segment title="Name"/>
                                 <segment title="Priority"/>
                                 <segment title="Due Date"/>
                             </segments>
@@ -86,7 +87,7 @@
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellIdentifier" rowHeight="69" id="1FI-IP-jI6" customClass="CustomTableViewCell">
-                                <rect key="frame" x="0.0" y="121" width="600" height="69"/>
+                                <rect key="frame" x="0.0" y="122" width="600" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1FI-IP-jI6" id="fGe-Zi-m4l">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="68"/>
@@ -178,6 +179,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="OqQ-GX-fnX" id="GuV-M3-2rx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f24-Ar-ttb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

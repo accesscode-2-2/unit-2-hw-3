@@ -55,8 +55,11 @@
 }
 
 - (IBAction)cancelTask:(UIBarButtonItem *)sender {
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    [delegate.managedObjectContext deleteObject:self.list];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.managedObjectContext deleteObject:self.task];
+    
+    [self.tableView reloadData];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -99,9 +102,11 @@
 //        NSLog(@"**** list%@", self.list);
         NSLog(@"**** self.task.priority   %@", self.task.priority);
         NSLog(@"**** due   %@", self.task.dueAt);
-
+    
+        [self.tableView reloadData];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+        
 }
 }
 
