@@ -24,13 +24,13 @@
     
     [self setupNavigationBar];
     
-    // gives us access to this class: AppDelegate
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    // gives us access to this class: AppDelegate
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    
+//    // insertNewObject: take the entity you want by listing it as a string    // take managedObjectContext from AppDelegate
+//    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
     
-    // insertNewObject: take the entity you want by listing it as a string    // take managedObjectContext from AppDelegate
-    self.list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:delegate.managedObjectContext];
-    
-    NSLog(@"%@", self.list);
+//    NSLog(@"%@", self.list);
 }
 
 - (void)setupNavigationBar {
@@ -49,10 +49,11 @@
 }
 
 - (void)save {
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
     self.list.title = self.titleTextField.text;
     self.list.createdAt = [NSDate date];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil];
     
     

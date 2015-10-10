@@ -37,7 +37,7 @@
     // set the left bar to cancel
     // set the right button to add task
     
-    self.navigationItem.title = @"Create new task";
+    self.navigationItem.title = @"Create New Task";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];

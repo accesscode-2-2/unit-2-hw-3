@@ -30,14 +30,13 @@
     // set the left bar to cancel
     // set the right button to add task
     
-    self.navigationItem.title = @"Create new task";
+    self.navigationItem.title = @"Tasks";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask)];
 }
 
 - (void)cancel {
-//    [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -64,9 +63,6 @@
     
     // 2) Specify criteria for filtering which objects to fetch Create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"priority" ascending:NO];
-    
-// Add predicate here?
-    //fetchRequest.predicate = [NSPredicate predicateWithFormat:@"list.title == %@", self.list.title];
     
     // 3) Specify how the fetched objects should be sorted // Set the sortDescriptors on the fetchRequest
     fetchRequest.sortDescriptors = @[sort];
