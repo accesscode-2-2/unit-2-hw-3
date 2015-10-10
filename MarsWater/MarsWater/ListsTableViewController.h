@@ -10,5 +10,4 @@
 
 @interface ListsTableViewController : UITableViewController
 
-
 @end

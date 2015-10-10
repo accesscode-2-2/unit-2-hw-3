@@ -13,7 +13,6 @@
 
 @interface ListCreationTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
 @property (nonatomic) List *list;
 
 @end

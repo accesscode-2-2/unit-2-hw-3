@@ -43,7 +43,6 @@
     
     self.navigationItem.title = [NSString stringWithFormat:@"Add New Task to %@", self.list.title];
     
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
@@ -62,18 +61,12 @@
     self.task.list = self.list;
     
     [self.listTasks addObject:self.task];
-    
-    NSLog(@"%@", self.listTasks);
+
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.managedObjectContext save:nil];
-
 
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
-
-
-
-
 
 @end

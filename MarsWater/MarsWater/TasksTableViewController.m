@@ -32,7 +32,7 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     
     [self.tableView reloadData];
 }
@@ -61,51 +61,35 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     cell.detailTextLabel.text = [dateFormatter stringFromDate:task.dueAt];
-
     
     return cell;
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return YES;
-}
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         Task *selectedTask = self.list.task[indexPath.row];
-        [self removeObjectFromNSManagedObjectContext:selectedTask];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+         [delegate.managedObjectContext deleteObject:selectedTask];
+         [delegate.managedObjectContext save:nil];
+        [self.tableView reloadData];
     }
-    
 }
-
 
 
 #pragma mark - segue
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     UINavigationController *navController = segue.destinationViewController;
     
     TaskCreationTableViewController *taskCreationTVC = (TaskCreationTableViewController *)([navController viewControllers][0]);
+ 
     taskCreationTVC.list = self.list;
 }
 
-#pragma mark - NSManagedObjectContext
-
--(void)removeObjectFromNSManagedObjectContext:(Task *)selectedTask {
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    NSManagedObjectContext *context = delegate.managedObjectContext;
-    [context deleteObject:selectedTask];
-    [context processPendingChanges];
-    
-}
 
 
 @end

@@ -37,6 +37,8 @@
     
     [self.fetchedResultsController performFetch:nil];
     
+    [self.tableView reloadData];
+    
 }
 
 
@@ -64,24 +66,19 @@
     return cell;
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return YES;
-}
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         List *selectedList = self.fetchedResultsController.fetchedObjects[indexPath.row];
-        [self removeObjectFromNSManagedObjectContext:selectedList];
-        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:selectedList];
+        [delegate.managedObjectContext save:nil];
     }
-    
 }
 
-
--(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     
     [self.tableView reloadData];
 }
@@ -99,20 +96,7 @@
         List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
         
         taskTVC.list = list;
-        
-        NSLog(@"taskTVC.list: %@", taskTVC.list);
     }
-    
-}
-
-#pragma mark - NSManagedObjectContext
-
--(void)removeObjectFromNSManagedObjectContext:(List *)selectedList {
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    NSManagedObjectContext *context = delegate.managedObjectContext;
-    [context deleteObject:selectedList];
-    [context processPendingChanges];
     
 }
 
