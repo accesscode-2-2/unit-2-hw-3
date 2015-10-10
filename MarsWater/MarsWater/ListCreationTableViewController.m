@@ -14,7 +14,6 @@
 @interface ListCreationTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
 @property (nonatomic) List *list;
 
 @end
@@ -38,8 +37,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    
-    // set the right button to save
+
 }
 
 - (void)cancel {

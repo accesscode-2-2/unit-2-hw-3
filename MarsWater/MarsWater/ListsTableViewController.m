@@ -10,6 +10,7 @@
 #import "ListsTableViewController.h"
 #import "AppDelegate.h"
 #import "List.h"
+#import "TasksTableViewController.h"
 
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -22,12 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
     
     // 2) create a sort descriptor
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
@@ -44,7 +43,6 @@
     
     [self.tableView reloadData];
 }
-
 
 #pragma mark - Table view data source
 
@@ -66,6 +64,22 @@
     
     return cell;
 }
+
+#pragma mark - Table view delegate method
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    TasksTableViewController *tasksTVC = [main instantiateViewControllerWithIdentifier:@"tasksTVC"];
+    
+    tasksTVC.listIndex = indexPath.row;
+    
+    [self.navigationController pushViewController:tasksTVC animated:YES];
+        
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate method
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
    
