@@ -17,6 +17,7 @@
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic) NSSortDescriptor *sort;
+@property (nonatomic) List *list;
 
 @end
 
@@ -26,6 +27,10 @@
     [super viewDidLoad];
     [self sorting];
     [self.tableView reloadData];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.752 green:0.098 blue:0 alpha:1];
+
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -103,5 +108,32 @@
         vc.list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     }
 }
+
+
+//delegate method that allows for editing when the edit button is clicked
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+//        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+//        delegate.managedObjectContext = [self.fetchedResultsController managedObjectContext];
+        
+//        [delegate.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        
+         [self.tableView reloadData];
+    }
+    
+    
+    
+}
+
+
+
 @end
 
