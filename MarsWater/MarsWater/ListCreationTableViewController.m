@@ -30,8 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.checkBackgroundImage = [UIImage imageNamed:@"check"];
-
     
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.752 green:0.098 blue:0 alpha:1];
+
     [self setupNavigationBar];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -44,18 +45,14 @@
     self.navigationItem.title = @"Create new list";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-    
+ 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    
-    // set the right button to save
 }
 
 - (void)cancel {
     
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.managedObjectContext deleteObject:self.list];
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -75,21 +72,20 @@
         
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
-        
     }
     else {
-    self.list.title = self.titleTextField.text;
-    self.list.createdAt = [NSDate date];
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.managedObjectContext save:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+        self.list.title = self.titleTextField.text;
+        self.list.createdAt = [NSDate date];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.managedObjectContext save:nil];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)redColorSelected:(UIButton *)sender {
-    
+    NSLog(@"red");
     self.list.color = sender.backgroundColor;
     
     [self.redColor setBackgroundImage:self.checkBackgroundImage forState:UIControlStateNormal];
@@ -109,6 +105,7 @@
     [self.blueColor setBackgroundImage:nil forState:UIControlStateNormal];
     [self.lightBlueColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
+
 - (IBAction)blueColorSelected:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
     
@@ -118,6 +115,7 @@
     [self.redColor setBackgroundImage:nil forState:UIControlStateNormal];
     [self.lightBlueColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
+
 - (IBAction)lightBlueColorSelected:(UIButton *)sender {
     self.list.color = sender.backgroundColor;
     
@@ -127,10 +125,6 @@
     [self.blueColor setBackgroundImage:nil forState:UIControlStateNormal];
     [self.redColor setBackgroundImage:nil forState:UIControlStateNormal];
 }
-
-
-- (IBAction)colorButtonTapped:(UIButton *)sender {
-    self.list.color = sender.backgroundColor;
-}
+ 
 
 @end

@@ -15,6 +15,8 @@
 @interface ListsTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic) NSSortDescriptor *sort;
 
 @end
 
@@ -22,30 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    
-    // 1) create an instance of NSFetchRequest with an entity name
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
-    
-    
-    // 2) create a sort descriptor
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    
-    // 3) set the sortDescriptors on the fetchRequest
-    fetchRequest.sortDescriptors = @[sort];
-    
-    // 4) create a fetchedResultsController with a fetchRequest and a managedObjectContext,
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    self.fetchedResultsController.delegate = self;
-    
-    [self.fetchedResultsController performFetch:nil];
-    
+    [self sorting];
     [self.tableView reloadData];
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self sorting];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
 
@@ -63,18 +50,41 @@
     List *list = self.fetchedResultsController.fetchedObjects[indexPath.row];
     cell.backgroundColor = (UIColor *)list.color;
     cell.textLabel.text = list.title;
-//    cell.detailTextLabel.text = [list.createdAt description];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     NSDateFormatter *createdDateFormatter = [[NSDateFormatter alloc] init];
     [createdDateFormatter setDateFormat:@"yyyy-MM-dd    HH:mm:ss"];
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Created at: %@",[createdDateFormatter stringFromDate:list.createdAt ]];
-    
-    
-    
-    
+
     return cell;
+}
+
+
+- (IBAction)segmentedControlChanged:(UISegmentedControl *)sender {
+    [self sorting];
+    [self.tableView reloadData];
+}
+
+-(void) sorting {
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"List"];
+    
+    if (self.segmentedControl.selectedSegmentIndex == 0)  {
+        self.sort = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    }
+    else
+        self.sort = [[NSSortDescriptor alloc] initWithKey:@"color" ascending:NO];
+    
+    fetchRequest.sortDescriptors = @[self.sort];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:delegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    self.fetchedResultsController.delegate = self;
+    
+    [self.fetchedResultsController performFetch:nil];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {

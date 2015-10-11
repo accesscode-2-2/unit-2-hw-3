@@ -19,14 +19,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *priority3;
 @property (weak, nonatomic) IBOutlet UIButton *priority4;
 @property (weak, nonatomic) IBOutlet UIButton *priority5;
-@property (nonatomic) NSNumber *priorityNumber;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic) UIImage *whiteStarBackground;
 @property (nonatomic) UIImage *yellowStarBackground;
-
-
-
-
+@property (nonatomic) NSNumber *priorityNumber;
 
 
 @end
@@ -35,7 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.752 green:0.098 blue:0 alpha:1];
     
+ 
     self.whiteStarBackground = [UIImage imageNamed:@"WhiteStar"];
     self.yellowStarBackground = [UIImage imageNamed:@"YellowStar"];
     
@@ -51,7 +49,6 @@
     self.task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:delegate.managedObjectContext];
     
     self.navigationItem.title = [NSString stringWithFormat:@"Add task to %@", self.list.title];
-    
 }
 
 - (IBAction)cancelTask:(UIBarButtonItem *)sender {
@@ -84,33 +81,24 @@
         
     }
     else {
-    
-    
-    
-    
-    self.task.taskDescription = self.textField.text;
-    self.task.createdAt = [NSDate date];
-    self.task.priority = self.priorityNumber;
-    self.task.dueAt = self.datePicker.date;
-  
         
-    [self.set addObject:self.task];
-    
-    self.list.task = self.set;
-    
-    [delegate.managedObjectContext save:nil];
-//        NSLog(@"**** list%@", self.list);
-        NSLog(@"**** self.task.priority   %@", self.task.priority);
-        NSLog(@"**** due   %@", self.task.dueAt);
-    
+        self.task.taskDescription = self.textField.text;
+        self.task.createdAt = [NSDate date];
+        self.task.priority = self.priorityNumber;
+        self.task.dueAt = self.datePicker.date;
+        
+        [self.set addObject:self.task];
+        
+        self.list.task = self.set;
+        
+        [delegate.managedObjectContext save:nil];
+        
         [self.tableView reloadData];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
         
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }
 }
-}
-
-
 
 - (IBAction)priority1Selected:(UIButton *)sender {
     self.priorityNumber = @1;
@@ -119,8 +107,6 @@
     [self.priority3 setBackgroundImage:self.whiteStarBackground forState:UIControlStateNormal];
     [self.priority4 setBackgroundImage:self.whiteStarBackground forState:UIControlStateNormal];
     [self.priority5 setBackgroundImage:self.whiteStarBackground forState:UIControlStateNormal];
-    
-    
 }
 - (IBAction)priority2Selected:(UIButton *)sender {
     self.priorityNumber = @2;
@@ -154,19 +140,6 @@
     [self.priority4 setBackgroundImage:self.yellowStarBackground forState:UIControlStateNormal];
     [self.priority5 setBackgroundImage:self.yellowStarBackground forState:UIControlStateNormal];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

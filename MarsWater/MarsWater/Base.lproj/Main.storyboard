@@ -14,9 +14,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="2bT-79-SEH">
+                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.73686486482620239" green="0.11684393137693405" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <segments>
+                                <segment title="Name"/>
+                                <segment title="Color"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segmentedControlChanged:" destination="8Sk-kJ-ZKe" eventType="valueChanged" id="ick-mK-k5M"/>
+                            </connections>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCellIdentifier" textLabel="t2E-b6-cF0" detailTextLabel="v9C-RD-f0m" style="IBUITableViewCellStyleSubtitle" id="12f-5V-ccn">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="122" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12f-5V-ccn" id="yoQ-Vw-tyH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -54,11 +67,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Lists" id="jlP-J0-W0N">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MoJ-TJ-Hpv">
+                            <color key="tintColor" red="0.73686486482620239" green="0.11684393137693405" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="6MD-Xb-sJM" kind="presentation" id="Cxa-WD-dOR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="2bT-79-SEH" id="6wc-p3-iG7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yt-Q8-86U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,6 +98,7 @@
                                 <segment title="Priority"/>
                                 <segment title="Due Date"/>
                             </segments>
+                            <color key="tintColor" red="0.73686486482620239" green="0.11684393137693405" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="segmentSelected:" destination="Sck-nH-BhV" eventType="valueChanged" id="xmP-YQ-Snw"/>
                             </connections>
@@ -174,6 +192,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tasks" id="V00-iP-xg5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CI5-kP-fmY">
+                            <color key="tintColor" red="0.73686486482620239" green="0.11684393137693405" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="VLo-V7-2zR" kind="presentation" id="P4X-Tz-hyc"/>
                             </connections>

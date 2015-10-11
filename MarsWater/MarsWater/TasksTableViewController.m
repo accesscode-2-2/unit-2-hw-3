@@ -27,16 +27,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.list.title;
-
     [self sorting];
-    
     [self.tableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"will appear");
-    
+    [self sorting];
     [self.tableView reloadData];
 }
 
@@ -50,14 +47,12 @@
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCellIdentifier" forIndexPath:indexPath];
     
     self.task = self.fetchedResultsController.fetchedObjects[indexPath.row];
     
     cell.titleLabel.text =  _task.taskDescription ;
-    
     
     NSDateFormatter *createdDateFormatter = [[NSDateFormatter alloc] init];
     [createdDateFormatter setDateFormat:@"MM/dd/yyyy"];
@@ -70,49 +65,36 @@
     cell.dueAtLabel.text = [NSString stringWithFormat:@"Due at: %@",[dueAtDateFormatter stringFromDate:_task.dueAt] ];
     
     cell.priorityLabel.text = [NSString stringWithFormat:@"Priority: %@",_task.priority];;
-    
 
-    NSLog(@"priority %@", _task.priority);
-    
     return cell;
 }
 
-
 - (IBAction)segmentSelected:(UISegmentedControl *)sender {
-     NSLog(@"phuuu");
-
+ 
     [self sorting];
-    
     [self.tableView reloadData];
 }
 
 -(void) sorting {
-    
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     // 1) create an instance of NSFetchRequest with an entity name
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     
-    
     // 2) create a sort descriptor
     
     if (self.segmentedControl.selectedSegmentIndex == 0)  {
 
     self.sort = [NSSortDescriptor sortDescriptorWithKey:@"taskDescription" ascending:YES];
-    
     }
     else if (self.segmentedControl.selectedSegmentIndex == 1)  {
         
         self.sort = [NSSortDescriptor sortDescriptorWithKey:@"priority" ascending:NO];
-        
     }
     else
         self.sort = [NSSortDescriptor sortDescriptorWithKey:@"dueAt" ascending:YES];
-        
-    
-    
-    
+
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"list.title = %@", self.list.title];
     
     // 3) set the sortDescriptors on the fetchRequest
@@ -129,17 +111,11 @@
     [self.tableView reloadData];
 }
 
-
-
-
-
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     UINavigationController *navController = segue.destinationViewController;
     
     TaskCreationTableViewController *taskCTVC = (TaskCreationTableViewController *)([navController viewControllers][0]);
-    
     
    taskCTVC.list = self.list;
      }
