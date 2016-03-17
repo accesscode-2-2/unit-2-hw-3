@@ -7,22 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18D601571C9B13050085227C /* NSString+Length.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D601561C9B13050085227C /* NSString+Length.m */; };
 		DC015AB01BC1AE4800961A06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AAF1BC1AE4800961A06 /* main.m */; };
 		DC015AB31BC1AE4800961A06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AB21BC1AE4800961A06 /* AppDelegate.m */; };
 		DC015AB91BC1AE4800961A06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC015AB71BC1AE4800961A06 /* Main.storyboard */; };
 		DC015ABC1BC1AE4800961A06 /* MarsWater.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC015ABA1BC1AE4800961A06 /* MarsWater.xcdatamodeld */; };
 		DC015ABE1BC1AE4800961A06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC015ABD1BC1AE4800961A06 /* Assets.xcassets */; };
 		DC015AC11BC1AE4800961A06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC015ABF1BC1AE4800961A06 /* LaunchScreen.storyboard */; };
-		DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE21BC1B95300961A06 /* ListsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC015B481BC5A70300961A06 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B411BC5A70300961A06 /* Task+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		DC015B491BC5A70300961A06 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B431BC5A70300961A06 /* Task.m */; settings = {ASSET_TAGS = (); }; };
-		DC015B4A1BC5A70300961A06 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B451BC5A70300961A06 /* List+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		DC015B4B1BC5A70300961A06 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B471BC5A70300961A06 /* List.m */; settings = {ASSET_TAGS = (); }; };
+		DC015AE01BC1B91300961A06 /* ListCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */; };
+		DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE21BC1B95300961A06 /* ListsTableViewController.m */; };
+		DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */; };
+		DC015B481BC5A70300961A06 /* Task+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B411BC5A70300961A06 /* Task+CoreDataProperties.m */; };
+		DC015B491BC5A70300961A06 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B431BC5A70300961A06 /* Task.m */; };
+		DC015B4A1BC5A70300961A06 /* List+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B451BC5A70300961A06 /* List+CoreDataProperties.m */; };
+		DC015B4B1BC5A70300961A06 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = DC015B471BC5A70300961A06 /* List.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18D601551C9B13050085227C /* NSString+Length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Length.h"; sourceTree = "<group>"; };
+		18D601561C9B13050085227C /* NSString+Length.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Length.m"; sourceTree = "<group>"; };
 		DC015AAB1BC1AE4800961A06 /* MarsWater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsWater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC015AAF1BC1AE4800961A06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC015AB11BC1AE4800961A06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				DC015AE91BC22F4C00961A06 /* TasksTableViewController.m */,
 				DC015ADE1BC1B91300961A06 /* ListCreationTableViewController.h */,
 				DC015ADF1BC1B91300961A06 /* ListCreationTableViewController.m */,
+				18D601551C9B13050085227C /* NSString+Length.h */,
+				18D601561C9B13050085227C /* NSString+Length.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				DC015B481BC5A70300961A06 /* Task+CoreDataProperties.m in Sources */,
 				DC015AE31BC1B95300961A06 /* ListsTableViewController.m in Sources */,
 				DC015B4B1BC5A70300961A06 /* List.m in Sources */,
+				18D601571C9B13050085227C /* NSString+Length.m in Sources */,
 				DC015B491BC5A70300961A06 /* Task.m in Sources */,
 				DC015AEA1BC22F4C00961A06 /* TasksTableViewController.m in Sources */,
 				DC015AB01BC1AE4800961A06 /* main.m in Sources */,
